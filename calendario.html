@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="es" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Topos FC</title>
+    <link rel="stylesheet" href="cal-style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
+    <script src="cal-script.js" defer></script>
+  </head>
+  <body>
+    <nav class="navbar_container">
+      <div class="iniciar_sesion">
+       Iniciar sesión
+      </div>
+      <div class="imagen_navbar">
+       <img src="images/topos_logo.png" alt="Logo de topos FC">
+      </div>
+      <div class="lista">
+       <ul>
+        <li><a href="#inicio">Inicio</a></li>
+        <li><a href="#quienesSomos">Quiénes somos</a></li>
+        <li><a href="#ligaNacionalDeFuchoParaCiegos">Liga Nacional de Fucho para Ciegos</a></li>
+        <li><a href="#equipos">Equipos</a></li>
+        <li><a href="#laMadrigruera">La Madriguera</a></li>
+        <li><a href="#noticias">Noticias</a></li>
+        <li><a href="#donativos">Donativos</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+        <li><a href="#rentarCancha">Rentar Cancha</a></li>
+        <li><a href="#calendario">Calendario</a></li>
+        <li><a href="#registro">Registro</a></li>
+        <li><a href="#section_administracion">Administración</a></li>
+        <li><a href="#section_estadisticas">Estadísticas</a></li>
+       </ul>
+      </div>
+     </nav>
+
+    <br>
+    <div class="content">
+        <p>Actualmente contamos con una cancha la cuál cuenta con pasto sintético en la cuál se llevan a cabo ligas de futbol 5, aunque como una iniciativa para seguir acondicionando la cancha y ofrecer a todos los jugadores la mejor experiencia posible, estamos rentando la cancha para actividades externas tales como:</p>
+        <ul>
+            <li>Escuela para niños.</li>
+            <li>Área de fiestas.</li>
+            <li>Zona de actividades recreativas.</li>
+            <li>Partidos de fútbol de otros equipos.</li>
+            <li>Entre otras actividades siempre y cuando no comprometan el estado de la cancha.</li>
+        </ul>
+        <br>
+        <h1>Especificaciones de la cancha</h1>
+        <ul>
+            <li>Dimensiones: 10 metros de largo por 10 metros de ancho.</li>
+            <li>Piso: Pasto sintético.</li>
+            <li>Baños: 1 baño portátil.</li>
+        </ul>
+        <br>
+        <h1>Condiciones para el Alquiler de las Instalaciones</h1>
+        <ul>
+            <li>Las rentas solo se concretarán a personas mayores de edad.</li>
+            <li>Está prohibido introducir o consumir bebidas alcohólicas en la cancha.</li>
+            <li>El uso de la cancha queda bajo la responsabilidad de quienes la apartaron durante el lapso de tiempo acordado.</li>
+        </ul>
+        <br>
+        <h1>Políticas de Uso de Canchas</h1>
+        <ul>
+            <li>El costo de la renta deberá ser pagado en un periodo de 3 días hábiles, de otro modo no se agendará la renta de la cancha.</li>
+            <li>Toda renta deberá estar cubierta previo a la ocupación de la cancha.</li>
+            <li>Se prohíbe el uso de zapatos tales como los “tacos” o “taquetes” dentro de la cancha.</li>
+        </ul>
+        <br>
+        <h1>Información requerida para apartar la cancha</h1>
+    </div>
+    <br>
+    <br>
+    <div class="wrapper">
+        <h2 id="calendar_title">Calendario de Reservaciones</h2>
+        <header>
+            <br>
+            <p class="current-date"></p>
+            <div class="icons">
+                <span id="prev" class="material-symbols-rounded">chevron_left</span>
+                <span id="next" class="material-symbols-rounded">chevron_right</span>
+            </div>
+        </header>
+        <div class="calendar">
+        <ul class="weeks">
+          <li>Dom</li>
+          <li>Lun</li>
+          <li>Mar</li>
+          <li>Mie</li>
+          <li>Jue</li>
+          <li>Vie</li>
+          <li>Sab</li>
+        </ul>
+        <ul class="days"></ul>
+      </div>
+    </div>
+    <div class="reservation-wrapper">
+      <h2 id="calendar_title">Reservaciones del día</h2>
+      <br> <br>
+      <h5>10:00 AM - 12:00 PM Cancha Reservada.</h5>
+      <br>
+      <button>Pulsa aquí para solicitar una nueva reserva.</button>
+      <div class="inicia_resv">
+        <h2>Planea tu reserva</h2>
+        <form>
+          <label for="email">Correo Electrónico:</label>
+          <input type="email" id="email" name="email" required>
+      
+          <label for="name">Nombre Completo:</label>
+          <input type="text" id="name" name="name" required>
+      
+          <label for="reason">Motivo de Reserva:</label>
+          <input type="text" id="reason" name="reason" required>
+      
+          <button type="submit">Continuar</button>
+        </form>
+      </div>
+      
+    </div>
+  </div>
+    
+  </body>
+</html>

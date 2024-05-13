@@ -1,0 +1,237 @@
+/* Import Google font - Poppins */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body{
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
+    justify-content: center;
+    min-height: 100vh;
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 10px;
+}
+
+/* navbar */
+
+.navbar_container {
+  background-color: #fde5a7;
+  width: 100%;
+  padding: 10px 0;
+  margin: 0;
+}
+
+nav ul {
+  list-style-type: none;
+  padding: 10px;
+  margin: 0;
+  display: flex;
+  justify-content: space-evenly; 
+}
+nav ul li {
+  display: inline; 
+}
+nav ul li a {
+  text-decoration: none; 
+  color: black; 
+  padding: 10px;
+}
+
+.iniciar_sesion {
+  text-align: right;
+  float: right;
+  font-size: 1.5em;
+  padding: 10px;
+  width: 100%;
+}
+
+.imagen_navbar {
+  text-align: center;
+  margin: 0 auto;
+  padding: 0;
+}
+
+.content h1{
+    color: #00457a;
+}
+.content ul {
+    padding-inline-start: 40px; 
+    list-style-type: disc;
+}
+.wrapper {
+  width: 450px;
+  padding-top: 10px;
+  background: #fff;
+  border-radius: 20px;
+  box-shadow: 0 50px 80px rgba(0,0,0,0.50);
+  margin-bottom: 20px; 
+  position: relative;
+  z-index: 1;
+}
+#calendar_title{
+    text-align: center;
+}
+.wrapper header{
+  display: flex;
+  align-items: center;
+  padding: 25px 30px 10px;
+  justify-content: space-between; 
+}
+.reservation-wrapper {
+  padding-top: 10px;
+  padding-left: 40px;
+  width: 450px; 
+  height: 480px;
+  background: #fff;
+  border-radius: 20px;
+  box-shadow: 0 50px 80px rgba(0,0,0,0.50);
+  position: relative;
+  top: -500px;
+}
+.reservation-wrapper button{
+  text-decoration: solid;
+  border-radius: 10px;
+  padding: 5px;
+  background-color: #f2f2f2;
+}
+header .icons{
+  display: flex;
+}
+header .icons span{
+  height: 38px;
+  width: 38px;
+  margin: 0 1px;
+  cursor: pointer;
+  color: #878787;
+  text-align: center;
+  line-height: 38px;
+  font-size: 1.9rem;
+  user-select: none;
+  border-radius: 50%;
+}
+.icons span:last-child{
+  margin-right: -10px;
+}
+header .icons span:hover{
+  background: #f2f2f2;
+}
+header .current-date{
+  font-size: 1.45rem;
+  font-weight: 500;
+}
+.calendar{
+  padding: 20px;
+}
+.calendar ul{
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  text-align: center;
+}
+.calendar .days{
+  margin-bottom: 20px;
+}
+.calendar li{
+  color: #333;
+  width: calc(100% / 7);
+  font-size: 1.07rem;
+}
+.calendar .weeks li{
+  font-weight: 500;
+  cursor: default;
+}
+.calendar .days li{
+  z-index: 1;
+  cursor: pointer;
+  position: relative;
+  margin-top: 30px;
+}
+.days li.inactive{
+  color: #aaa;
+}
+.days li.active{
+  color: #fff;
+}
+.days li::before{
+  position: absolute;
+  content: "";
+  left: 50%;
+  top: 50%;
+  height: 40px;
+  width: 40px;
+  z-index: -1;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+}
+.days li.active::before{
+  border: 2px solid #fcb900; /* Cambia el color del borde según lo necesites */
+  border-radius: 50%; /* Asegúrate de que el borde sea redondeado para formar un círculo */
+  padding: 8px; /* Opcional: Ajusta el espacio entre el borde y el contenido */
+}
+
+.days li:not(.active):hover::before{
+  background: #f2f2f2;
+}
+
+.inicia_resv {
+  width: 300px;
+  height: 270px;
+  background-color: #fcb900;
+  border-radius: 10px;
+  padding: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  padding-left: 20px;
+  position: absolute;
+  top: 190px;
+  left: 80px;
+}
+
+.inicia_resv h2 {
+  text-align: center;
+  margin-bottom: 10px;
+  font-size: 16px;
+}
+
+.inicia_resv input,
+.inicia_resv button {
+  width: calc(100% - 20px);
+  padding: 4px; /* Reducir el relleno */
+  margin-bottom: 5px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  box-sizing: border-box;
+  font-size: 12px; /* Reducir el tamaño de fuente */
+}
+
+.inicia_resv button {
+  text-align: center;
+  margin-top: 15px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+.inicia_resv label {
+  display: block;
+  margin-bottom: 3px;
+  font-size: 12px; /* Reducir el tamaño de fuente */
+}
+
+.days li.selected::before {
+  background: #fcb900; /* Cambia el color del indicador */
+  border-color: #fcb900; /* Cambia el color del borde del indicador */
+}
+
+.days li.selected {
+  color: #fff; /* Cambia el color del número a blanco */
+}
