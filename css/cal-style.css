@@ -184,7 +184,7 @@ header .current-date{
   overflow: hidden;
   padding-left: 20px;
   position: absolute;
-  top: 190px;
+  top: 150px;
   left: 80px;
 }
 
@@ -267,4 +267,8 @@ header .current-date{
 
 .boton-reserva:focus {
   outline: none; /* Quita el contorno predeterminado al hacer clic */
+}
+
+.days li.past {
+  color: #878787; /* Cambia el color de los días pasados a gris */
 }

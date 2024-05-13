@@ -24,7 +24,9 @@ const renderCalendar = () => {
         // adding active class to li if the current day, month, and year matched
         let isToday = i === date.getDate() && currMonth === new Date().getMonth() 
                      && currYear === new Date().getFullYear() ? "active" : "";
-        liTag += `<li class="${isToday}">${i}</li>`;
+        let isPastDay = date.getDate() > i && currMonth === new Date().getMonth() 
+                     && currYear === new Date().getFullYear() ? "past" : ""; // added class for past days
+        liTag += `<li class="${isToday} ${isPastDay}">${i}</li>`;
     }
 
     for (let i = lastDayofMonth; i < 6; i++) { // creating li of next month first days
@@ -58,29 +60,29 @@ const dayElements = document.querySelectorAll(".days li");
 // Agrega un evento de clic a cada elemento <li> del calendario
 dayElements.forEach(day => {
     day.addEventListener("click", () => {
-        // Remueve la clase 'selected' de todos los elementos <li> excepto el día actual
-        dayElements.forEach(d => {
-            if (d !== day && !d.classList.contains('today')) {
-                d.classList.remove('selected');
-                d.style.color = ''; // Restablece el color del número
-            }
-        });
+        if (!day.classList.contains('past')) { // Only perform action if the day is not in the past
+            // Remueve la clase 'selected' de todos los elementos <li> excepto el día actual
+            dayElements.forEach(d => {
+                if (d !== day && !d.classList.contains('today')) {
+                    d.classList.remove('selected');
+                    d.style.color = ''; // Restablece el color del número
+                }
+            });
 
-        // Añade la clase 'selected' al día clickeado
-        day.classList.add('selected');
-        day.style.color = '#fff'; // Cambia el color del número a blanco
-        
-        // Mueve el wrapper hacia la izquierda con animación
-        const wrapper = document.querySelector(".wrapper");
-        wrapper.style.transition = "transform 0.5s ease"; // Define una transición suave de 0.5 segundos
-        wrapper.style.transform = "translateX(-215px)";
+            // Añade la clase 'selected' al día clickeado
+            day.classList.add('selected');
+            day.style.color = '#fff'; // Cambia el color del número a blanco
 
-        // Mueve el reservation-wrapper hacia la derecha con animación
-        const reservationWrapper = document.querySelector(".reservation-wrapper");
-        reservationWrapper.style.transition = "transform 0.5s ease"; // Define una transición suave de 0.5 segundos
-        reservationWrapper.style.transform = "translateX(215px)";
-        
-        // Puedes ajustar la duración y la función de temporización de la transición según tus preferencias.
+            // Mueve el wrapper hacia la izquierda con animación
+            const wrapper = document.querySelector(".wrapper");
+            wrapper.style.transition = "transform 0.5s ease"; 
+            wrapper.style.transform = "translateX(-215px)";
+
+            // Mueve el reservation-wrapper hacia la derecha con animación
+            const reservationWrapper = document.querySelector(".reservation-wrapper");
+            reservationWrapper.style.transition = "transform 0.5s ease"; 
+            reservationWrapper.style.transform = "translateX(215px)";
+        }
     });
 });
 
@@ -94,6 +96,8 @@ const iniciaResvDiv = document.querySelector(".inicia_resv");
 reservaButton.addEventListener("click", function() {
     // Agrega la clase de animación para mostrar el div
     iniciaResvDiv.classList.add("mostrar");
+    // Desaparece el botón de reserva
+    reservaButton.style.display = "none";
 });
 
 // Agrega un evento de clic a todo el documento para cerrar el div si se hace clic fuera de él
@@ -101,5 +105,7 @@ document.addEventListener("click", function(event) {
     if (!iniciaResvDiv.contains(event.target) && event.target !== reservaButton) {
         // Si se hace clic fuera del div o del botón, quita la clase de animación
         iniciaResvDiv.classList.remove("mostrar");
+        // Vuelve a mostrar el botón de reserva
+        reservaButton.style.display = "block";
     }
 });
