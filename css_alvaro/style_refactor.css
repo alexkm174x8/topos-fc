@@ -1,0 +1,137 @@
+
+/* General rules */
+* {
+    margin: 0;
+}
+
+/* navbar */
+
+.navbar_container {
+    background-color: #fde5a7;
+    width: 100%;
+    padding: 10px 0;
+    margin: 0;
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 10px;
+    margin: 0;
+    display: flex;
+    justify-content: space-evenly;
+}
+nav ul li {
+    display: inline;
+}
+nav ul li a {
+    text-decoration: none;
+    color: black;
+    padding: 10px;
+}
+
+.iniciar_sesion {
+    text-align: right;
+    float: right;
+    font-size: 1.5em;
+    padding: 10px;
+    width: 100%;
+}
+
+.imagen_navbar {
+    text-align: center;
+    margin: 0 auto;
+    padding: 0;
+}
+
+/* estadisticas */
+
+.section-estadisticas td{
+    text-align: center;
+    vertical-align: middle;
+}
+
+
+.h1_strong h1{
+    font-weight: 800;
+    font-size: 5em;
+}
+
+.marcadores {
+    width: 25%;
+    text-align: center;
+}
+
+.marcadores h1{
+    font-weight: 600;
+    font-size: 4em;
+}
+
+.marcadores h3{
+    font-size: 2em;
+}
+
+.marcadores h4{
+    font-size: 1.25em;
+}
+
+#row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+#topos_logo{
+    width: 35vw;
+}
+
+#topos_varonil h1 {
+    margin-top: 10vh;
+    margin-bottom: 0;
+}
+
+#escudo_izquierda{
+    width: 20vw;
+}
+
+#escudo_derecha{
+    width: 20vw;
+}
+
+#marcador_top h3{
+    font-size: 1.5em;
+    margin-top: 10vh;
+    margin-bottom: 0;
+}
+
+#estadisticas h3{
+    font-size: 1.5em;
+}
+
+#equipo_img{
+    width: 80vw
+}
+
+
+/* footer */
+
+.footer {
+    background-color: #243964;
+    color: white;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.left-content {
+    flex: 1;
+}
+
+.right-content img {
+    width: 50px;
+    height: auto;
+    margin-right: 10px;
+}
+
