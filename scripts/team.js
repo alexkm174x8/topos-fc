@@ -8,13 +8,13 @@ function playerSquares() {
         <table class="table-center">
           <tr>
             <td class="td-center" colspan="3">
-                <img src="images/default_user.png" alt="Imagen de usuario no registrado" />
+                <img src="images/default_user.png" alt="Imagen de usuario no registrado" class="ima_usuario"/>
             </td>
             <td class="td-center" colspan="3">
-                <img src="images/default_user.png" alt="Imagen de usuario no registrado" />
+                <img src="images/default_user.png" alt="Imagen de usuario no registrado" class="ima_usuario"/>
             </td>
             <td class="td-center" colspan="3">
-                <img src="images/default_user.png" alt="Imagen de usuario no registrado" />
+                <img src="images/default_user.png" alt="Imagen de usuario no registrado" class="ima_usuario"/>
             </td>
            </tr>
            <tr>
@@ -35,11 +35,11 @@ function playerSquares() {
            <tr>
               <td class="td-filler"></td>
               <td class="td-center" colspan="3">
-                  <img src="images/default_user.png" alt="Imagen de usuario no registrado"/> 
+                  <img src="images/default_user.png" alt="Imagen de usuario no registrado" class="ima_usuario"/> 
               </td>
               <td class="td-filler"></td>
               <td class="td-center" colspan="3">
-                  <img src="images/default_user.png" alt="Imagen de usuario no registrado"/>
+                  <img src="images/default_user.png" alt="Imagen de usuario no registrado" class="ima_usuario"/>
               </td>
               <td class="td-filler"></td>
            </tr>
@@ -60,16 +60,16 @@ function playerSquares() {
     <table class="table-center">
       <tr>
         <td class="td-center" colspan="4">
-            <img src="images/default_user.png" alt="Imagen de usuario no registrado" />
+            <img src="images/default_user.png" alt="Imagen de usuario no registrado" class="ima_usuario"/>
         </td>
         <td class="td-center" colspan="4">
-            <img src="images/default_user.png" alt="Imagen de usuario no registrado" />
+            <img src="images/default_user.png" alt="Imagen de usuario no registrado" class="ima_usuario"/>
         </td>
         <td class="td-center" colspan="4">
-            <img src="images/default_user.png" alt="Imagen de usuario no registrado" />
+            <img src="images/default_user.png" alt="Imagen de usuario no registrado" class="ima_usuario"/>
         </td>
         <td class="td-center" colspan="4">
-            <img src="images/default_user.png" alt="Imagen de usuario no registrado" />
+            <img src="images/default_user.png" alt="Imagen de usuario no registrado" class="ima_usuario"/>
         </td>
        </tr>
        <tr>
@@ -93,15 +93,15 @@ function playerSquares() {
        <tr>
           <td class="td-filler"></td>
           <td class="td-center" colspan="4">
-              <img src="images/default_user.png" alt="Imagen de usuario no registrado"/> 
+              <img src="images/default_user.png" alt="Imagen de usuario no registrado" class="ima_usuario"/> 
           </td>
           <td class="td-filler"></td>
           <td class="td-center" colspan="4">
-              <img src="images/default_user.png" alt="Imagen de usuario no registrado"/>
+              <img src="images/default_user.png" alt="Imagen de usuario no registrado" class="ima_usuario"/>
           </td>
           <td class="td-filler"></td>
           <td class="td-center" colspan="4">
-              <img src="images/default_user.png" alt="Imagen de usuario no registrado"/>
+              <img src="images/default_user.png" alt="Imagen de usuario no registrado" class="ima_usuario"/>
           </td>
           <td class="td-filler"></td>
        </tr>
@@ -127,13 +127,13 @@ function playerSquares() {
         <table class="table-center">
         <tr>
         <td class="td-center" colspan="3">
-            <img src="images/default_user.png" alt="Imagen de usuario no registrado" />
+            <img src="images/default_user.png" alt="Imagen de usuario no registrado" class="ima_usuario"/>
         </td>
         <td class="td-center" colspan="3">
-            <img src="images/default_user.png" alt="Imagen de usuario no registrado" />
+            <img src="images/default_user.png" alt="Imagen de usuario no registrado" class="ima_usuario"/>
         </td>
         <td class="td-center" colspan="3">
-            <img src="images/default_user.png" alt="Imagen de usuario no registrado" />
+            <img src="images/default_user.png" alt="Imagen de usuario no registrado" class="ima_usuario"/>
         </td>
        </tr>
        <tr>
@@ -152,13 +152,13 @@ function playerSquares() {
         </tr>
            <tr>
             <td class="td-center" colspan="3">
-                <img src="images/default_user.png" alt="Imagen de usuario no registrado" />
+                <img src="images/default_user.png" alt="Imagen de usuario no registrado" class="ima_usuario"/>
             </td>
             <td class="td-center" colspan="3">
-                <img src="images/default_user.png" alt="Imagen de usuario no registrado" />
+                <img src="images/default_user.png" alt="Imagen de usuario no registrado" class="ima_usuario"/>
             </td>
             <td class="td-center" colspan="3">
-                <img src="images/default_user.png" alt="Imagen de usuario no registrado" />
+                <img src="images/default_user.png" alt="Imagen de usuario no registrado" class="ima_usuario"/>
             </td>
            </tr>
            <tr>
@@ -177,13 +177,13 @@ function playerSquares() {
           </tr>
             <tr>
             <td class="td-center" colspan="3">
-                <img src="images/default_user.png" alt="Imagen de usuario no registrado" />
+                <img src="images/default_user.png" alt="Imagen de usuario no registrado" class="ima_usuario"/>
             </td>
             <td class="td-center" colspan="3">
-                <img src="images/default_user.png" alt="Imagen de usuario no registrado" />
+                <img src="images/default_user.png" alt="Imagen de usuario no registrado" class="ima_usuario"/>
             </td>
             <td class="td-center" colspan="3">
-                <img src="images/default_user.png" alt="Imagen de usuario no registrado" />
+                <img src="images/default_user.png" alt="Imagen de usuario no registrado" class="ima_usuario"/>
             </td>
            </tr>
            <tr>
