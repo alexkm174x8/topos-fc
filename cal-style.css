@@ -157,9 +157,7 @@ header .current-date{
 .days li.inactive{
   color: #aaa;
 }
-.days li.active{
-  color: #fff;
-}
+
 .days li::before{
   position: absolute;
   content: "";
@@ -170,11 +168,6 @@ header .current-date{
   z-index: -1;
   border-radius: 50%;
   transform: translate(-50%, -50%);
-}
-.days li.active::before{
-  border: 2px solid #fcb900; /* Cambia el color del borde según lo necesites */
-  border-radius: 50%; /* Asegúrate de que el borde sea redondeado para formar un círculo */
-  padding: 8px; /* Opcional: Ajusta el espacio entre el borde y el contenido */
 }
 
 .days li:not(.active):hover::before{
@@ -234,4 +227,44 @@ header .current-date{
 
 .days li.selected {
   color: #fff; /* Cambia el color del número a blanco */
+}
+
+/* Define la animación para mostrar el div */
+@keyframes mostrarIniciaResv {
+  0% { opacity: 0; transform: translateY(-20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+/* Estilo inicial del div */
+.inicia_resv {
+  display: none; /* Ocultar el div inicialmente */
+}
+
+/* Agrega la clase de animación al div */
+.mostrar {
+  animation: mostrarIniciaResv 0.5s ease forwards;
+  display: block; /* Asegurar que el div esté visible durante la animación */
+}
+
+/* Estilos mejorados para el botón de reserva */
+.boton-reserva {
+  background-color: #007bff !important; /* Color azul predeterminado */
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0px 4px 6px rgba(0, 123, 255, 0.3); /* Sombra alrededor del botón */
+}
+
+.boton-reserva:hover {
+  background-color: #0056b3; /* Cambio de color al pasar el ratón por encima */
+  transform: translateY(-2px); /* Efecto de levantamiento */
+  box-shadow: 0px 6px 10px rgba(0, 123, 255, 0.5); /* Sombra más pronunciada al pasar el ratón por encima */
+}
+
+.boton-reserva:focus {
+  outline: none; /* Quita el contorno predeterminado al hacer clic */
 }

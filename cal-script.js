@@ -69,16 +69,37 @@ dayElements.forEach(day => {
         // Añade la clase 'selected' al día clickeado
         day.classList.add('selected');
         day.style.color = '#fff'; // Cambia el color del número a blanco
-
+        
         // Mueve el wrapper hacia la izquierda con animación
         const wrapper = document.querySelector(".wrapper");
-        wrapper.style.transition = "transform 0.5s ease"; 
+        wrapper.style.transition = "transform 0.5s ease"; // Define una transición suave de 0.5 segundos
         wrapper.style.transform = "translateX(-215px)";
 
         // Mueve el reservation-wrapper hacia la derecha con animación
         const reservationWrapper = document.querySelector(".reservation-wrapper");
-        reservationWrapper.style.transition = "transform 0.5s ease"; 
+        reservationWrapper.style.transition = "transform 0.5s ease"; // Define una transición suave de 0.5 segundos
         reservationWrapper.style.transform = "translateX(215px)";
-
+        
+        // Puedes ajustar la duración y la función de temporización de la transición según tus preferencias.
     });
+});
+
+// Obtén el botón de reserva por su ID
+const reservaButton = document.getElementById("reservaButton");
+
+// Obtén el div de inicia_resv por su ID
+const iniciaResvDiv = document.querySelector(".inicia_resv");
+
+// Agrega un evento de clic al botón de reserva
+reservaButton.addEventListener("click", function() {
+    // Agrega la clase de animación para mostrar el div
+    iniciaResvDiv.classList.add("mostrar");
+});
+
+// Agrega un evento de clic a todo el documento para cerrar el div si se hace clic fuera de él
+document.addEventListener("click", function(event) {
+    if (!iniciaResvDiv.contains(event.target) && event.target !== reservaButton) {
+        // Si se hace clic fuera del div o del botón, quita la clase de animación
+        iniciaResvDiv.classList.remove("mostrar");
+    }
 });
