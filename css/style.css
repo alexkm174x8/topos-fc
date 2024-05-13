@@ -1,0 +1,343 @@
+/* General rules */
+* {
+  margin: 0;
+}
+
+body {
+  background-color: #FFFFFF;
+  font-family: Arial, sans-serif;
+}
+
+h1, h2, h3, h4 {
+  color: #3D5F9C;
+  font-family: Arial, sans-serif;
+  font-variant:small-caps;
+}
+
+p {
+  text-align: justify;
+  padding-left: 5vw;
+  padding-right: 5vw;
+}
+
+a {
+  font-style: inherit;
+}
+
+table {
+  width: 100%;
+}
+
+td {
+  text-align: center;
+  vertical-align: middle;
+}
+
+/* navbar */
+
+.navbar_container {
+  background-color: #fde5a7;
+  width: 100%;
+  padding: 10px 0;
+  margin: 0;
+}
+
+nav ul {
+  list-style-type: none;
+  padding: 10px;
+  margin: 0;
+  display: flex;
+  justify-content: space-evenly;
+}
+nav ul li {
+  display: inline;
+}
+nav ul li a {
+  text-decoration: none;
+  color: black;
+  padding: 10px;
+}
+
+.iniciar_sesion {
+  text-align: right;
+  float: right;
+  font-size: 1.5em;
+  padding: 10px;
+  width: 100%;
+}
+
+.imagen_navbar {
+  text-align: center;
+  margin: 0 auto;
+  padding: 0;
+}
+
+/* estadisticas */
+.h1_strong h1{
+  font-weight: 800;
+  font-size: 5em;
+}
+
+.marcadores {
+  width: 25%;
+  text-align: center;
+}
+
+.marcadores h1{
+  font-weight: 600;
+  font-size: 4em;
+}
+
+.marcadores h3{
+  font-size: 2em;
+}
+
+.marcadores h4{
+  font-size: 1.25em;
+}
+
+#row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+#topos_logo{
+  width: 35vw;
+}
+
+#topos_varonil h1 {
+  margin-top: 10vh;
+  margin-bottom: 0;
+}
+
+#escudo_izquierda{
+  width: 20vw;
+}
+
+#escudo_derecha{
+  width: 20vw;
+}
+
+#marcador_top h3{
+  font-size: 1.5em;
+  margin-top: 10vh;
+  margin-bottom: 0;
+}
+
+#estadisticas h3{
+  font-size: 1.5em;
+}
+
+#equipo_img{
+  width: 80vw
+}
+
+/* administracion */
+
+.admin h1{
+  font-size: 2em;
+  padding:5px;
+  text-align: left;
+}
+
+.admin h2{
+  padding:5px;
+  text-align: left;
+
+}
+
+.button_td{
+  align-items: start;
+}
+
+input[type=text]{
+  box-sizing: border-box;
+  padding: 12px 18px;
+  border-radius: 10px;
+  border: 2px solid #ccc;
+  text-align: center;
+  font-weight: bolder;
+}
+.write{
+  text-align: center;
+}
+
+#left_team{
+  margin-right: 0;
+  margin-left: auto;
+}
+
+.fill{
+  background-color: #fef4da;
+  color: #3d5e9c;
+  width: 200px;
+  box-sizing: border-box;
+  padding: 12px 18px;
+  border-radius: 10px;
+  border: 2px solid #ccc;
+  text-align: center;
+  font-weight: bolder;
+}
+
+.ima_equipo {
+  width: 50%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  padding-bottom: 15px;
+}
+
+.ima_usuario{
+  width: 50%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  padding-bottom: 15px;
+}
+
+.info_cont{
+  width: 40px;
+  padding: 12px 18px;
+  border-radius: 10px;
+  background-color: #f9ba0c;
+}
+
+button{
+  box-sizing: border-box;
+  padding: 12px 18px;
+  border-radius: 10px;
+  border: 0;
+  text-align: center;
+  font-weight: bolder;
+}
+
+.accept{
+  background-color: #47972c;
+  color: #bedab5;
+}
+
+.denied{
+  background-color: #972c2c;
+  color: #dab5b5;
+}
+
+.fill_up{
+  width: 30%;
+}
+
+textarea {
+  display: block;
+  margin-bottom: 15px;
+  width: 100%;
+  height: 300px;
+  resize: vertical;
+  min-height: 100%;
+  line-height: 20px;
+  box-sizing: border-box;
+  border-radius: 4px;
+  font-size: 16px;
+  background-color: whitesmoke;
+  background-position: 10px 10px;
+  background-repeat: no-repeat;
+  transition: width 0.4s ease-in-out;
+}
+
+textarea.active{
+  resize: vertical;
+  height: max-content;
+}
+
+
+/* registro */
+
+input {
+  background-color: wheat;
+  border: 0;
+}
+
+button {
+  margin: auto;
+  display:block;
+  border-radius: 10px;
+  border-color: blue;
+  background-color: blue;
+  background-size: 3px;
+  font-family: inherit;
+  color: yellow;
+}
+
+.button-colors {
+  color: rgba(0, 0, 236, 0.5);
+  background-color: wheat;
+  border-color: rgb(255, 196, 2);
+  border-width: 15px;
+  border-radius: 5px;
+}
+
+.td-center {
+  text-align: center;
+  width: auto;
+  background-color: #f9ba0c;
+  padding: 5px;
+}
+
+.td-filler {
+  width:10px;
+  height:10px;
+}
+
+.table-center {
+  table-layout: fixed;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+
+#section_registro {
+  background-color: rgb(252, 241, 221);
+}
+
+/* footer */
+
+.footer {
+  background-color: #243964;
+  color: white;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.left-content {
+  flex: 1;
+}
+
+.right-content img {
+  width: 50px;
+  height: auto;
+  margin-right: 10px;
+}
+
+/* footer */
+
+.footer {
+  background-color: #243964;
+  color: white;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.left-content {
+  flex: 1;
+}
+
+.right-content img {
+  width: 50px;
+  height: auto;
+  margin-right: 10px;
+}
