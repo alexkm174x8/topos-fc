@@ -34,21 +34,21 @@
     </div>
    </nav>
  <h2 style="text-align: center;">Registro de equipos</h2>
- <a>En base al número de jugadores que van a tener los equipos, escoja alguna de las modalidades siguientes de fútbol dentro del cuadro que se encuentra bajo el texto de nota.</a>
+ <br>
+ <a>A continuación se encuentran las ligas disponibles a las que puede registrarse, siendo estas "Liga Varonil de Fútbol 5" y "Liga Femenil de Fútbol 5".</a>
  <br>
  <br>
- <a>Nota: La cancha cuenta con un tamaño de 10 metros por 10 metros, por lo cuál si desea escoger grupos de fútbol grandes, mantenga esta información en consideración.</a>
+ <h2>Ligas para registros.</h2>
+ <div>
+    <input type="radio" name="liga" value="LVDorada" onchange="playerSquares()">Liga Varonil Dorada</input>
+    <br>
+    <input type="radio" name="liga" value="LVEstrella" onchange="playerSquares()">Liga Varonil Estrella</input>
+    <br>
+    <input type="radio" name="liga" value="LFTalpa" onchange="playerSquares()">Liga Femenil Talpa</input>
+ </div>
  <br>
  <br>
- <div style="text-align: center;" class="square">
-  <select class="button-colors" name="soccerModality" id="fname" onchange="playerSquares()">
-    <option value="modality">Seleccionar modalidad</option>
-    <option value="soccer5">Fútbol 5</option>
-    <option value="soccer7">Fútbol 7</option>
-    <option value="soccer9">Fútbol 9</option>
-  </select>
-  </div>
-  <h2 style="text-align: center;">Jugadores</h2>
+  <h2 style="text-align: center;">Información de inscripción</h2>
   <div id="players">
   </div>
   <br>

@@ -96,6 +96,10 @@ nav ul li a {
   font-size: 1.25em;
 }
 
+.highlighter-row{
+  background-color: #243964;
+}
+
 #row {
   display: flex;
   align-items: center;
