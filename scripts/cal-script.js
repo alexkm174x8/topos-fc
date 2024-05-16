@@ -37,20 +37,25 @@ const renderCalendar = () => {
 }
 renderCalendar();
 
-prevNextIcon.forEach(icon => { // getting prev and next icons
-    icon.addEventListener("click", () => { // adding click event on both icons
-        // if clicked icon is previous icon then decrement current month by 1 else increment it by 1
-        currMonth = icon.id === "prev" ? currMonth - 1 : currMonth + 1;
-
-        if(currMonth < 0 || currMonth > 11) { // if current month is less than 0 or greater than 11
-            // creating a new date of current year & month and pass it as date value
-            date = new Date(currYear, currMonth, new Date().getDate());
-            currYear = date.getFullYear(); // updating current year with new date year
-            currMonth = date.getMonth(); // updating current month with new date month
-        } else {
-            date = new Date(); // pass the current date as date value
+prevNextIcon.forEach(icon => { // Obteniendo los íconos prev y next
+    icon.addEventListener("click", () => { // Agregando evento de clic a ambos íconos
+        if (icon.id === "prev") { // Si se hizo clic en el ícono de prev
+            if (currMonth > date.getMonth() || currYear > date.getFullYear()) { // Solo retroceder si no estamos en el mes actual
+                currMonth--; // Decrementando el mes actual
+                if (currMonth < 0) { // Si el mes actual se vuelve negativo, retroceder un año
+                    currMonth = 11;
+                    currYear--;
+                }
+                renderCalendar(); // Volviendo a renderizar el calendario con el nuevo mes y año
+            }
+        } else { // Si se hizo clic en el ícono de next
+            currMonth++; // Incrementando el mes actual
+            if (currMonth > 11) { // Si el mes actual supera 11, avanzar un año
+                currMonth = 0;
+                currYear++;
+            }
+            renderCalendar(); // Volviendo a renderizar el calendario con el nuevo mes y año
         }
-        renderCalendar(); // calling renderCalendar function
     });
 });
 
@@ -59,9 +64,9 @@ const dayElements = document.querySelectorAll(".days li");
 
 // Agrega un evento de clic a cada elemento <li> del calendario
 dayElements.forEach(day => {
-    day.addEventListener("click", () => {
-        if (!day.classList.contains('past')) { // Only perform action if the day is not in the past
-            // Remueve la clase 'selected' de todos los elementos <li> excepto el día actual
+    day.addEventListener("click", () => {        
+        if (!day.classList.contains('past')) { // Solo realiza la acción si el día no está en el pasado
+            // Restaurar el color de los demás días
             dayElements.forEach(d => {
                 if (d !== day && !d.classList.contains('today')) {
                     d.classList.remove('selected');
@@ -69,7 +74,7 @@ dayElements.forEach(day => {
                 }
             });
 
-            // Añade la clase 'selected' al día clickeado
+            // Añadir la clase 'selected' al día clickeado
             day.classList.add('selected');
             day.style.color = '#fff'; // Cambia el color del número a blanco
 
@@ -82,9 +87,18 @@ dayElements.forEach(day => {
             const reservationWrapper = document.querySelector(".reservation-wrapper");
             reservationWrapper.style.transition = "transform 0.5s ease"; 
             reservationWrapper.style.transform = "translateX(215px)";
+
+            // Obtener el día seleccionado
+            const selectedDay = day.innerText;
+            const selectedMonth = months[currMonth];
+            
+            // Actualizar el título de las reservaciones con el día seleccionado
+            var reservationTitle = document.getElementById("calendar_title_rsv");
+            reservationTitle.textContent = `Reservaciones del ${selectedDay} de ${selectedMonth}`;
         }
     });
 });
+
 
 // Obtén el botón de reserva por su ID
 const reservaButton = document.getElementById("reservaButton");
