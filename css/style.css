@@ -282,22 +282,60 @@ button {
 }
 
 .td-center {
-  text-align: center;
-  width: auto;
-  background-color: #f9ba0c;
-  padding: 5px;
+ padding-left: 5%;
+ padding-right: 5%;
+ width: auto;
 }
 
-.td-filler {
-  width:10px;
-  height:10px;
+.td-left{
+  width: auto;
+  text-align: left;
+  padding-left: 33%;
 }
 
 .table-center {
+  border-collapse: collapse;
   table-layout: fixed;
   margin-left: auto;
   margin-right: auto;
+  width: 45%;
+}
+
+.leagues {
+  padding-left: 3%;
+}
+
+.small-table{
   width: 50%;
+  margin-left: 20%;
+}
+
+.tr-strongyellow{
+  background-color: #f9ba0c;
+}
+
+.tr-weakyellow{
+  background-color: #fde5a7;
+}
+
+.tr-strongblue{
+  background-color: #0043c9;
+}
+
+.tr-weakblue{
+  background-color:#85acf3;
+}
+
+.tr-strongred{
+  background-color: #7a0707;
+}
+
+.tr-weakred{
+  background-color: #a34a4a;
+}
+
+.white-text {
+  color: #FFFFFF;
 }
 
 #section_registro {
