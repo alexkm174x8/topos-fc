@@ -25,7 +25,7 @@ const renderCalendar = () => {
         let isToday = i === date.getDate() && currMonth === new Date().getMonth() 
                      && currYear === new Date().getFullYear() ? "active" : "";
         let isPastDay = date.getDate() > i && currMonth === new Date().getMonth() 
-                     && currYear === new Date().getFullYear() ? "past" : ""; // added class for past days
+                     && currYear === new Date().getFullYear() ? "inactive" : ""; // added class for past days
         liTag += `<li class="${isToday} ${isPastDay}">${i}</li>`;
     }
 
@@ -78,7 +78,7 @@ const dayElements = document.querySelectorAll(".days li");
 // Agrega un evento de clic a cada elemento <li> del calendario
 dayElements.forEach(day => {
     day.addEventListener("click", () => {        
-        if (!day.classList.contains('past')) { // Solo realiza la acción si el día no está en el pasado
+        if (!day.classList.contains('inactive')) { // Solo realiza la acción si el día no está en el pasado
             // Restaurar el color de los demás días
             dayElements.forEach(d => {
                 if (d !== day && !d.classList.contains('today')) {
