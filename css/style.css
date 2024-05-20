@@ -310,27 +310,27 @@ button {
   margin-left: 20%;
 }
 
-.tr-strongyellow{
+.strongyellow{
   background-color: #f9ba0c;
 }
 
-.tr-weakyellow{
+.strongyellow{
   background-color: #fde5a7;
 }
 
-.tr-strongblue{
+.strongblue{
   background-color: #0043c9;
 }
 
-.tr-weakblue{
+.weakblue{
   background-color:#85acf3;
 }
 
-.tr-strongred{
+.strongred{
   background-color: #7a0707;
 }
 
-.tr-weakred{
+.weakred{
   background-color: #a34a4a;
 }
 
@@ -340,6 +340,11 @@ button {
 
 #section_registro {
   background-color: rgb(252, 241, 221);
+}
+
+button:hover{
+  border: 1px solid;
+  transform: scale(1.25) perspective(1px);
 }
 
 /* footer */
