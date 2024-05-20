@@ -37,6 +37,17 @@ const renderCalendar = () => {
 }
 renderCalendar();
 
+function syncWrapperSizes() {
+    const wrapper = document.querySelector('.wrapper');
+    const reservationWrapper = document.querySelector('.reservation-wrapper');
+    reservationWrapper.style.width = `${wrapper.style.width}px`;
+    const diff = reservationWrapper.style.height - wrapper.offsetHeight
+    reservationWrapper.style.height = `${wrapper.offsetHeight}px`;
+}
+
+window.addEventListener('load', syncWrapperSizes);
+window.addEventListener('resize', syncWrapperSizes);
+
 prevNextIcon.forEach(icon => { // Obteniendo los íconos prev y next
     icon.addEventListener("click", () => { // Agregando evento de clic a ambos íconos
         if (icon.id === "prev") { // Si se hizo clic en el ícono de prev
@@ -47,6 +58,7 @@ prevNextIcon.forEach(icon => { // Obteniendo los íconos prev y next
                     currYear--;
                 }
                 renderCalendar(); // Volviendo a renderizar el calendario con el nuevo mes y año
+                syncWrapperSizes();
             }
         } else { // Si se hizo clic en el ícono de next
             currMonth++; // Incrementando el mes actual
@@ -55,6 +67,7 @@ prevNextIcon.forEach(icon => { // Obteniendo los íconos prev y next
                 currYear++;
             }
             renderCalendar(); // Volviendo a renderizar el calendario con el nuevo mes y año
+            syncWrapperSizes();
         }
     });
 });
