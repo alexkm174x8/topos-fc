@@ -19,7 +19,6 @@ function handleTeamButtonClick(team) {
     var teamStatsDiv = document.getElementById("team-stats");
     var teamStatsBody = document.getElementById("team-stats-body");
 
-    // Clear previous list if a different team is clicked or the same team is clicked again
     if (team !== currentTeam) {
         teamStatsBody.innerHTML =        "";
         currentTeam = team;
@@ -31,7 +30,6 @@ function handleTeamButtonClick(team) {
 
     var selectedTeam = teams[team];
 
-    // Populate table with team stats
     var tr = document.createElement("tr");
 
     Object.values(selectedTeam).forEach(function(value) {
@@ -42,7 +40,6 @@ function handleTeamButtonClick(team) {
 
     teamStatsBody.appendChild(tr);
 
-    // Show the team stats
     teamStatsDiv.style.display = "block";
 }
 
