@@ -5,6 +5,7 @@
     <title>Topos: Administrador</title>
     <meta charset ="UTF-8">
     <link rel="stylesheet" href="css/style.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="scripts/admin.js"></script>
   </head>
 
