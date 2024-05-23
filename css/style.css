@@ -71,6 +71,70 @@ nav ul li a {
 }
 
 /* estadisticas */
+
+.logos-principal {
+  width: 30vw;
+  height: auto;
+}
+
+.dropdown {
+  width: 100%;
+  text-align: center;
+  margin-top: 5vh;
+  margin-bottom: 5vh;
+}
+
+.dropdown button.full-width {
+  width: 80%;
+}
+
+.dropdown-content {
+  display: none;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content button {
+  background-color: #f9f9f9;
+  color: black;
+  padding: 12px 16px;
+  border: none;
+  text-align: left;
+  display: block;
+  width: 100%;
+  cursor: pointer;
+}
+
+.dropdown-content button:hover {
+  background-color: #f1f1f1;
+}
+
+.team-stats {
+  display: none;
+  background-color: #f9f9f9;
+  padding: 10px;
+  border: 1px solid #ddd;
+  margin-top: 20px;
+}
+
+.team-stats table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.team-stats th, .team-stats td {
+  padding: 8px;
+  border-bottom: 1px solid #ddd;
+}
+
+.team-stats th {
+  background-color: #f1f1f1;
+}
+
+
+
 .h1_strong h1{
   font-weight: 800;
   font-size: 5em;
@@ -280,9 +344,9 @@ button {
 }
 
 .td-center {
- padding-left: 5%;
- padding-right: 5%;
- width: auto;
+  padding-left: 5%;
+  padding-right: 5%;
+  width: auto;
 }
 
 .td-left{
@@ -308,27 +372,27 @@ button {
   margin-left: 20%;
 }
 
-.tr-strongyellow{
+.strongyellow{
   background-color: #f9ba0c;
 }
 
-.tr-weakyellow{
+.weakyellow{
   background-color: #fde5a7;
 }
 
-.tr-strongblue{
+.strongblue{
   background-color: #0043c9;
 }
 
-.tr-weakblue{
+.weakblue{
   background-color:#85acf3;
 }
 
-.tr-strongred{
+.strongred{
   background-color: #7a0707;
 }
 
-.tr-weakred{
+.weakred{
   background-color: #a34a4a;
 }
 
@@ -338,27 +402,6 @@ button {
 
 #section_registro {
   background-color: rgb(252, 241, 221);
-}
-
-/* footer */
-
-.footer {
-  background-color: #243964;
-  color: white;
-  padding: 20px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.left-content {
-  flex: 1;
-}
-
-.right-content img {
-  width: 50px;
-  height: auto;
-  margin-right: 10px;
 }
 
 /* footer */

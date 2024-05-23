@@ -5,6 +5,8 @@
     <title>Topos: Administrador</title>
     <meta charset ="UTF-8">
     <link rel="stylesheet" href="css/style.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="scripts/admin.js"></script>
   </head>
 
   <body>
@@ -68,12 +70,17 @@
                   <table>
                     <tr>
                       <td>
-                        <form><button type="button" class="accept"> Pagado</button></form>
+                        <form><button type="button" class="accept" onclick="reservationDone()"> Pagado</button></form>
                       </td>
                     </tr>
                     <tr>
                       <td>
-                        <form><button type="button" class="denied"> Denegado</button></form>
+                        <br>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <form><button type="button" class="denied" onclick="reservationDenied()"> Denegado</button></form>
                       </td>
                     </tr>
                   </table>
@@ -83,53 +90,40 @@
         <tr>
           <td>
             <h2>Añadir Datos Estadísticos</h2>
-            <textarea placeholder="Escribe en esta área"></textarea>
           </td>
       </tr>
       <tr>
         <td>
-          <table>
-            <tr>
-              <td>
-                <table class="info_cont">
-                  <tr>
-                    <td>
-                      <img src="images/usuario.png" alt="Imagen equipo 1" class="ima_equipo"></img>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <input type = text placeholder="Equipo 1" class="fill"/>
-                    </td>
-                  </tr>
-                </table>
-              </td>
-              <td rowspan="2" class="write">
-                <input type = text placeholder="Puntaje Equipo 1"/>
-              </td>
-              <td rowspan="2" class="write">
-                <input type = text placeholder="Puntaje Equipo 2"/>
-              </td>
-              <td>
-                <table class="info_cont" id="left_team">
-                  <tr>
-                    <td>
-                      <img src="images/usuario.png" alt="Imagen equipo 2" class="ima_equipo"></img>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <input type = text placeholder="Equipo 2" class="fill"/>
-                    </td>
-                  </tr>
-                </table>
-              </td>
-            </tr>
-          </table>
+          <br>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <select class="button-colors" name="leagueChosen" id="fname" onchange="chooseLeague()">
+            <option value="modality">Seleccionar liga.</option>
+            <option value="LVDorada">Liga Varonil Dorada.</option>
+            <option value="LVEstrella">Liga Varonil Estrella.</option>
+            <option value="LFTalpa">Liga Femenil Talpa.</option>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <br>
+        </td>
+      </tr>
+      <tr>
+        <td>
+            <div id="league"></div>
+        </td>
+    </tr>
+      <tr>
+        <td>
+          <br>
         </td>
       </tr>
     </table>
-
+    
     <footer class="footer">
       <div class="left-content">Topos F.C. 2021</div>
       <div class="right-content">
