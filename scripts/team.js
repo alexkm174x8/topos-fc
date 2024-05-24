@@ -1,13 +1,55 @@
+function sendRegister(){
+  alert("Su registro ha sido enviado.")
+}
+
+function validateForm(event) {
+  event.preventDefault();
+
+  const radioGroups = [
+    'medio',
+    'ageReq',
+    'consent',
+    'parentConsent',
+    'noAlcohol',
+    'responsabilityRelease',
+    'responsabilityTenant'
+  ];
+
+  for (const groupName of radioGroups) {
+    const radios = document.getElementsByName(groupName);
+    let groupChecked = false;
+
+    for (const radio of radios) {
+      if (radio.checked) {
+        groupChecked = true;
+        break;
+      }
+    }
+
+    if (!groupChecked) {
+      alert('Llene todos los campos antes de enviar su solicitud');
+      return;
+    }
+  }
+
+  sendRegister();
+  document.getElementById('myForm').submit();
+}
+
+window.onload = function() {
+}
+
 function formSummon() {
   var selectedLiga = document.querySelector('input[name="liga"]:checked')
   if (!selectedLiga) {
-    alert("Please select a league.");
+    alert("Por favor escoja una liga.");
     return;
   }
   var modality = selectedLiga.value;
   var playersDiv = document.getElementById("players");
   if (modality != "") {
     playersDiv.innerHTML = `
+    <form id="myForm" onsubmit="validateForm(event)">
       <table class="table-center">
       <tr>
         <td class="td-left">
@@ -58,7 +100,7 @@ function formSummon() {
       </tr>
       <tr class="weakyellow">
         <td>
-          <input type="radio" name="medio" value="SNLeague">Redes Sociales de la Liga</input>
+          <input type="radio" name="medio" value="SNLeague" required>Redes Sociales de la Liga</input>
         </td>
       </tr>
       <tr class="weakyellow">
@@ -117,7 +159,7 @@ function formSummon() {
         </tr>
         <tr class="weakyellow">
           <td>
-            <input type="radio" name="ageReq" value="true">Sí</input>
+            <input type="radio" name="ageReq" value="true" required>Sí</input>
           </td>
         </tr>
         <tr class="weakyellow">
@@ -154,7 +196,7 @@ function formSummon() {
         </tr>
         <tr class="weakyellow">
           <td>
-          <input type="radio" name="consent" value="true">Sí acepto</input>
+          <input type="radio" name="consent" value="true" required>Sí acepto</input>
           </td>
         </tr>
         <tr class="weakyellow">
@@ -180,17 +222,17 @@ function formSummon() {
         </tr>
         <tr class="weakblue">
           <td>
-            <input type="radio" name="consent" value="true">Sí acepto</input>
+            <input type="radio" name="parentConsent" value="true" required>Sí acepto</input>
           </td>
         </tr>
         <tr class="weakblue">
           <td>
-           <input type="radio" name="consent" value="false">No acepto</input>
+           <input type="radio" name="parentConsent" value="false">No acepto</input>
           </td>
         </tr>
         <tr class="weakblue">
           <td>
-            <input type="radio" name="consent" value="false">Soy menor de edad</input>
+            <input type="radio" name="parentConsent" value="false">Soy menor de edad</input>
           </td>
         </tr>
         <tr>
@@ -205,7 +247,7 @@ function formSummon() {
         </tr>
         <tr class="weakyellow">
           <td>
-           <input type="radio" value="true">Acepto</input>
+           <input type="radio" name="noAlcohol" value="true" required>Acepto</input>
           </td>
         </tr>
         <tr>
@@ -221,7 +263,7 @@ function formSummon() {
         </tr>
         <tr class="weakblue">
           <td>
-            <input type="radio" value="true">Acepto</input>
+            <input type="radio" name="responsabilityRelease" value="true" required>Acepto</input>
           </td>
         </tr>
         <tr>
@@ -239,16 +281,17 @@ function formSummon() {
         </tr>
         <tr class="weakyellow">
           <td class="td-center">
-          <input type="radio" value="true">Acepto</input>
+          <input type="radio" name="responsabilityTenant" value="true" required>Acepto</input>
           </td>
         </tr>
       </table>
       <br>
     <div>
-      <button type="button">
+      <button type="submit"">
         <strong>Registrar equipo</strong>
       </button>
     </div> 
+    </form>
       `;    
   } else {
     playersDiv.innerHTML = `
