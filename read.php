@@ -9,7 +9,7 @@
 	} else {
 		$pdo = Database::connect();
 		$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-		$sql = "SELECT * FROM CRUD_Equipo natural join equipo where idequipo = ?"
+		$sql = "SELECT * FROM TOPOS_Equipos natural join equipo where idequipo = ?";
 		$q = $pdo->prepare($sql);
 		$q->execute(array($id));
 		$data = $q->fetch(PDO::FETCH_ASSOC);

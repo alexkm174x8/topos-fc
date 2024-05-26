@@ -10,7 +10,7 @@ try {
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
     // Preparar la consulta de eliminación
-    $sql = "DELETE FROM CRUD_Jugador WHERE idjugador = ?";
+    $sql = "DELETE FROM TOPOS_Jugador WHERE idjugador = ?";
     $q = $pdo->prepare($sql);
 
     // Ejecutar la consulta de eliminación con el ID del jugador

@@ -21,9 +21,51 @@
         					</div>
     					</div>
     					<div class="control-group">
-        					<label class="control-label">Fecha Inscrita</label>
+        					<label class="control-label">Año de creación del equipo</label>
         					<div class="controls">
-            					<input name="fecha" type="text" placeholder="Fecha de Ingreso" value="">
+            					<input name="año" type="text" placeholder="Año de creación" value="">
+            					<span class="help-inline"></span>
+        					</div>
+    					</div>
+						<div class="control-group">
+        					<label class="control-label">Número de goles anotados en total</label>
+        					<div class="controls">
+            					<input name="gol" type="text" placeholder="Goles totales" value="">
+            					<span class="help-inline"></span>
+        					</div>
+    					</div>
+						<div class="control-group">
+        					<label class="control-label">Partidos jugados</label>
+        					<div class="controls">
+            					<input name="playedMatches" type="text" placeholder="Goles totales" value="">
+            					<span class="help-inline"></span>
+        					</div>
+    					</div>
+						<div class="control-group">
+        					<label class="control-label">Partidos ganados</label>
+        					<div class="controls">
+            					<input name="wonMatches" type="text" placeholder="Victorias" value="">
+            					<span class="help-inline"></span>
+        					</div>
+    					</div>
+						<div class="control-group">
+        					<label class="control-label">Partidos empatados</label>
+        					<div class="controls">
+            					<input name="tiedMatches" type="text" placeholder="Empates" value="">
+            					<span class="help-inline"></span>
+        					</div>
+    					</div>
+						<div class="control-group">
+        					<label class="control-label">Partidos perdidos</label>
+        					<div class="controls">
+            					<input name="lostMatches" type="text" placeholder="Derrotas" value="">
+            					<span class="help-inline"></span>
+        					</div>
+    					</div>
+						<div class="control-group">
+        					<label class="control-label">Puntos extra</label>
+        					<div class="controls">
+            					<input name="extraPoints" type="text" placeholder="Puntos adicionales" value="">
             					<span class="help-inline"></span>
         					</div>
     					</div>
@@ -33,6 +75,6 @@
     					</div>
 					</form>
 				</div>
-	    </div> <!-- /container -->
+	    </div> 
 	</body>
 </html>
