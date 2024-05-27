@@ -53,7 +53,7 @@
 
                 $sql = "SELECT j.idjugador, j.nombres, j.apellidos, e.equipo AS nombre_equipo, j.numero, j.estado, j.posicion, j.goles 
                 FROM TOPOS_Jugador j 
-                INNER JOIN TOPOS_Equipos e ON j.idequipo = e.idequipo
+                INNER JOIN TOPOS_Equipo e ON j.idequipo = e.idequipo
                 WHERE j.idequipo = ?";
 
                 $stmt = $pdo->prepare($sql);

@@ -43,7 +43,7 @@
             echo "Jugador agregado correctamente.";
 
 		    Database::disconnect();
-		    header("Location: index.php");
+		    header("Location: admin.html");
 	    }
     }
 ?>

@@ -13,18 +13,18 @@ include 'database.php';
 
 		$pdo = Database::connect();
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $sql_last_id = "SELECT MAX(idequipo) AS last_id FROM TOPOS_Equipos";
+        $sql_last_id = "SELECT MAX(idequipo) AS last_id FROM topos_equipo";
         $stmt_last_id = $pdo->query($sql_last_id);
         $row = $stmt_last_id->fetch(PDO::FETCH_ASSOC);
         $lastId = $row['last_id'];
         $nuevoIdEquipo = $lastId + 1;
 
-        $sql_insert = "INSERT INTO TOPOS_Equipos (idequipo, nombre, creacion, goles_totales, partidos_totales, partidos_ganados, partidos_empatados, partidos_perdidos, puntos_extras) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $sql_insert = "INSERT INTO topos_equipo (idequipo, nombre, creacion, goles_totales, partidos_totales, partidos_ganados, partidos_empatados, partidos_perdidos, puntos_extras) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $q = $pdo->prepare($sql_insert);
         $q->execute(array($nuevoIdEquipo, $nombreEquipo, $añoCreacion, $gol, $partidosTotales,$partidosGanados,$partidosEmpatados,$partidosPerdidos,$puntosExtra));
         
         Database::disconnect();
-        header("Location: index.php");
+        header("Location: admin.html");
 	}
     else{
         echo "<script>alert('Por favor, complete todos los campos.'); window.location.href = 'createEquipos.php';</script>";
