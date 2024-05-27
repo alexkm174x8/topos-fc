@@ -15,10 +15,9 @@
         include 'database.php';
         $pdo = Database::connect();
         $team_id = $_GET['id'];
-        $team_id = $_REQUEST['id'];
         $team_name = '';
         if ($team_id) {
-            $sql_team = "SELECT equipo FROM CRUD_Equipo WHERE idequipo = ?";
+            $sql_team = "SELECT equipo FROM TOPOS_Equipos WHERE idequipo = ?";
             $stmt_team = $pdo->prepare($sql_team);
             $stmt_team->execute([$team_id]);
             $team_name = $stmt_team->fetchColumn();
@@ -36,13 +35,15 @@
         <table class="table table-striped table-bordered">
             <thead>
             <tr>
-                <th>ID del Jugador</th>
-                <th>Nombres	</th>
-                <th>Apellidos				</th>
-                <th>Equipo					</th>
-                <th>Numero					</th>
-                <th>Estado				</th>
-                <th>Opciones</th>
+                <th>ID del Jugador  </th>
+                <th>Nombres	        </th>
+                <th>Apellidos		</th>
+                <th>Equipo			</th>
+                <th>Numero			</th>
+                <th>Estado	    	</th>
+                <th>Opciones        </th>
+                <th>Posición        </th>
+                <th>Goles           </th>
             </tr>
             </thead>
             <tbody>
@@ -50,9 +51,9 @@
                 $pdo = Database::connect();
                 $team_id = $_GET['id'];
 
-                $sql = "SELECT j.idjugador, j.nombres, j.apellidos, e.equipo AS nombre_equipo, j.numero, j.estado 
-                FROM CRUD_Jugador j 
-                INNER JOIN CRUD_Equipo e ON j.idequipo = e.idequipo
+                $sql = "SELECT j.idjugador, j.nombres, j.apellidos, e.equipo AS nombre_equipo, j.numero, j.estado, j.posicion, j.goles 
+                FROM TOPOS_Jugador j 
+                INNER JOIN TOPOS_Equipos e ON j.idequipo = e.idequipo
                 WHERE j.idequipo = ?";
 
                 $stmt = $pdo->prepare($sql);
@@ -66,6 +67,8 @@
                 echo '<td>'. $row['nombre_equipo'] . '</td>';
                 echo '<td>'. $row['numero'] . '</td>';
                 echo '<td>'. $row['estado'] . '</td>'; 
+                echo '<td>'. $row['posicion'] . '</td>';
+                echo '<td>'. $row['goles'] . '</td>';
                 echo '<td width=250>';
                 echo '&nbsp;';
                 echo '<a class="btn btn-danger" href="deleteJugadores.php?id='.$row['idjugador'].'">Eliminar</a>';

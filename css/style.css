@@ -335,6 +335,10 @@ button {
   color: yellow;
 }
 
+button:hover{
+  transform:scale(1.25) perspective(1px);
+}
+
 .button-colors {
   color: rgba(0, 0, 236, 0.5);
   background-color: wheat;
