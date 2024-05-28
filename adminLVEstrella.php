@@ -122,7 +122,7 @@
             </div>
             <div class="row">
                 <p>
-                    <a href="createEquipos.php" class="btn btn-success">Agregar un equipo</a>
+                    <a href="createEquipos.php?idLiga=1" class="btn btn-success">Agregar un equipo</a>
                 </p>
                 <table class="table table-striped table-bordered">
                     <thead>
