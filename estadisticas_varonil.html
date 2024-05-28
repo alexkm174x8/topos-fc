@@ -61,40 +61,18 @@
     <td colspan="1" class="marcadores"><h1>20</h1><br><br><h3>GOLES</h3></td>
     <td colspan="1" class="marcadores"><img src="images/escudo_eje_3.png" alt="Escudo equipo"><br><h4>10/02/25</h4><br><h3>PROXIMO PARTIDO</h3></td>
   </tr>
+
   <tr>
     <td colspan="4">
-
       <div class="dropdown">
         <button class="full-width" onclick="toggleDropdown()">Ver Equipos</button>
-        <div id="dropdown-content" class="dropdown-content">
-          <button onclick="handleTeamButtonClick('Axolotes')">Axolotes</button>
-          <button onclick="handleTeamButtonClick('Aguilas')">Aguilas</button>
-          <button onclick="handleTeamButtonClick('Patos')">Patos</button>
-          <button onclick="handleTeamButtonClick('Conejos')">Conejos</button>
-        </div>
+        <div id="dropdown-content" class="dropdown-content"></div>
       </div>
 
-      <div class="team-stats" id="team-stats">
-        <table>
-          <thead>
-          <tr>
-            <th>Equipo</th>
-            <th>Partidos Jugados</th>
-            <th>Ganados</th>
-            <th>Perdidos</th>
-            <th>Empatados</th>
-            <th>Goles a Favor</th>
-            <th>Goles en Contra</th>
-            <th>Puntos Extra</th>
-          </tr>
-          </thead>
-          <tbody id="team-stats-body"></tbody>
-        </table>
-      </div>
-
+      <div class="team-details" id="team-details"></div>
     </td>
   </tr>
-  <tr>
+
     <td colspan="4"><h1><img src="images/equipo.jpeg" alt="Foto equipo" id="equipo_img"></h1></td>
   </tr>
 </table>
@@ -108,7 +86,7 @@
   </div>
 </footer>
 
-<script src="scripts/estac-script.js"></script>
+<script src="scripts/estadisticas-script.js"></script>
 
 </body>
 </html>
