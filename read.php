@@ -5,11 +5,11 @@
 		$id = $_REQUEST['id'];
 	}
 	if ( $id==null) {
-		header("Location: index.php");
+		header("Location: admin.html");
 	} else {
 		$pdo = Database::connect();
 		$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-		$sql = "SELECT * FROM TOPOS_Equipos natural join equipo where idequipo = ?";
+		$sql = "SELECT * FROM TOPOS_Equipo natural join equipo where idequipo = ?";
 		$q = $pdo->prepare($sql);
 		$q->execute(array($id));
 		$data = $q->fetch(PDO::FETCH_ASSOC);
@@ -62,7 +62,7 @@
 					    </div>
 					</div>
 				    <div class="form-actions">
-						<a class="btn" href="index.php">Regresar</a>
+						<a class="btn" href="admin.html">Regresar</a>
 					</div>
 
 				</div>
