@@ -73,7 +73,7 @@ nav ul li a {
 /* estadisticas */
 
 .logos-principal {
-  width: 30vw;
+  width: 15vw;
   height: auto;
 }
 
@@ -88,17 +88,17 @@ nav ul li a {
   padding: 12px 16px;
   text-decoration: none;
   border: none;
-  width: 100%;
+  width: 60%;
 }
 .dropdown-content button img {
-  max-width: 30px;
-  max-height: 30px;
-  margin-right: 10px;
+  width: 10vw;
+  height: auto;
+  margin-right: 10vw;
   float: right;
 }
 .dropdown-content button span {
-  display: inline-block;
-  width: calc(100% - 40px);
+  float: left;
+  align-items: center;
 }
 .dropdown-content button:hover {
   background-color: #f1f1f1;
