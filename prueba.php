@@ -12,6 +12,8 @@ if ($conn->connect_error) {
     die("Conexión fallida: " . $conn->connect_error);
 }
 
+$nombre_html = isset($_GET['nombre_html']) ? $_GET['nombre_html'] : '';
+
 if (isset($_GET['equipo'])) {
     $equipo = $conn->real_escape_string($_GET['equipo']);
     $sql = "SELECT * FROM TOPOS_Equipo WHERE nombre='$equipo'";
@@ -24,8 +26,25 @@ if (isset($_GET['equipo'])) {
         $response = json_encode([]);
     }
     echo $response;
+} else if (isset($_GET['marcador'])) {
+    $sql = "SELECT marcador_casa, marcador_visita FROM topos_partido ORDER BY fecha DESC LIMIT 1";
+    $result = $conn->query($sql);
+    $marcador = [];
+
+    if ($result->num_rows > 0) {
+        $marcador = $result->fetch_assoc();
+    }
+
+    echo json_encode($marcador);
 } else {
     $sql = "SELECT nombre, logo FROM TOPOS_Equipo";
+    if ($nombre_html === 'estadistica_varonil') {
+        $sql .= " WHERE IDLIGA = 1";
+    } elseif ($nombre_html === 'estadistica_femenil') {
+        $sql .= " WHERE IDLIGA = 2";
+    } elseif ($nombre_html === 'estadistica_topitos') {
+        $sql .= " WHERE IDLIGA = 3";
+    }
     $result = $conn->query($sql);
     $equipos = [];
 
