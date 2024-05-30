@@ -6,7 +6,7 @@
 	}
 		$pdo = Database::connect();
 		$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-		$sql = "DELETE FROM topos_equipo WHERE idEquipo = ?";
+		$sql = "DELETE FROM topos_partido WHERE idPartido = ?";
 		$q = $pdo->prepare($sql);
 		$q->execute(array($id));
 		Database::disconnect();

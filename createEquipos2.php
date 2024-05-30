@@ -25,7 +25,7 @@ include 'database.php';
         $q->execute(array($nuevoIdEquipo, $nombreEquipo, $añoCreacion, $gol, $partidosTotales,$partidosGanados,$partidosEmpatados,$partidosPerdidos,$puntosExtra, $idLiga));
         
         Database::disconnect();
-        header("Location: admin.html");
+        header("Location: admin.php");
 	}
     else{
         echo "<script>alert('Por favor, complete todos los campos.'); window.location.href = 'createEquipos.php';</script>";
