@@ -4,6 +4,20 @@ function toggleDropdown() {
     cargarEquipos();
 }
 
+function mostrarMarcadores() {
+    fetch('prueba.php?marcador=true')
+        .then(response => response.json())
+        .then(data => {
+            const marcadoresDiv = document.querySelector('.marcadores h1');
+            if (data) {
+                marcadoresDiv.textContent = `${data.marcador_casa} - ${data.marcador_visita}`;
+            } else {
+                marcadoresDiv.textContent = "No se encontraron marcadores.";
+            }
+        })
+        .catch(error => console.error('Error:', error));
+}
+
 function cargarEquipos() {
     const nombreHtml = document.body.getAttribute('data-page-name');
     fetch(`prueba.php?nombre_html=${nombreHtml}`)
@@ -73,4 +87,5 @@ function handleTeamButtonClick(equipo) {
 
 document.addEventListener('DOMContentLoaded', function() {
     cargarEquipos();
+    mostrarMarcadores()
 });

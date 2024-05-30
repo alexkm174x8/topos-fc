@@ -26,6 +26,16 @@ if (isset($_GET['equipo'])) {
         $response = json_encode([]);
     }
     echo $response;
+} else if (isset($_GET['marcador'])) {
+    $sql = "SELECT marcador_casa, marcador_visita FROM topos_partido ORDER BY fecha DESC LIMIT 1";
+    $result = $conn->query($sql);
+    $marcador = [];
+
+    if ($result->num_rows > 0) {
+        $marcador = $result->fetch_assoc();
+    }
+
+    echo json_encode($marcador);
 } else {
     $sql = "SELECT nombre, logo FROM TOPOS_Equipo";
     if ($nombre_html === 'estadistica_varonil') {
