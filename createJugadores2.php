@@ -1,49 +1,30 @@
 <?php
-    require 'database.php';
+include 'database.php';
 
-    if (!empty($_POST)) {
-        $nombres = $_POST['nombres'];
-        $apellidos = $_POST['apellidos'];
-        $estado = $_POST['estado'];
-        $numero = $_POST['numero'];
-        $posicion = $_POST['posicion'];
-        $cantGoles = $_POST['goles'];
-        
-        if (isset($_GET['id'])) {
-            $team_id = $_GET['id'];
-        } else {
-            header("Location: error.php");
-            exit();
-        }
+if (!empty($_POST['equipoCasa']) && !empty($_POST['localScore']) && !empty($_POST['equipoVisita']) && !empty($_POST['visitScore'])) {
+    $homeTeam = $_POST['equipoCasa'];
+    $localScore = $_POST['localScore'];
+    $visitTeam = $_POST['equipoVisita'];
+    $visitScore = $_POST['visitScore'];
 
-        $pdo = Database::connect();
-        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $pdo = Database::connect();
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-        $sql_last_id = "SELECT MAX(idjugador) AS last_id FROM topos_jugador";
-        $stmt_last_id = $pdo->query($sql_last_id);
-        $row = $stmt_last_id->fetch(PDO::FETCH_ASSOC);
-        $lastId = $row['last_id'];
-        $idjugador = $lastId + 1;
+    $sql_last_id = "SELECT MAX(idPartido) AS last_id FROM topos_partido";
+    $stmt_last_id = $pdo->query($sql_last_id);
+    $row = $stmt_last_id->fetch(PDO::FETCH_ASSOC);
+    $lastId = $row['last_id'];
+    $nuevoIdPartido = $lastId + 1;
 
-        $team_id = $_REQUEST['id'];
-
-		$sql_check_player = "SELECT COUNT(*) AS player_count FROM topos_jugador WHERE nombres = ? AND apellidos = ?";
-        $stmt_check_player = $pdo->prepare($sql_check_player);
-        $stmt_check_player->execute(array($nombres, $apellidos));
-        $player_count = $stmt_check_player->fetch(PDO::FETCH_ASSOC)['player_count'];
-
-        if ($player_count > 0) {
-            echo "<script>alert('Este jugador ya esta registrado'); window.location.href = 'createJugadores.php?id=$team_id';</script>";
-        } 
-        else {
-            $sql = "INSERT INTO topos_jugador (idjugador, nombres, apellidos, idequipo, estado, numero, posicion, goles) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
-            $q = $pdo->prepare($sql);
-            $estadoq = ($estado == "S") ? 'activo' : 'inactivo';
-            $q->execute(array($idjugador, $nombres, $apellidos, $team_id, $estadoq, $numero, $posicion, $cantGoles));
-            echo "Jugador agregado correctamente.";
-
-		    Database::disconnect();
-		    header("Location: admin.html");
-	    }
-    }
+    // Inserting new record with the correct column names
+    $sql_insert = "INSERT INTO topos_partido (idPartido, equipo_casa, marcador_casa, equipo_visita, marcador_visita, fecha) VALUES (?, ?, ?, ?, ?, NOW())";
+    $q = $pdo->prepare($sql_insert);
+    $q->execute(array($nuevoIdPartido, $homeTeam, $localScore, $visitTeam, $visitScore));
+    
+    Database::disconnect();
+    header("Location: admin.php");
+    exit();
+} else {
+    echo "<script>alert('Por favor, complete todos los campos.'); window.location.href = 'createPartido.php';</script>";
+}
 ?>

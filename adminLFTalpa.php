@@ -100,7 +100,7 @@
       <tr>
         <td>
           <select class="button-colors" name="leagueChosen" id="fname" onchange="changeLeague(this.value)">
-            <option value="modality">Seleccionar liga.</option>
+            <option value="admin">Seleccionar liga.</option>
             <option value="adminLVDorada">Liga Varonil Dorada.</option>
             <option value="adminLVEstrella">Liga Varonil Estrella.</option>
             <option value="adminLFTalpa">Liga Femenil Talpa.</option>
@@ -155,7 +155,6 @@
                         echo '<td>'. $row['Partidos perdidos'] . '</td>';
                         echo '<td>'. $row['Puntos extras'] . '</td>';
                         echo '<td width=250>';
-                        echo '<a class="btn" href="jugadores.php?id='.$row['Número de equipo'].'">Detalles</a>';
                         echo '&nbsp;';
                         echo '<a class="btn btn-danger" href="delete.php?id='.$row['Número de equipo'].'">Eliminar</a>';
                         echo '</td>';
@@ -168,6 +167,7 @@
             </div>
         </div> 
       </div> 
+      
       </tr>
   </tr>
       <tr>

@@ -101,7 +101,7 @@
       <tr>
         <td>
           <select class="button-colors" name="leagueChosen" id="fname" onchange="changeLeague(this.value)">
-            <option value="modality">Seleccionar liga.</option>
+            <option value="admin">Seleccionar liga.</option>
             <option value="adminLVDorada">Liga Varonil Dorada.</option>
             <option value="adminLVEstrella">Liga Varonil Estrella.</option>
             <option value="adminLFTalpa">Liga Femenil Talpa.</option>
