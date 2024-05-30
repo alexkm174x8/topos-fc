@@ -399,3 +399,89 @@ button:hover{
   height: auto;
   margin-right: 10px;
 }
+
+body.access {
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  height:100vh;
+  flex-direction:column;
+}
+
+body.access * {
+  font-family:sans-serif;
+  box-sizing:border-box;
+}
+
+body.access form {
+  width:500px;
+  border:2px solid #ccc;
+  padding:30px;
+  background:#fff;
+  border-radius:15px;
+}
+
+body.access h2 {
+  text-align:center;
+  margin-bottom:40px;
+}
+
+body.access input{
+  display:block;
+  border:2px solid #ccc;
+  width:95%;
+  padding:10px;
+  margin:10px auto;
+  border-radius:5px;
+  box-sizing: border-box;
+  text-align: center;
+  font-weight: bolder;
+}
+
+body.access label{
+  color:#888;
+  font-size:18px;
+  padding:10px;
+
+}
+
+body.access button {
+  float:right;
+  background:#555;
+  padding:10px 15px;
+  color:#fff;
+  border-radius:5px;
+  margin-right:10px;
+  border:none;
+}
+
+body.access button:hover{
+  opacity:0.7;
+}
+
+.error{
+  background:#F2DEDE;
+  color:#A94442;
+  padding:10px;
+  border-radius:5px;
+  margin:20px auto;
+}
+
+body.access h1 {
+  text-align: center;
+  color: #fff;
+}
+
+body.access a{
+  float: right;
+  background: #555;
+  padding: 10px 15px;
+  color: #fff;
+  border-radius: 5px;
+  margin-right: 10px;
+  border: none;
+}
+
+body.access a:hover{
+  opacity: 0.7;
+}
