@@ -90,7 +90,32 @@
           </table>
       <tr>
         <td>
-          <h2>Añadir Datos de Partido</h2>
+          <h2>Añadir Datos Estadísticos</h2>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <br>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <select class="button-colors" name="leagueChosen" id="fname" onchange="changeLeague(this.value)">
+            <option value="admin">Seleccionar liga.</option>
+            <option value="adminLVDorada">Liga Varonil Dorada.</option>
+            <option value="adminLVEstrella">Liga Varonil Estrella.</option>
+            <option value="adminLFTalpa">Liga Femenil Talpa.</option>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <br>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <br>
         </td>
       </tr>
       <tr>
@@ -150,36 +175,6 @@
             </div>
         </div> 
         </div>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <h2>Añadir Datos Estadísticos</h2>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <br>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <select class="button-colors" name="leagueChosen" id="fname" onchange="changeLeague(this.value)">
-            <option value="admin">Seleccionar liga.</option>
-            <option value="adminLVDorada">Liga Varonil Dorada.</option>
-            <option value="adminLVEstrella">Liga Varonil Estrella.</option>
-            <option value="adminLFTalpa">Liga Femenil Talpa.</option>
-          </select>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <br>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <br>
         </td>
       </tr>
     </table>
