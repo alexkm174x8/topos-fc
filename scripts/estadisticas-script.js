@@ -5,11 +5,12 @@ function toggleDropdown() {
 }
 
 function cargarEquipos() {
-    fetch('prueba.php')
+    const nombreHtml = document.body.getAttribute('data-page-name');
+    fetch(`prueba.php?nombre_html=${nombreHtml}`)
         .then(response => response.json())
         .then(data => {
             const dropdownContent = document.getElementById('dropdown-content');
-            dropdownContent.innerHTML = ''; // Clear existing content
+            dropdownContent.innerHTML = '';
             data.forEach(equipo => {
                 const button = document.createElement('button');
                 const logo = document.createElement('img');
@@ -33,35 +34,35 @@ function handleTeamButtonClick(equipo) {
             const teamDetails = document.getElementById('team-details');
             if (data) {
                 teamDetails.innerHTML = `
-                    <h2>${data.nombre}</h2>
-                    <table style="border-collapse: collapse; border: 4px solid #000; width: 100%; margin-top: 20px;">
+                    <h2 style="margin-top:5vh;">${data.nombre}</h2>
+                    <table style="border-collapse: collapse; border: 5px solid #000; width: 100%; margin-top: 5vh;">
                         <tr>
-                            <th style="border: 1px solid #000; padding: 10px;">Creación</th>
-                            <td style="border: 1px solid #000; padding: 10px;">${data.creacion}</td>
+                            <th style="border: 3px solid #000; padding: 15px;">Creación</th>
+                            <td style="border: 3px solid #000; padding: 15px;">${data.creacion}</td>
                         </tr>
                         <tr>
-                            <th style="border: 1px solid #000; padding: 10px;">Goles Totales</th>
-                            <td style="border: 1px solid #000; padding: 10px;">${data.goles_totales}</td>
+                            <th style="border: 3px solid #000; padding: 15px;">Goles Totales</th>
+                            <td style="border: 3px solid #000; padding: 15px;">${data.goles_totales}</td>
                         </tr>
                         <tr>
-                            <th style="border: 1px solid #000; padding: 10px;">Partidos Totales</th>
-                            <td style="border: 1px solid #000; padding: 10px;">${data.partidos_totales}</td>
+                            <th style="border: 3px solid #000; padding: 15px;">Partidos Totales</th>
+                            <td style="border: 3px solid #000; padding: 15px;">${data.partidos_totales}</td>
                         </tr>
                         <tr>
-                            <th style="border: 1px solid #000; padding: 10px;">Partidos Ganados</th>
-                            <td style="border: 1px solid #000; padding: 10px;">${data.partidos_ganados}</td>
+                            <th style="border: 3px solid #000; padding: 15px;">Partidos Ganados</th>
+                            <td style="border: 3px solid #000; padding: 15px;">${data.partidos_ganados}</td>
                         </tr>
                         <tr>
-                            <th style="border: 1px solid #000; padding: 10px;">Partidos Empatados</th>
-                            <td style="border: 1px solid #000; padding: 10px;">${data.partidos_empatados}</td>
+                            <th style="border: 3px solid #000; padding: 15px;">Partidos Empatados</th>
+                            <td style="border: 3px solid #000; padding: 15px;">${data.partidos_empatados}</td>
                         </tr>
                         <tr>
-                            <th style="border: 1px solid #000; padding: 10px;">Puntos Extras</th>
-                            <td style="border: 1px solid #000; padding: 10px;">${data.puntos_extras}</td>
+                            <th style="border: 3px solid #000; padding: 15px;">Puntos Extras</th>
+                            <td style="border: 3px solid #000; padding: 15px;">${data.puntos_extras}</td>
                         </tr>
                     </table>
                     <br>
-                    <img src="${data.logo}" alt="Logo del equipo" width="100" height="100" style="margin-top: 20px;">
+                    <img src="${data.logo}" alt="Logo del equipo" width="100" height="100" style="margin-top: 2vh;">
                 `;
             } else {
                 teamDetails.innerHTML = '<p>No se encontraron detalles del equipo.</p>';
