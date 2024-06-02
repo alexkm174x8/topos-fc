@@ -73,13 +73,14 @@
                 echo '&nbsp;';
                 echo '<a class="btn button-colors" href="informacion.php?id='.$row['idjugador'].'">Información del jugador</a>';
                 echo '<a class="btn btn-danger" href="deleteJugadores.php?id='.$row['idjugador'].'">Eliminar</a>';
-                echo '<a class="btn" href="admin.php">Regresar</a>';
+                echo '<a class="btn btn-primary" href="updateJugadores.php?id='.$row['idjugador'].'">Actualizar datos.</a>';
                 echo '</tr>';
             }
             Database::disconnect();
             ?>
             </tbody>
         </table>
+        <a class="btn" href="admin.php">Regresar</a>
     </div>
 </div> 
 </body>

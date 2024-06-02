@@ -158,6 +158,8 @@
                         echo '<a class="btn" href="jugadores.php?id='.$row['Número de equipo'].'">Detalles</a>';
                         echo '&nbsp;';
                         echo '<a class="btn btn-danger" href="delete.php?id='.$row['Número de equipo'].'">Eliminar</a>';
+                        echo '&nbsp;';
+                        echo '<a class="btn btn-primary" href="updateEquipo.php?id='.$row['Número de equipo'].'">Actualizar datos</a>';
                         echo '</td>';
                         echo '</tr>';
                     }
