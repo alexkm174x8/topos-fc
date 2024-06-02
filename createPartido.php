@@ -12,37 +12,44 @@
                 <h3>Agregar datos de un nuevo partido</h3>
             </div>
             <form class="form-horizontal" action="createPartido2.php" method="post">
+                <input type="hidden" name="idLiga" value="<?php echo $_GET['idLiga']; ?>">
                 <div class="control-group">
                     <label class="control-label">Nombre de equipo local</label>
                     <select class="controls" name="equipoCasa" id="equipoCasa">
-                        <?php
-                        $servername = "localhost";
-                        $username = "root";
-                        $password = "";
-                        $dbname = "topos";
+                    <?php
+                        if (isset($_GET['idLiga'])) {
+                            $idLiga = intval($_GET['idLiga']); 
 
-                        $conn = new mysqli($servername, $username, $password, $dbname);
+                            $servername = "localhost";
+                            $username = "root";
+                            $password = "";
+                            $dbname = "topos";
 
-                        if ($conn->connect_error) {
-                            die("Conexión fallida: " . $conn->connect_error);
-                        }
+                            $conn = new mysqli($servername, $username, $password, $dbname);
 
-                        $sql = "SELECT idEquipo, nombre FROM topos_equipo";
-                        $result = $conn->query($sql);
-
-                        if (!$result) {
-                            die("Query failed: " . $conn->error);
-                        }
-
-                        if ($result->num_rows > 0) {
-                            while ($row = $result->fetch_assoc()) {
-                                echo "<option value=\"" . $row["idEquipo"] . "\">" . $row["nombre"] . "</option>";
+                            if ($conn->connect_error) {
+                                die("Conexión fallida: " . $conn->connect_error);
                             }
-                        } else {
-                            echo "<option value=\"\">No hay equipos disponibles.</option>";
-                        }
 
-                        $conn->close();
+                            $sql = "SELECT idEquipo, nombre FROM topos_equipo WHERE idLiga = ?";
+                            $stmt = $conn->prepare($sql);
+                            $stmt->bind_param("i", $idLiga);
+                            $stmt->execute();
+                            $result = $stmt->get_result();
+
+                            if ($result->num_rows > 0) {
+                                while ($row = $result->fetch_assoc()) {
+                                    echo "<option value=\"" . $row["idEquipo"] . "\">" . $row["nombre"] . "</option>";
+                                }
+                            } else {
+                                echo "<option value=\"\">No hay equipos disponibles.</option>";
+                            }
+
+                            $stmt->close();
+                            $conn->close();
+                        } else {
+                            echo "<option value=\"\">idLiga no está establecido en la URL.</option>";
+                        }
                         ?>
                     </select>
                 </div>
@@ -58,29 +65,40 @@
                 <div class="control-group">
                     <label class="control-label">Nombre de equipo visitante</label>
                     <select class="controls" name="equipoVisita" id="equipoVisita">
-                        <?php
-                        $conn = new mysqli($servername, $username, $password, $dbname);
+                    <?php
+                        if (isset($_GET['idLiga'])) {
+                            $idLiga = intval($_GET['idLiga']); 
 
-                        if ($conn->connect_error) {
-                            die("Conexión fallida: " . $conn->connect_error);
-                        }
+                            $servername = "localhost";
+                            $username = "root";
+                            $password = "";
+                            $dbname = "topos";
 
-                        $sql = "SELECT idEquipo, nombre FROM topos_equipo";
-                        $result = $conn->query($sql);
+                            $conn = new mysqli($servername, $username, $password, $dbname);
 
-                        if (!$result) {
-                            die("Query failed: " . $conn->error);
-                        }
-
-                        if ($result->num_rows > 0) {
-                            while ($row = $result->fetch_assoc()) {
-                                echo "<option value=\"" . $row["idEquipo"] . "\">" . $row["nombre"] . "</option>";
+                            if ($conn->connect_error) {
+                                die("Conexión fallida: " . $conn->connect_error);
                             }
-                        } else {
-                            echo "<option value=\"\">No hay equipos disponibles.</option>";
-                        }
 
-                        $conn->close();
+                            $sql = "SELECT idEquipo, nombre FROM topos_equipo WHERE idLiga = ?";
+                            $stmt = $conn->prepare($sql);
+                            $stmt->bind_param("i", $idLiga);
+                            $stmt->execute();
+                            $result = $stmt->get_result();
+
+                            if ($result->num_rows > 0) {
+                                while ($row = $result->fetch_assoc()) {
+                                    echo "<option value=\"" . $row["idEquipo"] . "\">" . $row["nombre"] . "</option>";
+                                }
+                            } else {
+                                echo "<option value=\"\">No hay equipos disponibles.</option>";
+                            }
+
+                            $stmt->close();
+                            $conn->close();
+                        } else {
+                            echo "<option value=\"\">idLiga no está establecido en la URL.</option>";
+                        }
                         ?>
                     </select>
                 </div>

@@ -1,29 +1,16 @@
 <?php
 include 'database.php';
 
-if (!empty($_POST['equipoCasa']) && !empty($_POST['localScore']) && !empty($_POST['equipoVisita']) && !empty($_POST['visitScore'])) {
+if (!empty($_POST['equipoCasa']) && !empty($_POST['localScore']) && !empty($_POST['equipoVisita']) && !empty($_POST['visitScore'] && !empty($_POST['idLiga']))) {
     $homeTeam = $_POST['equipoCasa'];
     $localScore = $_POST['localScore'];
     $visitTeam = $_POST['equipoVisita']; 
     $visitScore = $_POST['visitScore'];
-
-    // Debug: Print POST data
-    //var_dump($_POST);
+    $idLiga = $_POST['idLiga'];
 
     $pdo = Database::connect();
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-    // Validate team ID
-    //$sql_validate = "SELECT idEquipo FROM topos_equipo WHERE idEquipo IN (?, ?)";
-    //$q_validate = $pdo->prepare($sql_validate);
-    //$q_validate->execute(array($homeTeam, $visitTeam));
-    //    if ($q_validate->rowCount() !== 2) {
-    //        echo "Invalid team IDs.";
-    //        Database::disconnect();
-    //    exit();
-    //}
-
-    // Fetch last idPartido
     $sql_last_id = "SELECT MAX(idPartido) AS last_id FROM topos_partido";
     $stmt_last_id = $pdo->query($sql_last_id);
     if ($stmt_last_id) {
@@ -37,9 +24,9 @@ if (!empty($_POST['equipoCasa']) && !empty($_POST['localScore']) && !empty($_POS
     }
 
     // Insert new match record
-    $sql_insert = "INSERT INTO topos_partido (idPartido, equipo_casa, marcador_casa, equipo_visita, marcador_visita, fecha) VALUES (?, ?, ?, ?, ?, NOW())";
+    $sql_insert = "INSERT INTO topos_partido (idPartido, equipo_casa, marcador_casa, equipo_visita, marcador_visita, fecha, idLiga) VALUES (?, ?, ?, ?, ?, NOW(), ?)";
     $q = $pdo->prepare($sql_insert);
-    if ($q->execute(array($nuevoIdPartido, $homeTeam, $localScore, $visitTeam, $visitScore))) {
+    if ($q->execute(array($nuevoIdPartido, $homeTeam, $localScore, $visitTeam, $visitScore, $idLiga))) {
         Database::disconnect();
         header("Location: admin.php");
         exit();

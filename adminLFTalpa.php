@@ -155,6 +155,7 @@
                         echo '<td>'. $row['Partidos perdidos'] . '</td>';
                         echo '<td>'. $row['Puntos extras'] . '</td>';
                         echo '<td width=250>';
+                        echo '<a class="btn" href="jugadores.php?id='.$row['Número de equipo'].'">Detalles</a>';
                         echo '&nbsp;';
                         echo '<a class="btn btn-danger" href="delete.php?id='.$row['Número de equipo'].'">Eliminar</a>';
                         echo '</td>';
@@ -183,7 +184,7 @@
             </div>
             <div class="row">
                 <p>
-                    <a href="createPartido.php" class="btn btn-success">Agregar datos de un partido</a>
+                    <a href="createPartido.php?idLiga=3" class="btn btn-success">Agregar datos de un partido</a>
                 </p>
                 <table class="table table-striped table-bordered">
                     <thead>
@@ -208,7 +209,8 @@
                       p.fecha AS 'Fecha' 
                       FROM topos_partido p
                       JOIN topos_equipo el ON p.equipo_casa = el.idEquipo
-                      JOIN topos_equipo ev ON p.equipo_visita = ev.idEquipo";
+                      JOIN topos_equipo ev ON p.equipo_visita = ev.idEquipo
+                      WHERE p.idLiga = 3";
                     foreach ($pdo->query($sql) as $row) {
                         echo '<tr>';
                         echo '<td>'. $row['Número de partido'] . '</td>';

@@ -71,17 +71,16 @@
                 echo '<td>'. $row['goles'] . '</td>';
                 echo '<td width=250>';
                 echo '&nbsp;';
+                echo '<a class="btn button-colors" href="informacion.php?id='.$row['idjugador'].'">Información del jugador</a>';
                 echo '<a class="btn btn-danger" href="deleteJugadores.php?id='.$row['idjugador'].'">Eliminar</a>';
-                echo '<a class="btn" href="admin.html">Regresar</a>';
+                echo '<a class="btn" href="admin.php">Regresar</a>';
                 echo '</tr>';
             }
             Database::disconnect();
             ?>
             </tbody>
         </table>
-
     </div>
-
-</div> <!-- /container -->
+</div> 
 </body>
 </html>

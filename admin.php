@@ -126,9 +126,6 @@
                 <h3>Registro de partidos</h3>
             </div>
             <div class="row">
-                <p>
-                    <a href="createPartido.php" class="btn btn-success">Agregar datos de un partido</a>
-                </p>
                 <table class="table table-striped table-bordered">
                     <thead>
                     <tr>
@@ -169,7 +166,7 @@
                         echo '</tr>';
                     }
                     Database::disconnect();
-                    ?>
+                    ?> 
                     </tbody>
                 </table>
             </div>
