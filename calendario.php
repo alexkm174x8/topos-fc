@@ -6,14 +6,10 @@
     <link rel="stylesheet" href="css/style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
-<<<<<<< HEAD:calendario.php
-=======
     <script src="scripts/menu-toggle.js"></script>
     <script src="scripts/cal-script.js" defer></script>
->>>>>>> 63abf689c99fd122a33628b3fe23d1ec9f940647:calendario.html
   </head>
   <body class="calendario">
-
   <!--Nav Bar-->
   <div class="container clearfix et_menu_container">
       <nav class="navbar_container">
@@ -188,14 +184,9 @@
           -->
           </form>
         </div>
-<<<<<<< HEAD:calendario.php
       </div>
-=======
-
-        </div>
->>>>>>> 63abf689c99fd122a33628b3fe23d1ec9f940647:calendario.html
     </div>
-
+  </div>
   <footer class="footer">
       <div class="left-content">Topos F.C. 2021</div>
       <div class="right-content">
