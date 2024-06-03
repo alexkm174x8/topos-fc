@@ -61,6 +61,19 @@ const renderCalendar = () => {
                 
                 var reservationTitle = document.getElementById("calendar_title_rsv");
                 reservationTitle.textContent = `Reservaciones del ${selectedDay} de ${selectedMonth}`;
+
+                document.getElementById("dia").value = selectedDay;
+                document.getElementById("mes").value = currMonth + 1;
+                document.getElementById("ano").value = currYear;
+                
+                selectHora.addEventListener('change', (event) => {
+                    const selectedHora = event.target.value;
+                });
+                var segundos = 0;
+                const date = new Date(ano, mes, dia, hora, segundos);
+                const formattedDate = date.toISOString().slice(0, 16);
+                document.getElementById("timestamp").value = formattedDate;
+
             }
         });
     });
@@ -116,3 +129,27 @@ document.addEventListener("click", function(event) {
         reservaButton.style.display = "block";
     }
 });
+
+    // Agregar un evento de cambio al selector de hora
+    selectHora.addEventListener('change', () => {
+        // Obtener los valores de día, mes y año como enteros
+        const selectedDay = parseInt(inputDia.value);
+        const selectedMonth = parseInt(inputMes.value); // Restar 1 porque los meses se indexan desde 0
+        const selectedYear = parseInt(inputAno.value);
+
+        // Obtener la hora seleccionada del selector
+        const selectedHora = parseInt(selectHora.value);
+
+        // Verificar si los valores son números válidos
+        if (!isNaN(selectedDay) && !isNaN(selectedMonth) && !isNaN(selectedYear) && !isNaN(selectedHora)) {
+            // Crear una nueva fecha con los valores seleccionados
+            const fecha = new Date(selectedYear, selectedMonth, selectedDay, selectedHora);
+
+            // Obtener el timestamp y asignarlo al campo oculto
+            const timestamp = fecha.getTime();
+            document.getElementById("timestamp").value = timestamp;
+        } else {
+            // Mostrar un mensaje de error si hay valores inválidos
+            console.error("Alguno de los valores de fecha u hora es inválido.");
+        }
+    });

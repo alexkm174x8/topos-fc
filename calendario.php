@@ -6,7 +6,6 @@
     <link rel="stylesheet" href="css/cal-style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
-    <script src="scripts/cal-script.js" defer></script>
   </head>
   <body>
     <!--Nav Bar-->
@@ -120,41 +119,50 @@
           <div class="segment">
             <h2>Planea tu reserva</h2>
           </div>
-          <form>
+          <form id="reservationForm" action="reservacion.php" method="post">
             <label>
-              <input type="text" placeholder="Nombre Completo" required>
+              <input id="nombre" name="nombre" type="text" placeholder="Nombre Completo" required>
             </label>
             <label>
-              <input type="email" placeholder="Correo Electrónico" required>
+              <input id="email" name="email" type="email" placeholder="Correo Electrónico" required>
             </label>
             <label>
-              <input type="text" placeholder="Motivo de Reserva" required>
+              <input id="motivo" name="motivo" type="text" placeholder="Motivo de Reserva" required>
             </label>
             <label for="time">Hora </label>
-            <select name="time" id="time">
+            <select id="hora" name="hora" id="time">
+              <?php
+
+              ?>
               <option value="" disabled selected>Selecciona una hora</option>
-              <option value="10">07:00</option>
-              <option value="11">08:00</option>
-              <option value="12">09:00</option>
-              <option value="13">10:00</option>
-              <option value="12">11:00</option>
-              <option value="13">12:00</option>
-              <option value="12">13:00</option>
-              <option value="13">14:00</option>
-              <option value="13">15:00</option>
-              <option value="12">16:00</option>
-              <option value="13">17:00</option>
-              <option value="13">18:00</option>
-              <option value="12">19:00</option>
-              <option value="13">20:00</option>
-              <option value="13">21:00</option>
-              <option value="12">22:00</option>
-              <option value="13">23:00</option>
+              <option value="7">07:00</option>
+              <option value="8">08:00</option>
+              <option value="9">09:00</option>
+              <option value="10">10:00</option>
+              <option value="11">11:00</option>
+              <option value="12">12:00</option>
+              <option value="13">13:00</option>
+              <option value="14">14:00</option>
+              <option value="15">15:00</option>
+              <option value="16">16:00</option>
+              <option value="17">17:00</option>
+              <option value="18">18:00</option>
+              <option value="19">19:00</option>
+              <option value="20">20:00</option>
+              <option value="21">21:00</option>
+              <option value="22">22:00</option>
+              <option value="23">23:00</option>
             </select>
             <br>
+            <input type="hidden" id="dia" name="dia" value="0">
+            <input type="hidden" id="mes" name="mes" value="0">
+            <input type="hidden" id="ano" name="ano" value="0">
+            <input type="hidden" id="timestamp" name="timestamp" value="0">
             <br>
+            <button id="reserva" type="submit" href="horasReservadas.php">Enviar</button>
+          <!--
             <div class="btn-continuar">
-              <a class="cta" href="#">
+              <a id="reservar" class="cta" href="reservacion.php">
                 <span>Enviar</span>
                 <span>
                   <svg width="26px" height="13px" viewBox="0 0 66 43" version="1.1" xmlns="http://www.w3.org/2000/svg"
@@ -174,11 +182,12 @@
                 </span>
               </a>
             </div>
+          -->
           </form>
         </div>
-        
-        </div>
+      </div>
     </div>
     
   </body>
+  <script src="scripts/cal-script.js" defer></script>
 </html>
