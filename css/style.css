@@ -19,6 +19,7 @@ h1, h2, h3, h4 {
   font-family: 'Allerta', Helvetica, Arial, Lucida, sans-serif;
   padding-left: 3vw;
   padding-right: 3vw;
+  padding-bottom: 1vw;
 }
 
 p {
@@ -332,7 +333,8 @@ nav ul li.flecha a {
   align-items: start;
 }
 
-input[type=text]{
+input[type=text],
+input[type=email]{
   box-sizing: border-box;
   padding: 12px 18px;
   border-radius: 10px;
@@ -391,6 +393,12 @@ button{
   border: 0;
   text-align: center;
   font-weight: bolder;
+  margin: auto;
+  display:block;
+  background-color: blue;
+  background-size: 3px;
+  font-family: inherit;
+  color: yellow;
 }
 
 .accept{
@@ -434,17 +442,6 @@ textarea.active{
 input {
   background-color: wheat;
   border: 0;
-}
-
-button {
-  margin: auto;
-  display:block;
-  border-radius: 10px;
-  border-color: blue;
-  background-color: blue;
-  background-size: 3px;
-  font-family: inherit;
-  color: yellow;
 }
 
 button:hover{
@@ -669,21 +666,40 @@ body.calendario {
   justify-content: space-between;
 }
 
+.flecha img {
+  width: 6vw;
+  height: auto;
+}
+
 .reservation-wrapper {
-  padding-top: 10px;
-  padding-left: 60px;
+  padding-left: 70px;
   width: 450px;
   height: 440px;
   background: #fff;
   border-radius: 20px;
   box-shadow: 0 50px 80px rgba(0,0,0,0.50);
   position: absolute;
-  top: 900px;
+  top: 966px;
 }
+
+.reservation-wrapper h1, h2, h3, h4 {
+  padding-top: 10px;
+  padding-left: 0vw;
+  padding-right: 0vw;
+  margin-top: 1vw;
+  margin-bottom: -2vw;
+}
+
+.reservation-wrapper h5 {
+  margin-bottom: 0vw;
+}
+
 .reservation-wrapper button{
   text-decoration: solid;
   border-radius: 10px;
-  padding: 5px;
+  position: relative;
+  padding: 8px;
+  align-items: center;
   background-color: #f2f2f2;
 }
 .calendario header .icons{
@@ -769,9 +785,8 @@ body.calendario {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   overflow: hidden;
   padding-left: 20px;
-  position: absolute;
-  top: 140px;
-  left: 80px;
+  position: relative;
+  left: 30px;
   padding-bottom: 20px;
 }
 
