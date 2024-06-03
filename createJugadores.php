@@ -61,7 +61,6 @@
                             <button type="submit" class="btn btn-success">Agregar jugador</button>
                             <a class="btn" href="jugadores.php?id=<?php echo $team_id?>">Regresar</a>
                         </div>
-
 </form>
 				</div>
 	    </div>

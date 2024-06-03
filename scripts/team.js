@@ -5,6 +5,11 @@ function sendRegister(){
 function validateForm(event) {
   event.preventDefault();
 
+  document.querySelectorAll('.error-message').forEach(el => el.remove());
+
+  let isFormValid = true;
+  let firstInvalidField = null;
+
   const radioGroups = [
     'medio',
     'ageReq',
@@ -27,64 +32,116 @@ function validateForm(event) {
     }
 
     if (!groupChecked) {
-      alert('Llene todos los campos antes de enviar su solicitud');
-      return;
+      const errorMessage = document.createElement('span');
+      errorMessage.className = 'error-message';
+      errorMessage.style.color = 'red';
+      errorMessage.innerText = ' Llene este campo también';
+      radios[0].parentNode.appendChild(errorMessage);
+      
+      if (!firstInvalidField) {
+        firstInvalidField = radios[0];
+      }
+      isFormValid = false;
     }
   }
 
+  // Check if all required text inputs are filled
+  const requiredInputs = [
+    'name',
+    'lastNames',
+    'email',
+    'age',
+    'col',
+    'phoneNumber',
+    'teamName',
+    'tutor'
+  ];
+
+  for (const inputName of requiredInputs) {
+    const input = document.querySelector(`input[name="${inputName}"]`);
+    if (!input || input.value.trim() === '') {
+      const errorMessage = document.createElement('span');
+      errorMessage.className = 'error-message';
+      errorMessage.style.color = 'red';
+      errorMessage.innerText = ' Llene este campo.';
+      input.parentNode.appendChild(errorMessage);
+
+      if (!firstInvalidField) {
+        firstInvalidField = input;
+      }
+      isFormValid = false;
+    }
+  }
+
+  if (!isFormValid) {
+    firstInvalidField.focus();
+    alert('Llene todos los campos antes de enviar su solicitud');
+    return;
+  }
+
+  // If validation passes, proceed with registration and form submission
   sendRegister();
   document.getElementById('myForm').submit();
 }
 
 window.onload = function() {
-}
+  formSummon(); // Call formSummon on load if needed to initialize the form
+};
 
 function formSummon() {
-  var selectedLiga = document.querySelector('input[name="liga"]:checked')
+  var selectedLiga = document.querySelector('input[name="idLiga"]:checked');
   if (!selectedLiga) {
-    alert("Por favor escoja una liga.");
-    return;
+      alert("Por favor escoja una liga.");
+      return;
   }
   var modality = selectedLiga.value;
   var playersDiv = document.getElementById("players");
   if (modality != "") {
-    playersDiv.innerHTML = `
-    <form id="myForm" onsubmit="validateForm(event)">
+      playersDiv.innerHTML = `
+    <form id="myForm" action="registerTeamOrPlayer.php" method="post" onsubmit="validateForm(event)" novalidate>
+      <input type="hidden" name="idLiga" value="${modality}">
+      <input type="hidden" name="teamId" id="teamId" value="">
       <table class="table-center">
       <tr>
         <td class="td-left">
-          <label for="name">Nombre completo: </label>
-          <input type="text" name="name">
+          <label for="names">Nombre/s: </label>
+          <input type="text" name="name" required>
+        </td>
+      </tr>
+      <tr>
+        <td class="td-left">
+          <label for="lastNames">Apellidos: </label>
+          <input type="text" name="lastNames" required>
         </td>
       </tr>
       <tr>
         <td class="td-left">
           <label for="email">Correo electrónico: </label>
-          <input type="text" name="email">
-        </td>S
+          <input type="text" name="email" required>
+        </td>
       </tr>
       <tr>
         <td class="td-left">
           <label for="age">Edad: </label>
-          <input type="text" name="age">
+          <input type="text" name="age" required>
         </td>
       </tr>
       <tr>
         <td class="td-left">
           <label for="col">Colonia: </label>
-          <input type="text" name="col">
+          <input type="text" name="col" required>
         </td>
       </tr>
       <tr>
         <td class="td-left">
           <label for="phoneNumber">Teléfono de Contacto (WhatsApp): </label>
-          <input type="text" name="phoneNumber">
+          <input type="text" name="phoneNumber" required>
         </td>
       </tr>
       <tr>
         <td class="td-left">
           <label for="teamName">Nombre del equipo: </label>
-          <input type="text" name="teamName">
+          <input type="text" name="teamName" required>
         </td>
       </tr>
       <tr>
@@ -100,22 +157,22 @@ function formSummon() {
       </tr>
       <tr class="weakyellow">
         <td>
-          <input type="radio" name="medio" value="SNLeague" required>Redes Sociales de la Liga</input>
+          <input type="radio" name="medio" value="Redes sociales de la liga" required>Redes Sociales de la Liga</input>
         </td>
       </tr>
       <tr class="weakyellow">
         <td>
-          <input type="radio" name="medio" value="SNTopos">Redes Sociales de Topos FC</input>
+          <input type="radio" name="medio" value="Redes Sociales de Topos">Redes Sociales de Topos FC</input>
         </td>
       </tr>
       <tr class="weakyellow">
         <td>
-          <input type="radio" name="medio" value="invitation">Invitación Directa</input>
+          <input type="radio" name="medio" value="Invitación directa">Invitación Directa</input>
         </td>
       </tr>
       <tr class="weakyellow">
         <td>
-         <input type="radio" name="medio" value="advertising">Publicidad Física</input>
+         <input type="radio" name="medio" value="Publicidad física">Publicidad Física</input>
         </td>
       </tr>
       </table>
@@ -159,12 +216,12 @@ function formSummon() {
         </tr>
         <tr class="weakyellow">
           <td>
-            <input type="radio" name="ageReq" value="true" required>Sí</input>
+            <input type="radio" name="ageReq" value="Sí" required>Sí</input>
           </td>
         </tr>
         <tr class="weakyellow">
           <td>
-            <input type="radio" name="ageReq" value="false">No</input>
+            <input type="radio" name="ageReq" value="No">No</input>
           </td>
         </tr>
         <tr>
@@ -180,7 +237,7 @@ function formSummon() {
         </tr>
         <tr class="weakblue">
           <td class="td-center">
-            <input type="text" name="tutor" class="white-text"></input>
+            <input type="text" name="tutor" class="white-text" required></input>
           </td>
         </tr>
         <tr>
@@ -196,17 +253,12 @@ function formSummon() {
         </tr>
         <tr class="weakyellow">
           <td>
-          <input type="radio" name="consent" value="true" required>Sí acepto</input>
+          <input type="radio" name="consent" value="Aceptado" required>Sí acepto</input>
           </td>
         </tr>
         <tr class="weakyellow">
           <td>
-            <input type="radio" name="consent" value="false">No acepto</input>
-          </td>
-        </tr>
-        <tr class="weakyellow">
-          <td>
-            <input type="radio" name="consent" value="false">Soy menor de edad</input>
+            <input type="radio" name="consent" value="No aceptado">No acepto</input>
           </td>
         </tr>
         <tr>
@@ -216,23 +268,23 @@ function formSummon() {
         </tr>
         <tr class="strongblue">
           <td class="td-center">
-            <p class="white-text">Soy madre, padre o tutor de un menor de edad y autorizo el uso de imagen de mi hijo/a en usos de multimedia para la difusión del evento, a través del Comité Organizador del Torneo de Fútbol 5 "La Madriguera" </p>
-            <a href="https://drive.google.com/file/d/1XaKUjhrQ_pD4izPLUyM_YAspJIuZ9Aun/view" class="white-text">*Consulta nuestro uso de imagen para menores de edad, dando click en este enlace.</a>
+            <p class="white-text">En caso de ser menor de edad autorizo el uso de la imagen de mi hijo (a) en usos de multimedia para la difusión del evento, a través del Comité Organizador del Torneo de Fútbol 5 "Madriguera".</p>
+            <a href="https://drive.google.com/file/d/1YPWbkt8SNt5tcTi3ty6eJCwp7z4H4pJU/view?pli=1">*Consulta nuestro formato de uso de imagen para menores de edad dando click en este enlace.</a>
           </td>
         </tr>
         <tr class="weakblue">
           <td>
-            <input type="radio" name="parentConsent" value="true" required>Sí acepto</input>
+            <input type="radio" name="parentConsent" value="Aceptado" required>Sí acepto</input>
           </td>
         </tr>
         <tr class="weakblue">
           <td>
-           <input type="radio" name="parentConsent" value="false">No acepto</input>
+           <input type="radio" name="parentConsent" value="No aceptado">No acepto</input>
           </td>
         </tr>
         <tr class="weakblue">
           <td>
-            <input type="radio" name="parentConsent" value="false">Soy menor de edad</input>
+            <input type="radio" name="parentConsent" value="Menor de edad">Soy menor de edad</input>
           </td>
         </tr>
         <tr>
@@ -287,7 +339,7 @@ function formSummon() {
       </table>
       <br>
     <div>
-      <button type="submit"">
+      <button type="submit">
         <strong>Registrar equipo</strong>
       </button>
     </div> 

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>topos</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="scripts/menu-toggle.js"></script>
+</head>
+
+<body data-page-name="estadistica_femenil">
+
+<!--Nav Bar-->
+<div class="container clearfix et_menu_container">
+    <nav class="navbar_container">
+        <div class="header_top">
+            <div class="imagen_navbar">
+                <img src="images/topos_logo.png" alt="Logo de topos FC">
+            </div>
+            <div class="iniciar_sesion">
+                Iniciar sesión
+            </div>
+        </div>
+        <div class="lista seccion1">
+            <ul>
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#quienesSomos">Quiénes somos</a></li>
+                <li><a href="#ligaNacionalDeFuchoParaCiegos">Liga Nacional de Fucho para Ciegos</a></li>
+                <li><a href="#equipos">Equipos</a></li>
+                <li><a href="#laMadriguera">La Madriguera</a></li>
+                <li><a href="#noticias">Noticias</a></li>
+                <li class="flecha"><a href="#seccion2"><img src="images/flecha_abajo.png" alt="Cambio de menú"></a></li>
+            </ul>
+        </div>
+        <div class="lista seccion2">
+            <ul>
+                <li><a href="#donativos">Donativos</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+                <li><a href="#rentarCancha">Rentar Cancha</a></li>
+                <li><a href="#calendario">Calendario</a></li>
+                <li><a href="#registro">Registro</a></li>
+                <li><a href="#section_estadisticas">Estadísticas</a></li>
+                <li class="flecha"><a href="#seccion1"><img src="images/flecha_arriba.png" alt="Cambio de menú"></a></li>
+            </ul>
+        </div>
+    </nav>
+</div>
+
+<table class="section-estadisticas">
+    <tr>
+        <td colspan="4"> <img src="images/topos_liga_femenil.jpg" alt="Logo de TOPOS FC" id="topos_logo"></td>
+    </tr>
+    <tr>
+        <td colspan="4" id="topos_varonil" class="h1_strong"><h1>TOPOS FC FEMENIL</h1></td>
+    </tr>
+    <tr>
+        <td colspan="4" id="marcador_top"><h3>ÚLTIMO PARTIDO</h3></td>
+    </tr>
+    <tr>
+        <td colspan="4">
+            <div id="row">
+                <img src="images/escudo_eje_1.png" alt="Escudo equipo" id="escudo_izquierda">
+                <div class="marcadores"> <h1>20 - 40</h1> </div>
+                <img src="images/escudo_eje_2.png" alt="Escudo equipo" id="escudo_derecha">
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="4" id="estadisticas"><h3>ESTADISTICAS ESTA TEMPORADA</h3></td>
+    </tr>
+    <tr>
+        <td colspan="1" class="marcadores"><h1>10</h1><br><h3>PARTIDOS</h3></td>
+        <td colspan="1" class="marcadores"><h1>20</h1><br><br><h3>GOLES</h3></td>
+        <td colspan="1" class="marcadores"><img src="images/escudo_eje_3.png" alt="Escudo equipo"><br><h4>10/02/25</h4><br><h3>PROXIMO PARTIDO</h3></td>
+    </tr>
+    <tr>
+        <td colspan="4">
+            <div class="dropdown">
+                <button class="full-width" onclick="toggleDropdown()">Ver Equipos</button>
+                <div id="dropdown-content" class="dropdown-content"></div>
+            </div>
+
+            <div class="team-details" id="team-details"></div>
+        </td>
+    </tr>
+
+    <tr>
+        <td colspan="4"><h1><img src="images/equipo.jpeg" alt="Foto equipo" id="equipo_img"></h1></td>
+    </tr>
+</table>
+
+<footer class="footer">
+    <div class="left-content">Topos F.C. 2021</div>
+    <div class="right-content">
+        <img src="images/facebook-icon-white-png.png" alt="facebook">
+        <img src="images/twitter_logo_thin_icon_171449.png" alt="twitter">
+        <img src="images/IG-white-instagram-logo-transparent-background-7740.png" alt="instagram">
+    </div>
+</footer>
+
+<script src="scripts/estadisticas-script.js"></script>
+
+</body>
+</html>

@@ -17,7 +17,7 @@
         $team_id = $_GET['id'];
         $team_name = '';
         if ($team_id) {
-            $sql_team = "SELECT equipo FROM TOPOS_Equipos WHERE idequipo = ?";
+            $sql_team = "SELECT nombre FROM topos_equipo WHERE idequipo = ?";
             $stmt_team = $pdo->prepare($sql_team);
             $stmt_team->execute([$team_id]);
             $team_name = $stmt_team->fetchColumn();
@@ -41,9 +41,9 @@
                 <th>Equipo			</th>
                 <th>Numero			</th>
                 <th>Estado	    	</th>
-                <th>Opciones        </th>
                 <th>Posición        </th>
                 <th>Goles           </th>
+                <th>Opciones        </th>
             </tr>
             </thead>
             <tbody>
@@ -51,9 +51,9 @@
                 $pdo = Database::connect();
                 $team_id = $_GET['id'];
 
-                $sql = "SELECT j.idjugador, j.nombres, j.apellidos, e.equipo AS nombre_equipo, j.numero, j.estado, j.posicion, j.goles 
-                FROM TOPOS_Jugador j 
-                INNER JOIN TOPOS_Equipos e ON j.idequipo = e.idequipo
+                $sql = "SELECT j.idjugador, j.nombres, j.apellidos, e.nombre AS nombre_equipo, j.numero, j.estado, j.posicion, j.goles 
+                FROM topos_jugador j 
+                INNER JOIN topos_equipo e ON j.idequipo = e.idequipo
                 WHERE j.idequipo = ?";
 
                 $stmt = $pdo->prepare($sql);
@@ -71,16 +71,17 @@
                 echo '<td>'. $row['goles'] . '</td>';
                 echo '<td width=250>';
                 echo '&nbsp;';
+                echo '<a class="btn button-colors" href="informacion.php?id='.$row['idjugador'].'">Información del jugador</a>';
                 echo '<a class="btn btn-danger" href="deleteJugadores.php?id='.$row['idjugador'].'">Eliminar</a>';
+                echo '<a class="btn btn-primary" href="updateJugadores.php?id='.$row['idjugador'].'">Actualizar datos.</a>';
                 echo '</tr>';
             }
             Database::disconnect();
             ?>
             </tbody>
         </table>
-
+        <a class="btn" href="admin.php">Regresar</a>
     </div>
-
-</div> <!-- /container -->
+</div> 
 </body>
 </html>

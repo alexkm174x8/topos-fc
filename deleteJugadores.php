@@ -20,7 +20,7 @@ try {
     Database::disconnect();
 
     // Redireccionar a la página principal después de eliminar al jugador
-    header("Location: index.php");
+    header("Location: admin.php");
 } catch (PDOException $e) {
     // Capturar y mostrar cualquier excepción que ocurra durante la ejecución de la consulta
     echo "Error al eliminar al jugador: " . $e->getMessage();

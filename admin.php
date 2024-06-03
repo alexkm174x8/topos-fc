@@ -5,6 +5,7 @@
     <title>Topos: Administrador</title>
     <meta charset ="UTF-8">
     <link rel="stylesheet" href="css/style.css">
+    <link   href="css/bootstrap.min.css" rel="stylesheet" id="bootstrap-styles">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="scripts/admin.js"></script>
   </head>
@@ -87,10 +88,10 @@
                 </td>
               </tr>
           </table>
-        <tr>
-          <td>
-            <h2>Añadir Datos Estadísticos</h2>
-          </td>
+      <tr>
+        <td>
+          <h2>Añadir Datos Estadísticos</h2>
+        </td>
       </tr>
       <tr>
         <td>
@@ -100,7 +101,7 @@
       <tr>
         <td>
           <select class="button-colors" name="leagueChosen" id="fname" onchange="changeLeague(this.value)">
-            <option value="modality">Seleccionar liga.</option>
+            <option value="admin">Seleccionar liga.</option>
             <option value="adminLVDorada">Liga Varonil Dorada.</option>
             <option value="adminLVEstrella">Liga Varonil Estrella.</option>
             <option value="adminLFTalpa">Liga Femenil Talpa.</option>
@@ -115,6 +116,62 @@
       <tr>
         <td>
           <br>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <div class="bootstrap-section">
+            <div class="container">
+            <div class="row">
+                <h3>Registro de partidos</h3>
+            </div>
+            <div class="row">
+                <table class="table table-striped table-bordered">
+                    <thead>
+                    <tr>
+                        <th>Número de Partido	</th>
+                        <th>Equipo local     	</th>
+                        <th>Marcador de casa	</th>
+                        <th>Equipo visita		  </th>
+                        <th>Marcador de visita</th>
+                        <th>Fecha             </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <?php
+                    include 'database.php';
+                    $pdo = Database::connect();
+                    $sql = "SELECT 
+                      p.idPartido AS 'Número de partido', 
+                      el.nombre AS 'Equipo local', 
+                      ev.nombre AS 'Equipo visita', 
+                      p.marcador_casa AS 'Marcador de casa', 
+                      p.marcador_visita AS 'Marcador de visita', 
+                      p.fecha AS 'Fecha' 
+                      FROM topos_partido p
+                      JOIN topos_equipo el ON p.equipo_casa = el.idEquipo
+                      JOIN topos_equipo ev ON p.equipo_visita = ev.idEquipo";
+                    foreach ($pdo->query($sql) as $row) {
+                        echo '<tr>';
+                        echo '<td>'. $row['Número de partido'] . '</td>';
+                        echo '<td>'. $row['Equipo local'] . '</td>';
+                        echo '<td>'. $row['Marcador de casa'] . '</td>';
+                        echo '<td>'. $row['Equipo visita'] . '</td>';
+                        echo '<td>'. $row['Marcador de visita'] . '</td>';
+                        echo '<td>'. $row['Fecha'] . '</td>';
+                        echo '<td width=250>';
+                        echo '&nbsp;';
+                        echo '<a class="btn btn-danger" href="deletePartido.php?id='.$row['Número de partido'].'">Eliminar</a>';
+                        echo '</td>';
+                        echo '</tr>';
+                    }
+                    Database::disconnect();
+                    ?> 
+                    </tbody>
+                </table>
+            </div>
+        </div> 
+        </div>
         </td>
       </tr>
     </table>
