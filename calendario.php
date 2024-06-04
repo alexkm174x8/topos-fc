@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="css/style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="scripts/menu-toggle.js"></script>
     <script src="scripts/cal-script.js" defer></script>
   </head>
@@ -29,7 +30,7 @@
                   <li><a href="#equipos">Equipos</a></li>
                   <li><a href="#laMadriguera">La Madriguera</a></li>
                   <li><a href="#noticias">Noticias</a></li>
-                  <li class="flecha"><a href="#seccion2"><img src="images/flecha_abajo.png" alt="Cambio de menú"></a></li>
+                  <li class="flecha"><a href="#seccion2"></a></li>
               </ul>
           </div>
           <div class="lista seccion2">
@@ -40,7 +41,7 @@
                   <li><a href="#calendario">Calendario</a></li>
                   <li><a href="#registro">Registro</a></li>
                   <li><a href="#section_estadisticas">Estadísticas</a></li>
-                  <li class="flecha"><a href="#seccion1"><img src="images/flecha_arriba.png" alt="Cambio de menú"></a></li>
+                  <li class="flecha"><a href="#seccion1"></a></li>
               </ul>
           </div>
       </nav>
@@ -129,29 +130,7 @@
               <input id="motivo" name="motivo" type="text" placeholder="Motivo de Reserva" required>
             </label>
             <label for="time">Hora </label>
-            <select id="hora" name="hora" id="time">
-              <?php
-
-              ?>
-              <option value="" disabled selected>Selecciona una hora</option>
-              <option value="7">07:00</option>
-              <option value="8">08:00</option>
-              <option value="9">09:00</option>
-              <option value="10">10:00</option>
-              <option value="11">11:00</option>
-              <option value="12">12:00</option>
-              <option value="13">13:00</option>
-              <option value="14">14:00</option>
-              <option value="15">15:00</option>
-              <option value="16">16:00</option>
-              <option value="17">17:00</option>
-              <option value="18">18:00</option>
-              <option value="19">19:00</option>
-              <option value="20">20:00</option>
-              <option value="21">21:00</option>
-              <option value="22">22:00</option>
-              <option value="23">23:00</option>
-            </select>
+            <div id='horas'></div>
             <br>
             <input type="hidden" id="dia" name="dia" value="0">
             <input type="hidden" id="mes" name="mes" value="0">

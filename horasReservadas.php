@@ -1,47 +1,45 @@
 <?php
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
-
 require 'database.php';
 
-$dia = isset($_POST['dia']);
-$mes = isset($_POST['mes']);
-$ano = isset($_POST['ano']);
-
-echo "Día: $dia<br>";
-echo "Mes: $mes<br>";
-echo "Año: $ano<br>";
+$dia = isset($_POST['dia']) ? $_POST['dia'] : null;
+$mes = isset($_POST['mes']) ? $_POST['mes'] : null;
+$ano = isset($_POST['ano']) ? $_POST['ano'] : null;
 
 if ($dia !== null && $mes !== null && $ano !== null) {
-    $conn = Database::connect();
+    try {
+        $pdo = Database::connect();
+        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-    $sql = "SELECT HOUR(horaRsv) AS hora
-            FROM reservacion
-            WHERE DAY(horaRsv) = ?
-            AND MONTH(horaRsv) = ?
-            AND YEAR(horaRsv) = ?";
+        $sql = "SELECT HOUR(horaRsv) AS hora
+                FROM reservacion
+                WHERE DAY(horaRsv) = ?
+                AND MONTH(horaRsv) = ?
+                AND YEAR(horaRsv) = ?";
+        $stmt = $pdo->prepare($sql);
 
-    $stmt = $conn->prepare($sql);
-    $stmt->bindValue(1, $dia, PDO::PARAM_INT);
-    $stmt->bindValue(2, $mes, PDO::PARAM_INT);
-    $stmt->bindValue(3, $ano, PDO::PARAM_INT);
-    $stmt->execute();
-    $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $stmt->execute([$dia, $mes, $ano]);
 
-    echo "<pre>";
-    print_r($result);
-    echo "</pre>";
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-    $horasReservadas = [];
-    foreach ($result as $row) {
-        $horasReservadas[] = $row['hora'];
+        $horasReservadas = [];
+        foreach ($result as $row) {
+            $horasReservadas[] = $row['hora'];
+        }
+
+        echo '<select id="hora" name="hora">
+            <option value="" disabled selected>Selecciona una hora</option>';  
+        for ($hr = 7; $hr <= 23; $hr++) {
+            if (!in_array($hr, $horasReservadas)) {
+                echo '<option value="'.$hr.'">'.$hr.':00</option>';
+            }
+        }
+        echo '</select>';
+
+        Database::disconnect();
+    } catch (PDOException $e) {
+        echo "Error de la base de datos: " . $e->getMessage();
     }
-
-    echo "<pre>";
-    print_r($horasReservadas);
-    echo "</pre>";
 } else {
-    echo "Valores de fecha no proporcionados correctamente.";
+    echo "Error: No se recibieron los valores correctamente.";
 }
 ?>
