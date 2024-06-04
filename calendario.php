@@ -112,7 +112,7 @@
       <div class="reservation-wrapper">
         <h2 id="calendar_title_rsv">Reservaciones del día</h2>
         <br> <br>
-        <h5 id='reservasDiarias'>10:00 AM - 12:00 PM Cancha Reservada.</h5>
+        <div id='dispHoras'></div>
         <br>
         <button id="reservaButton" class="boton-reserva">¡Reserva Ahora!</button>
         <div class="inicia_resv">

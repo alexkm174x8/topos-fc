@@ -145,6 +145,25 @@ document.addEventListener("click", function(event) {
     if (!iniciaResvDiv.contains(event.target) && event.target !== reservaButton) {
         iniciaResvDiv.classList.remove("mostrar");
         reservaButton.style.display = "block";
+        $.ajax({
+            url: 'muestraHoras.php', // Ruta de tu script PHP que maneja la consulta
+            type: 'POST', // Método de envío de datos
+            data: {accion: 'ejecutarConsulta',
+                dia: selectedDay,
+                mes: currMonth + 1,
+                ano: currYear
+            }, // Datos a enviar al servidor
+            success: function(response) {
+                console.log("Respuesta recibida del servidor:", response);
+                // Actualizar el contenido del div 'resultado' con el resultado de la consulta
+                $("#dispHoras").html(response);
+            },
+            error: function(xhr, status, error) {
+                console.error("Error en la solicitud AJAX:", error);
+                // Manejo de errores si la consulta falla
+    
+            }
+        });
     }
 });
 

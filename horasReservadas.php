@@ -28,7 +28,7 @@ if ($dia !== null && $mes !== null && $ano !== null) {
 
         echo '<select id="hora" name="hora" required>
             <option value="" disabled selected>Selecciona una hora</option>';  
-        for ($hr = 7; $hr <= 23; $hr++) {
+        for ($hr = 7; $hr <= 22; $hr++) {
             if (!in_array($hr, $horasReservadas)) {
                 echo '<option value="'.$hr.'">'.$hr.':00</option>';
             } 
