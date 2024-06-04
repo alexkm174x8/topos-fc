@@ -31,6 +31,9 @@ if ($dia !== null && $mes !== null && $ano !== null) {
         for ($hr = 7; $hr <= 23; $hr++) {
             if (!in_array($hr, $horasReservadas)) {
                 echo '<option value="'.$hr.'">'.$hr.':00</option>';
+            } 
+            else {
+                echo '<option value="'.$hr.'" disabled>'.$hr.':00</option>';
             }
         }
         echo '</select>';

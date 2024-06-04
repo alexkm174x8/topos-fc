@@ -958,3 +958,8 @@ body.calendario {
     fill: white;
   }
 }
+
+#confirmacionFinal{
+  background-image: url('images/fondoConfirmacion.jpg');
+  background-size: cover;
+}

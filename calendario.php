@@ -2,7 +2,7 @@
 <html lang="es" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title>Topos FC</title>
+    <title>Calendario de reservas</title>
     <link rel="stylesheet" href="css/style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
@@ -112,7 +112,7 @@
       <div class="reservation-wrapper">
         <h2 id="calendar_title_rsv">Reservaciones del día</h2>
         <br> <br>
-        <h5>10:00 AM - 12:00 PM Cancha Reservada.</h5>
+        <h5 id='reservasDiarias'>10:00 AM - 12:00 PM Cancha Reservada.</h5>
         <br>
         <button id="reservaButton" class="boton-reserva">¡Reserva Ahora!</button>
         <div class="inicia_resv">

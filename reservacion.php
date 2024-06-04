@@ -42,9 +42,6 @@ if ($count == 0) {
     $q->execute(array($idReserva, $nombre, $email, $motivo, $time));
     echo "Reserva realizada <br>";
 }
-echo "Día: $dia<br>";
-echo "Mes: $mes<br>";
-echo "Año: $ano<br>";
 
 
     $sql = "SELECT HOUR(horaRsv) AS hora
@@ -64,8 +61,6 @@ echo "Año: $ano<br>";
     foreach ($result as $row) {
         $horasReservadas[] = $row['hora'];
     }
-
-    echo "<pre>";
-    print_r($horasReservadas);
-    echo "</pre>";
+    header("Location: confirmacionRsv.html");
+    exit;
 ?>
