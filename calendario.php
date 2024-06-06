@@ -18,29 +18,29 @@
                   <img src="images/topos_logo.png" alt="Logo de topos FC">
               </div>
               <div class="iniciar_sesion">
-                  Iniciar sesión
+                  <a href="adminAccess.php">Iniciar sesión</a>
               </div>
           </div>
           <div class="lista seccion1">
               <ul>
-                  <li><a href="#inicio">Inicio</a></li>
-                  <li><a href="#quienesSomos">Quiénes somos</a></li>
-                  <li><a href="#ligaNacionalDeFuchoParaCiegos">Liga Nacional de Fucho para Ciegos</a></li>
-                  <li><a href="#equipos">Equipos</a></li>
-                  <li><a href="#laMadriguera">La Madriguera</a></li>
-                  <li><a href="#noticias">Noticias</a></li>
+                  <li><a href="https://toposfc.org/">Inicio</a></li>
+                  <li><a href="https://toposfc.org/quienes-somos/">Quiénes somos</a></li>
+                  <li><a href="https://toposfc.org/liga-nacional-de-futbol-para-ciegos/">Liga Nacional de Fucho para Ciegos</a></li>
+                  <li><a href="https://toposfc.org/equipos/">Equipos</a></li>
+                  <li><a href="https://toposfc.org/cdc_la_madriguera/">La Madriguera</a></li>
+                  <li><a href="https://toposfc.org/noticias/">Noticias</a></li>
                   <li class="flecha"><a href="#seccion2"><img src="images/flecha_abajo.png" alt="Cambio de menú"></a></li>
               </ul>
           </div>
           <div class="lista seccion2">
               <ul>
-                  <li><a href="#donativos">Donativos</a></li>
-                  <li><a href="#contacto">Contacto</a></li>
-                  <li><a href="#rentarCancha">Rentar Cancha</a></li>
-                  <li><a href="#calendario">Calendario</a></li>
-                  <li><a href="#registro">Registro</a></li>
-                  <li><a href="#section_estadisticas">Estadísticas</a></li>
                   <li class="flecha"><a href="#seccion1"><img src="images/flecha_arriba.png" alt="Cambio de menú"></a></li>
+                  <li><a href="https://toposfc.org/donativos/">Donativos</a></li>
+                  <li><a href="https://toposfc.org/contacto/">Contacto</a></li>
+                  <li><a href="calendario.php">Rentar Cancha</a></li>
+                  <li><a href="calendario.php">Calendario</a></li>
+                  <li><a href="equipo.html">Registro</a></li>
+                  <li><a href="estadisticas.html">Estadísticas</a></li>
               </ul>
           </div>
       </nav>
@@ -158,10 +158,8 @@
             <input type="hidden" id="ano" name="ano" value="0">
             <input type="hidden" id="timestamp" name="timestamp" value="0">
             <br>
-            <button id="reserva" type="submit" href="horasReservadas.php">Enviar</button>
-          <!--
             <div class="btn-continuar">
-              <a id="reservar" class="cta" href="reservacion.php">
+              <button id="reserva" class="cta" type="submit" href='horasReservadas.php'">
                 <span>Enviar</span>
                 <span>
                   <svg width="26px" height="13px" viewBox="0 0 66 43" version="1.1" xmlns="http://www.w3.org/2000/svg"
@@ -181,7 +179,6 @@
                 </span>
               </a>
             </div>
-          -->
           </form>
         </div>
       </div>

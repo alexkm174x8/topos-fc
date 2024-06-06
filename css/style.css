@@ -1,12 +1,11 @@
-/* General rules */
 * {
   margin: 0;
   padding: 0;
-  box-sizing: border-box; /* Añadido para asegurar que el padding y borde se incluyan en el ancho total */
+  box-sizing: border-box;
 }
 
 html, body {
-  overflow-x: hidden; /* Evita el desplazamiento horizontal */
+  overflow-x: hidden;
 }
 
 body {
@@ -40,30 +39,11 @@ ul {
   padding-right: 5vw;
 }
 
-/* Añadir estilos específicos para el calendario */
-.calendar ul,
-.calendar .weeks ul,
-.calendar .days ul {
-  padding: 0; /* Eliminar padding para los ul del calendario */
-  padding-inline-start: 0; /* Restablecer padding-inline-start */
-}
-
-.calendar .weeks li,
-.calendar .days li {
-  padding-left: 0;
-  padding-right: 0;
-}
-
-table {
+.container {
+  position: relative;
   width: 100%;
 }
 
-td {
-  text-align: center;
-  vertical-align: middle;
-}
-
-/* navbar */
 .navbar_container {
   background-color: #fde5a7;
   width: 100vw;
@@ -74,12 +54,28 @@ td {
   position: relative;
 }
 
+.fixed-nav {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background-color: #fde5a7;
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  transition: transform 0.3s, height 0.3s, font-size 0.3s;
+}
+
 .header_top {
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   position: relative;
+  padding: 10px;
+}
+
+.header_top.fixed-header {
+  display: none;
 }
 
 .iniciar_sesion {
@@ -94,9 +90,16 @@ td {
   top: 10px;
 }
 
+.iniciar_sesion a {
+  font-style: normal;
+  padding-left: 0;
+  padding-right: 0;
+  text-decoration: none;
+  color: #0e0e0e;
+}
+
 .iniciar_sesion:hover {
   background-color: #d68102;
-  color: #fff;
   transform: scale(1.1);
 }
 
@@ -115,14 +118,14 @@ td {
   transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
   opacity: 0;
   transform: translateY(-20px);
-  display: none; /* Inicialmente oculto */
+  display: none;
   justify-content: space-around;
   align-items: center;
-  height: 100px; /* Altura fija */
+  height: 70px;
 }
 
 .lista.active {
-  display: flex; /* Mostrar cuando activo */
+  display: flex;
   animation: fadeIn 0.5s ease-in-out forwards;
 }
 
@@ -165,7 +168,7 @@ nav ul {
 nav ul li {
   margin: 0 10px;
   text-align: center;
-  max-width: 150px; /* Ajuste del ancho máximo para permitir el quiebre de línea */
+  max-width: 150px;
   white-space: pre-wrap;
   flex: 1;
 }
@@ -178,13 +181,13 @@ nav ul li a {
   font-weight: bold;
   transition: color 0.3s, transform 0.3s;
   display: inline-block;
-  line-height: 1.2em; /* Ajuste de la altura de línea */
+  line-height: 1.2em;
+  margin-bottom: 2vw;
 }
 
-/* Reducción de tamaño específico para el menú largo */
 nav ul li.largo a {
-  font-size: 1em; /* Reducción del tamaño de la fuente */
-  max-width: 120px; /* Ancho máximo reducido */
+  font-size: 1em;
+  max-width: 120px;
 }
 
 nav ul li a:hover {
@@ -440,12 +443,16 @@ textarea.active{
 /* registro */
 
 input {
-  background-color: wheat;
+  background-color: floralwhite;
   border: 0;
 }
 
 button:hover{
   transform:scale(1.25) perspective(1px);
+}
+
+.btn-continuar button:hover{
+  transform:none;
 }
 
 .button-colors {
@@ -679,7 +686,8 @@ body.calendario {
   border-radius: 20px;
   box-shadow: 0 50px 80px rgba(0,0,0,0.50);
   position: absolute;
-  top: 966px;
+  align-items: center;
+  top: 935px;
 }
 
 .reservation-wrapper h1, h2, h3, h4 {
@@ -688,11 +696,14 @@ body.calendario {
   padding-right: 0vw;
   margin-top: 1vw;
   margin-bottom: -2vw;
+  text-align: left;
 }
 
 .reservation-wrapper h5 {
   margin-bottom: 0vw;
 }
+
+.reservation-wrapper
 
 .reservation-wrapper button{
   text-decoration: solid;
@@ -773,27 +784,26 @@ body.calendario {
 }
 
 .days li:not(.active):hover::before{
-  background: #f2f2f2;
+  background: #ffde85;
 }
 
 .inicia_resv {
+  margin-left: 2vw;
   width: 300px;
   height: 280px;
   background-color: #fcb900;
   border-radius: 10px;
-  padding: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   overflow: hidden;
-  padding-left: 20px;
   position: relative;
-  left: 30px;
-  padding-bottom: 20px;
+  text-align: center;
 }
 
 .inicia_resv h2 {
   text-align: center;
   margin-bottom: 10px;
-  font-size: 16px;
+  font-size: 22px;
+  font-weight: revert;
 }
 
 .inicia_resv input {
@@ -803,7 +813,7 @@ body.calendario {
   border: 1px solid #ccc;
   border-radius: 3px;
   box-sizing: border-box;
-  font-size: 12px; /* Reducir el tamaño de fuente */
+  font-size: 13px; /* Reducir el tamaño de fuente */
 }
 
 .inicia_resv label {
@@ -846,6 +856,7 @@ body.calendario {
   border-radius: 5px;
   padding: 10px 20px;
   font-size: 16px;
+  margin-left: 7vw;
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
   box-shadow: 0px 4px 6px rgba(0, 123, 255, 0.3); /* Sombra alrededor del botón */
