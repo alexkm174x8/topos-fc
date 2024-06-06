@@ -9,6 +9,7 @@ $dia = isset($_POST['dia']) ? $_POST['dia'] : null;
 $mes = isset($_POST['mes']) ? $_POST['mes'] : null;
 $ano = isset($_POST['ano']) ? $_POST['ano'] : null;
 $hora = isset($_POST['hora']) ? $_POST['hora'] : null;
+$estado;
 $time = "$ano-$mes-$dia $hora:00";
 
 
@@ -38,7 +39,7 @@ if ($count == 0) {
     $lastId = $row['last_id'];
     $idReserva = $lastId + 1;
 
-    $sql = "INSERT INTO reservacion (idReserva, nombre, apellido, email, motivo, horaRsv) VALUES (?, ?, ?, ?, ?)";
+    $sql = "INSERT INTO reservacion (idReserva, nombre, apellido, email, motivo, horaRsv, estado) VALUES (?, ?, ?, ?, ?)";
     $q = $pdo->prepare($sql);
     $q->execute(array($idReserva, $nombre, $apellido ,$email, $motivo, $time));
     echo "Reserva realizada <br>";
