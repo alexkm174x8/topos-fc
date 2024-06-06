@@ -2,6 +2,7 @@
 require 'database.php';
 // Recibir los valores del formulario
 $nombre = isset($_POST['nombre']) ? $_POST['nombre'] : null;
+$apellido = isset($_POST['apellido']) ? $_POST['apellido'] : null;
 $email = isset($_POST['email']) ? $_POST['email'] : null;
 $motivo = isset($_POST['motivo']) ? $_POST['motivo'] : null;
 $dia = isset($_POST['dia']) ? $_POST['dia'] : null;
@@ -37,9 +38,9 @@ if ($count == 0) {
     $lastId = $row['last_id'];
     $idReserva = $lastId + 1;
 
-    $sql = "INSERT INTO reservacion (idReserva, nombre, email, motivo, horaRsv) VALUES (?, ?, ?, ?, ?)";
+    $sql = "INSERT INTO reservacion (idReserva, nombre, apellido, email, motivo, horaRsv) VALUES (?, ?, ?, ?, ?)";
     $q = $pdo->prepare($sql);
-    $q->execute(array($idReserva, $nombre, $email, $motivo, $time));
+    $q->execute(array($idReserva, $nombre, $apellido ,$email, $motivo, $time));
     echo "Reserva realizada <br>";
 }
 

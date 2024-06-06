@@ -121,7 +121,10 @@
           </div>
           <form id="reservationForm" action="reservacion.php" method="post">
             <label>
-              <input id="nombre" name="nombre" type="text" placeholder="Nombre Completo" required>
+              <input id="nombre" name="nombre" type="text" placeholder="Nombre" required>
+            </label>
+            <label>
+              <input id="apellido" name="apellido" type="text" placeholder="Apellido" required>
             </label>
             <label>
               <input id="email" name="email" type="email" placeholder="Correo Electrónico" required>
@@ -136,7 +139,6 @@
             <input type="hidden" id="mes" name="mes" value="0">
             <input type="hidden" id="ano" name="ano" value="0">
             <input type="hidden" id="timestamp" name="timestamp" value="0">
-            <br>
             <div class="btn-continuar">
               <button id="reserva" class="cta" type="submit" href='horasReservadas.php'">
                 <span>Enviar</span>
