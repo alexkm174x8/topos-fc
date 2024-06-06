@@ -54,6 +54,7 @@ function validateForm(event) {
     'col',
     'phoneNumber',
     'teamName',
+    'teamLogo',
     'tutor'
   ];
 
@@ -117,13 +118,13 @@ function formSummon() {
       <tr>
         <td class="td-left">
           <label for="email">Correo electrónico: </label>
-          <input type="text" name="email" required>
+          <input type="email" name="email" required>
         </td>
       </tr>
       <tr>
         <td class="td-left">
           <label for="age">Edad: </label>
-          <input type="text" name="age" required>
+          <input type="number" name="age" required>
         </td>
       </tr>
       <tr>
@@ -135,13 +136,24 @@ function formSummon() {
       <tr>
         <td class="td-left">
           <label for="phoneNumber">Teléfono de Contacto (WhatsApp): </label>
-          <input type="text" name="phoneNumber" required>
+          <input type="number" name="phoneNumber" required>
         </td>
       </tr>
       <tr>
         <td class="td-left">
           <label for="teamName">Nombre del equipo: </label>
           <input type="text" name="teamName" required>
+        </td>
+      </tr>
+      <tr>
+        <td>
+         <br>
+        </td>
+      </tr>
+      <tr>
+        <td class="td-left">
+          <label for="teamLogo">URL/Enlace del logo del equipo: </label>
+          <input type="text" name="teamLogo" required>
         </td>
       </tr>
       <tr>
@@ -173,6 +185,11 @@ function formSummon() {
       <tr class="weakyellow">
         <td>
          <input type="radio" name="medio" value="Publicidad física">Publicidad Física</input>
+        </td>
+      </tr>
+      <tr class="weakyellow">
+        <td>
+         <input type="radio" name="medio" value="Otros">Otros</input>
         </td>
       </tr>
       </table>

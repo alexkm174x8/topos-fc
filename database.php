@@ -1,9 +1,9 @@
 <?php
 class Database {
-    private static $dbName = 'toposfc';
+    private static $dbName = 'topos';
     private static $dbHost = 'localhost' ;
     private static $dbUsername = 'root';
-    private static $dbUserPassword = 'a01734271';
+    private static $dbUserPassword = '';
 
     private static $cont  = null;
 

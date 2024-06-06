@@ -15,6 +15,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $tutor = $_POST['tutor'];
     $medio = $_POST['medio'];
     $mayorEdad = $_POST['ageReq'];
+    $teamLogo = $_POST['teamLogo'];
+    
 
     try {
         // Connect to the database using the Database class
@@ -33,7 +35,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
 
         // Proceed with inserting the new team into topos_equipo table
-        $stmt = $db->prepare("INSERT INTO topos_equipo (nombre, idLiga) VALUES (:teamName, :idLiga)");
+        $stmt = $db->prepare("INSERT INTO topos_equipo (nombre, idLiga, logo) VALUES (:teamName, :idLiga, :teamLogo)");
         $stmt->execute([
             'teamName' => $teamName,
             'idLiga' => $idLiga

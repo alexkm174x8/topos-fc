@@ -5,7 +5,7 @@ if (isset($_GET['id'])) {
     $idEquipo = $_GET['id'];
 
     $pdo = Database::connect();
-    $sql = "SELECT nombre, creacion, goles_totales, partidos_totales, partidos_ganados, partidos_empatados, partidos_perdidos, puntos_extras FROM topos_equipo WHERE idEquipo = ?";
+    $sql = "SELECT nombre, creacion, goles_totales, partidos_totales, partidos_ganados, partidos_empatados, partidos_perdidos, puntos_extras, logo FROM topos_equipo WHERE idEquipo = ?";
     $stmt = $pdo->prepare($sql);
     $stmt->execute([$idEquipo]);
     $team = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -20,11 +20,12 @@ if (isset($_GET['id'])) {
         $partidos_empatados = $_POST['partidos_empatados'];
         $partidos_perdidos = $_POST['partidos_perdidos'];
         $puntos_extras = $_POST['puntos_extras'];
+        $logo = $_POST['logo'];
 
         $pdo = Database::connect();
-        $sql = "UPDATE topos_equipo SET nombre = ?, creacion = ?, goles_totales = ?, partidos_totales = ?, partidos_ganados = ?, partidos_empatados = ?, partidos_perdidos = ?, puntos_extras = ? WHERE idEquipo = ?";
+        $sql = "UPDATE topos_equipo SET nombre = ?, creacion = ?, goles_totales = ?, partidos_totales = ?, partidos_ganados = ?, partidos_empatados = ?, partidos_perdidos = ?, puntos_extras = ?, logo = ? WHERE idEquipo = ?";
         $stmt = $pdo->prepare($sql);
-        $stmt->execute([$nombre, $creacion, $goles_totales, $partidos_totales, $partidos_ganados, $partidos_empatados, $partidos_perdidos, $puntos_extras, $idEquipo]);
+        $stmt->execute([$nombre, $creacion, $goles_totales, $partidos_totales, $partidos_ganados, $partidos_empatados, $partidos_perdidos, $puntos_extras, $idEquipo, $logo]);
         Database::disconnect();
 
         header("Location: admin.php");
@@ -80,6 +81,10 @@ if (isset($_GET['id'])) {
         <div class="form-group">
             <label for="puntos_extras">Puntos Extras</label>
             <input type="number" class="form-control" id="puntos_extras" name="puntos_extras" value="<?php echo htmlspecialchars($team['puntos_extras']); ?>" required>
+        </div>
+        <div class="form-group">
+            <label for="logo">Logo</label>
+            <input type="text" class="form-control" id="logo" name="logo" value="<?php echo htmlspecialchars($team['logo']); ?>" required>
         </div>
         <button type="submit" class="btn btn-primary">Actualizar</button>
         <a class="btn btn-secondary" href="equipo_list.php">Cancelar</a>
