@@ -5,6 +5,7 @@ prevNextIcon = document.querySelectorAll(".icons span");
 let date = new Date(),
 currYear = date.getFullYear(),
 currMonth = date.getMonth();
+let selectedDay;
 
 const months = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
 
@@ -44,7 +45,6 @@ const renderCalendar = () => {
                         d.style.color = ''; 
                     }
                 });
-
                 day.classList.add('selected');
                 day.style.color = '#fff'; 
 
@@ -56,8 +56,8 @@ const renderCalendar = () => {
                 reservationWrapper.style.transition = "transform 0.5s ease"; 
                 reservationWrapper.style.transform = "translateX(215px)";
 
-                const selectedDay = day.innerText;
-                const selectedMonth = months[currMonth];
+                selectedDay = day.innerText;
+                selectedMonth = months[currMonth];
                 
                 var reservationTitle = document.getElementById("calendar_title_rsv");
                 reservationTitle.textContent = `Reservaciones del ${selectedDay} de ${selectedMonth}`;
@@ -73,7 +73,6 @@ const renderCalendar = () => {
                 const date = new Date(ano, mes, dia, hora, segundos);
                 const formattedDate = date.toISOString().slice(0, 16);
                 document.getElementById("timestamp").value = formattedDate;
-
             }
         });
     });
@@ -121,12 +120,50 @@ const iniciaResvDiv = document.querySelector(".inicia_resv");
 reservaButton.addEventListener("click", function() {
     iniciaResvDiv.classList.add("mostrar");
     reservaButton.style.display = "none";
+    $.ajax({
+        url: 'horasReservadas.php', // Ruta de tu script PHP que maneja la consulta
+        type: 'POST', // Método de envío de datos
+        data: {accion: 'ejecutarConsulta',
+            dia: selectedDay,
+            mes: currMonth + 1,
+            ano: currYear
+        }, // Datos a enviar al servidor
+        success: function(response) {
+            console.log("Respuesta recibida del servidor:", response);
+            // Actualizar el contenido del div 'resultado' con el resultado de la consulta
+            $("#horas").html(response);
+        },
+        error: function(xhr, status, error) {
+            console.error("Error en la solicitud AJAX:", error);
+            // Manejo de errores si la consulta falla
+
+        }
+    });
 });
 
 document.addEventListener("click", function(event) {
     if (!iniciaResvDiv.contains(event.target) && event.target !== reservaButton) {
         iniciaResvDiv.classList.remove("mostrar");
         reservaButton.style.display = "block";
+        $.ajax({
+            url: 'muestraHoras.php', // Ruta de tu script PHP que maneja la consulta
+            type: 'POST', // Método de envío de datos
+            data: {accion: 'ejecutarConsulta',
+                dia: selectedDay,
+                mes: currMonth + 1,
+                ano: currYear
+            }, // Datos a enviar al servidor
+            success: function(response) {
+                console.log("Respuesta recibida del servidor:", response);
+                // Actualizar el contenido del div 'resultado' con el resultado de la consulta
+                $("#dispHoras").html(response);
+            },
+            error: function(xhr, status, error) {
+                console.error("Error en la solicitud AJAX:", error);
+                // Manejo de errores si la consulta falla
+    
+            }
+        });
     }
 });
 

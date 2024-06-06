@@ -2,10 +2,11 @@
 <html lang="es" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title>Topos FC</title>
+    <title>Calendario de reservas</title>
     <link rel="stylesheet" href="css/style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="scripts/menu-toggle.js"></script>
     <script src="scripts/cal-script.js" defer></script>
   </head>
@@ -18,29 +19,29 @@
                   <img src="images/topos_logo.png" alt="Logo de topos FC">
               </div>
               <div class="iniciar_sesion">
-                  <a href="adminAccess.php">Iniciar sesión</a>
+                  Iniciar sesión
               </div>
           </div>
           <div class="lista seccion1">
               <ul>
-                  <li><a href="https://toposfc.org/">Inicio</a></li>
-                  <li><a href="https://toposfc.org/quienes-somos/">Quiénes somos</a></li>
-                  <li><a href="https://toposfc.org/liga-nacional-de-futbol-para-ciegos/">Liga Nacional de Fucho para Ciegos</a></li>
-                  <li><a href="https://toposfc.org/equipos/">Equipos</a></li>
-                  <li><a href="https://toposfc.org/cdc_la_madriguera/">La Madriguera</a></li>
-                  <li><a href="https://toposfc.org/noticias/">Noticias</a></li>
-                  <li class="flecha"><a href="#seccion2"><img src="images/flecha_abajo.png" alt="Cambio de menú"></a></li>
+                  <li><a href="#inicio">Inicio</a></li>
+                  <li><a href="#quienesSomos">Quiénes somos</a></li>
+                  <li><a href="#ligaNacionalDeFuchoParaCiegos">Liga Nacional de Fucho para Ciegos</a></li>
+                  <li><a href="#equipos">Equipos</a></li>
+                  <li><a href="#laMadriguera">La Madriguera</a></li>
+                  <li><a href="#noticias">Noticias</a></li>
+                  <li class="flecha"><a href="#seccion2"></a></li>
               </ul>
           </div>
           <div class="lista seccion2">
               <ul>
-                  <li class="flecha"><a href="#seccion1"><img src="images/flecha_arriba.png" alt="Cambio de menú"></a></li>
-                  <li><a href="https://toposfc.org/donativos/">Donativos</a></li>
-                  <li><a href="https://toposfc.org/contacto/">Contacto</a></li>
-                  <li><a href="calendario.php">Rentar Cancha</a></li>
-                  <li><a href="calendario.php">Calendario</a></li>
-                  <li><a href="equipo.html">Registro</a></li>
-                  <li><a href="estadisticas.html">Estadísticas</a></li>
+                  <li><a href="#donativos">Donativos</a></li>
+                  <li><a href="#contacto">Contacto</a></li>
+                  <li><a href="#rentarCancha">Rentar Cancha</a></li>
+                  <li><a href="#calendario">Calendario</a></li>
+                  <li><a href="#registro">Registro</a></li>
+                  <li><a href="#section_estadisticas">Estadísticas</a></li>
+                  <li class="flecha"><a href="#seccion1"></a></li>
               </ul>
           </div>
       </nav>
@@ -111,7 +112,7 @@
       <div class="reservation-wrapper">
         <h2 id="calendar_title_rsv">Reservaciones del día</h2>
         <br> <br>
-        <h5>10:00 AM - 12:00 PM Cancha Reservada.</h5>
+        <div id='dispHoras'></div>
         <br>
         <button id="reservaButton" class="boton-reserva">¡Reserva Ahora!</button>
         <div class="inicia_resv">
@@ -129,37 +130,17 @@
               <input id="motivo" name="motivo" type="text" placeholder="Motivo de Reserva" required>
             </label>
             <label for="time">Hora </label>
-            <select id="hora" name="hora" id="time">
-              <?php
-
-              ?>
-              <option value="" disabled selected>Selecciona una hora</option>
-              <option value="7">07:00</option>
-              <option value="8">08:00</option>
-              <option value="9">09:00</option>
-              <option value="10">10:00</option>
-              <option value="11">11:00</option>
-              <option value="12">12:00</option>
-              <option value="13">13:00</option>
-              <option value="14">14:00</option>
-              <option value="15">15:00</option>
-              <option value="16">16:00</option>
-              <option value="17">17:00</option>
-              <option value="18">18:00</option>
-              <option value="19">19:00</option>
-              <option value="20">20:00</option>
-              <option value="21">21:00</option>
-              <option value="22">22:00</option>
-              <option value="23">23:00</option>
-            </select>
+            <div id='horas'></div>
             <br>
             <input type="hidden" id="dia" name="dia" value="0">
             <input type="hidden" id="mes" name="mes" value="0">
             <input type="hidden" id="ano" name="ano" value="0">
             <input type="hidden" id="timestamp" name="timestamp" value="0">
             <br>
+            <button id="reserva" type="submit" href="horasReservadas.php">Enviar</button>
+          <!--
             <div class="btn-continuar">
-              <button id="reserva" class="cta" type="submit" href='horasReservadas.php'">
+              <a id="reservar" class="cta" href="reservacion.php">
                 <span>Enviar</span>
                 <span>
                   <svg width="26px" height="13px" viewBox="0 0 66 43" version="1.1" xmlns="http://www.w3.org/2000/svg"
@@ -179,6 +160,7 @@
                 </span>
               </a>
             </div>
+          -->
           </form>
         </div>
       </div>

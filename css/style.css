@@ -956,6 +956,36 @@ body.calendario {
   animation: color_anim 1s infinite 0.4s;
 }
 
+#confirmacionFinal {
+  background-image: url('../images/fondoConfirmacion.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100vh;
+  margin: 0;
+  position: relative;
+}
+
+#confirmation{
+  width: 600px; /* Ancho del cuadrado */
+  height: 400px; /* Altura del cuadrado, igual al ancho para que sea cuadrado */
+  background-color: white; /* Color de fondo blanco */
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 25px;
+  text-align: center;
+  padding: 80x;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  margin: auto;
+}
+
+#greencheck{
+  width: 70px;
+
+}
 /* SVG animations https://codepen.io/folaad/pen/YvmRpz */
 
 @keyframes color_anim {
