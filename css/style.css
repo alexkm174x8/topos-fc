@@ -54,15 +54,12 @@ ul {
   position: relative;
 }
 
-.fixed-nav {
-  position: fixed;
-  top: 0;
-  width: 100%;
-  background-color: #fde5a7;
-  z-index: 1000;
-  display: flex;
-  justify-content: center;
-  transition: transform 0.3s, height 0.3s, font-size 0.3s;
+#femenil.navbar_container{
+  background-color: lightpink;
+}
+
+#topitos.navbar_container{
+  background-color: lightsteelblue;
 }
 
 .header_top {
@@ -101,6 +98,18 @@ ul {
 .iniciar_sesion:hover {
   background-color: #d68102;
   transform: scale(1.1);
+}
+
+.iniciar_sesion:hover a{
+  color:#f1f1f1;
+}
+
+#femenil .iniciar_sesion:hover {
+  background-color: deeppink;
+}
+
+#topitos .iniciar_sesion:hover {
+  background-color: dodgerblue;
 }
 
 .imagen_navbar {
@@ -193,6 +202,14 @@ nav ul li.largo a {
 nav ul li a:hover {
   color: #d68102;
   transform: scale(1.1);
+}
+
+#femenil li a:hover {
+  color: deeppink;
+}
+
+#topitos li a:hover {
+  color: dodgerblue;
 }
 
 nav ul li.flecha a {
@@ -687,7 +704,7 @@ body.calendario {
   box-shadow: 0 50px 80px rgba(0,0,0,0.50);
   position: absolute;
   align-items: center;
-  top: 935px;
+  top: 954px;
 }
 
 .reservation-wrapper h1, h2, h3, h4 {
@@ -702,8 +719,6 @@ body.calendario {
 .reservation-wrapper h5 {
   margin-bottom: 0vw;
 }
-
-.reservation-wrapper
 
 .reservation-wrapper button{
   text-decoration: solid;
@@ -885,7 +900,7 @@ body.calendario {
   justify-content: center;
 }
 
-.cta {
+.btn-continuar .cta {
   display: flex;
   padding: 5px 9px;
   text-decoration: none;
@@ -973,7 +988,7 @@ body.calendario {
   background-color: rgba(255, 255, 255, 0.9);
   border-radius: 25px;
   text-align: center;
-  padding: 80x;
+  padding: 80px;
   position: absolute;
   top: 0;
   left: 0;
