@@ -82,13 +82,6 @@ function syncWrapperSizes() {
     const reservationWrapper = document.querySelector('.reservation-wrapper');
     reservationWrapper.style.width = `${wrapper.offsetWidth}px`;
     reservationWrapper.style.height = `${wrapper.offsetHeight}px`;
-    wrapper = document.querySelector(".wrapper");
-    wrapper.style.transition = "transform 0.5s ease"; 
-    wrapper.style.transform = "translateX(215px)";
-
-    reservationWrapper = document.querySelector(".reservation-wrapper");
-    reservationWrapper.style.transition = "transform 0.5s ease"; 
-    reservationWrapper.style.transform = "translateX(-215px)";
 }
 
 window.addEventListener('load', syncWrapperSizes);
