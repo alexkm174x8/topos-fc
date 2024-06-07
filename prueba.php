@@ -49,6 +49,49 @@ if (isset($_GET['equipo'])) {
         $marcador = $result->fetch_assoc();
     }
     echo json_encode($marcador);
+} elseif (isset($_GET['estadisticas_liga'])) {
+    $sql = "SELECT partidos_totales, goles_totales FROM topos_liga WHERE idLiga = $idLiga";
+    $result = $conn->query($sql);
+    $estadisticas = [];
+
+    if ($result->num_rows > 0) {
+        $estadisticas = $result->fetch_assoc();
+    }
+    echo json_encode($estadisticas);
+} elseif (isset($_GET['ganador_ultimo_partido'])) {
+    $sql = "SELECT equipo_casa, equipo_visita, marcador_casa, marcador_visita, fecha FROM TOPOS_Partido
+            WHERE idLiga = $idLiga ORDER BY fecha DESC LIMIT 1";
+    $result = $conn->query($sql);
+
+    if ($result->num_rows > 0) {
+        $partido = $result->fetch_assoc();
+
+        $equipo_ganador = null;
+        if ($partido['marcador_casa'] > $partido['marcador_visita']) {
+            $equipo_ganador = $partido['equipo_casa'];
+        } elseif ($partido['marcador_visita'] > $partido['marcador_casa']) {
+            $equipo_ganador = $partido['equipo_visita'];
+        }
+
+        if ($equipo_ganador) {
+            $sql_logo = "SELECT logo FROM TOPOS_Equipo WHERE idEquipo = $equipo_ganador";
+            $result_logo = $conn->query($sql_logo);
+            if ($result_logo->num_rows > 0) {
+                $logo = $result_logo->fetch_assoc()['logo'];
+                $response = [
+                    'logo_ganador' => $logo,
+                    'fecha' => $partido['fecha']
+                ];
+                echo json_encode($response);
+            } else {
+                echo json_encode(['error' => 'Logo no encontrado']);
+            }
+        } else {
+            echo json_encode(['error' => 'No hay ganador']);
+        }
+    } else {
+        echo json_encode(['error' => 'No hay partidos']);
+    }
 } else {
     $sql = "SELECT nombre, logo FROM TOPOS_Equipo WHERE idLiga = $idLiga";
     $result = $conn->query($sql);
@@ -58,7 +101,6 @@ if (isset($_GET['equipo'])) {
             $equipos[] = $row;
         }
     }
-
     echo json_encode($equipos);
 }
 

@@ -1,33 +1,57 @@
 document.addEventListener('DOMContentLoaded', function() {
     mostrarMarcadores();
     cargarEquipos();
-    cargarDatosLiga();
+    mostrarEstadisticasLiga();
+    mostrarGanadorUltimoPartido()
 });
 
 function toggleDropdown() {
     document.getElementById("dropdown-content").classList.toggle("show");
-    document.getElementById("team-details").innerHTML = ""; // Limpiar los detalles del equipo
+    document.getElementById("team-details").innerHTML = "";
     cargarEquipos();
 }
 
-function cargarDatosLiga() {
+
+function mostrarGanadorUltimoPartido() {
     const nombreHtml = document.body.getAttribute('data-page-name');
-    fetch(`prueba.php?nombre_html=${nombreHtml}`)
+    fetch(`prueba.php?nombre_html=${nombreHtml}&ganador_ultimo_partido=true`)
         .then(response => response.json())
         .then(data => {
-            console.log('Datos recibidos (liga):', data);
-            // Verificamos si se recibieron los datos de la liga
-            if (data && data.length > 0) {
-                // Actualizamos los valores de partidos y goles
-                document.getElementById('partidos').innerHTML = `<h1>${data[0].partidos_totales}</h1><br><h3>PARTIDOS</h3>`;
-                document.getElementById('goles').innerHTML = `<h1>${data[0].goles_totales}</h1><br><br><h3>GOLES</h3>`;
+            console.log('Datos recibidos (ganador último partido):', data);
+            const ganadorImg = document.querySelector('.marcadores img');
+            const fechaDiv = document.querySelector('.marcadores h4');
+            if (data && data.logo_ganador !== undefined && data.fecha !== undefined) {
+                ganadorImg.src = data.logo_ganador;
+                ganadorImg.style.width = '20vw'; // Ajusta el ancho deseado
+                ganadorImg.style.height = 'auto'; // Ajusta el alto deseado
+                fechaDiv.textContent = new Date(data.fecha).toLocaleDateString();
             } else {
-                console.error('No se encontraron datos de la liga.');
+                ganadorImg.src = "images/escudo_eje_1.png";
+                fechaDiv.textContent = "Fecha no disponible";
             }
         })
-        .catch(error => console.error('Error en cargarDatosLiga:', error));
+        .catch(error => console.error('Error en mostrarGanadorUltimoPartido:', error));
 }
 
+
+function mostrarEstadisticasLiga() {
+    const nombreHtml = document.body.getAttribute('data-page-name');
+    fetch(`prueba.php?nombre_html=${nombreHtml}&estadisticas_liga=true`)
+        .then(response => response.json())
+        .then(data => {
+            console.log('Datos recibidos (estadísticas de liga):', data);
+            const partidosH1 = document.getElementById('partidos');
+            const golesH1 = document.getElementById('goles');
+            if (data && data.partidos_totales !== undefined && data.goles_totales !== undefined) {
+                partidosH1.textContent = data.partidos_totales;
+                golesH1.textContent = data.goles_totales;
+            } else {
+                partidosH1.textContent = "No se encontraron datos.";
+                golesH1.textContent = "No se encontraron datos.";
+            }
+        })
+        .catch(error => console.error('Error en mostrarEstadisticasLiga:', error));
+}
 
 function cargarEscudos(escudoIzquierda, escudoDerecha) {
     const escudoIzquierdaEl = document.getElementById('escudo_izquierda');
