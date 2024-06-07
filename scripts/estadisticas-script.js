@@ -22,8 +22,8 @@ function mostrarGanadorUltimoPartido() {
             const fechaDiv = document.querySelector('.marcadores h4');
             if (data && data.logo_ganador !== undefined && data.fecha !== undefined) {
                 ganadorImg.src = data.logo_ganador;
-                ganadorImg.style.width = '20vw'; // Ajusta el ancho deseado
-                ganadorImg.style.height = 'auto'; // Ajusta el alto deseado
+                ganadorImg.style.width = '20vw';
+                ganadorImg.style.height = 'auto';
                 fechaDiv.textContent = new Date(data.fecha).toLocaleDateString();
             } else {
                 ganadorImg.src = "images/escudo_eje_1.png";
@@ -57,15 +57,12 @@ function cargarEscudos(escudoIzquierda, escudoDerecha) {
     const escudoIzquierdaEl = document.getElementById('escudo_izquierda');
     const escudoDerechaEl = document.getElementById('escudo_derecha');
 
-    // Comprobamos si se proporcionaron ambos escudos
     if (escudoIzquierda && escudoDerecha) {
         escudoIzquierdaEl.src = escudoIzquierda;
         escudoDerechaEl.src = escudoDerecha;
     } else {
-        // Si al menos uno de los escudos no está presente, se muestra un mensaje de error
         console.error('Al menos uno de los escudos no está presente.');
 
-        // Verificamos individualmente si cada escudo está presente y lo asignamos si es así
         if (escudoIzquierda) {
             escudoIzquierdaEl.src = escudoIzquierda;
         }
