@@ -44,32 +44,49 @@
     </nav>
 </div>
     <table class="small-table">
+        <colgroup>
+            <col style="width: 64%;">
+            <col style="width: 36%;">
+        </colgroup>
         <tr>
-            <td class="td-left" colspan="2">
+            <td class="td-center" colspan="2">
                 <h1 style="text-align: center;">Registro de equipos</h1>
             </td>
         </tr>
         <tr>
-            <td>
+            <td class="td-left">
                 <h2 class="leagues">Horarios de las ligas.</h2>
             </td>
-            <td>
+            <td class="td-center">
                 <h2 class="leagues">Ligas para registros.</h2>
             </td>
         </tr>
         <tr>
             <td>
+                <br>
+            </td>
+        </tr>
+        <tr>
+            <td class="td-center">
                 <a>Liga Varonil Dorada: Lunes a Viernes a las 8:00 P.M.</a>
-                <br>
+            </td>
+            <td class="td-center" >
+                <input type="radio" name="idLiga" value="2" onchange="formSummon()">Liga Varonil Dorada</input>
+            </td>
+        </tr>
+        <tr>
+            <td class="td-center">
                 <a>Liga Varonil Estrella: Lunes a Viernes a las 9:00 P.M.</a>
-                <br>
+            </td>
+            <td class="td-center" >
+                <input type="radio" name="idLiga" value="1" onchange="formSummon()">Liga Varonil Estrella</input>
+            </td>
+        </tr>
+        <tr>
+            <td class="td-center">
                 <a>Liga Femenil Talpa: Dominical.</a>
             </td>
-            <td>
-                <input type="radio" name="idLiga" value="2" onchange="formSummon()">Liga Varonil Dorada</input>
-                <br>
-                <input type="radio" name="idLiga" value="1" onchange="formSummon()">Liga Varonil Estrella</input>
-                <br>
+            <td class="td-center" >
                 <input type="radio" name="idLiga" value="3" onchange="formSummon()">Liga Femenil Talpa</input>
             </td>
         </tr>
