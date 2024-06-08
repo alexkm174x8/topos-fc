@@ -1031,13 +1031,19 @@ body.calendario {
   background-color: rgba(255, 255, 255, 0.9);
   border-radius: 25px;
   text-align: center;
-  padding: 80px;
+  padding: 20px;
   position: absolute;
+  display: inline block;
   top: 0;
   left: 0;
   bottom: 0;
   right: 0;
   margin: auto;
+}
+
+#confirmation h1{
+  color: #3D5F9C;
+  font-family: 'Allerta', Helvetica, Arial, Lucida, sans-serif;
 }
 
 #greencheck{
