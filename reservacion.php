@@ -39,7 +39,7 @@ if ($count == 0) {
     $lastId = $row['last_id'];
     $idReserva = $lastId + 1;
 
-    $sql = "INSERT INTO reservacion (idReserva, nombre, apellido, email, motivo, horaRsv, estado) VALUES (?, ?, ?, ?, ?, ?, ?)";
+    $sql = "INSERT INTO reservacion (idReserva, nombre, apellido, correo, motivo, horaRsv, estado) VALUES (?, ?, ?, ?, ?, ?, ?)";
     $q = $pdo->prepare($sql);
     $q->execute(array($idReserva, $nombre, $apellido ,$email, $motivo, $time, $estado));
     echo "Reserva realizada <br>";
