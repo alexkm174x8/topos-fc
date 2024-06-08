@@ -7,8 +7,10 @@
     <link rel="stylesheet" href="css/style.css">
     <script src="scripts/menu-toggle.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="scripts/admin.js"></script>
+
   </head>
-  <body>
+  <body class="adminPage">
   <!--Nav Bar-->
   <div class="container clearfix et_menu_container">
       <nav class="navbar_container">
