@@ -21,7 +21,7 @@ $conn = Database::connect();
 
 if (isset($_GET['equipo'])) {
     $equipo = $conn->quote($_GET['equipo']);
-    $sql = "SELECT * FROM TOPOS_Equipo WHERE nombre=$equipo";
+    $sql = "SELECT * FROM topos_equipo WHERE nombre=$equipo";
     $result = $conn->query($sql);
     if ($result && $result->rowCount() > 0) {
         $row = $result->fetch(PDO::FETCH_ASSOC);
@@ -31,10 +31,10 @@ if (isset($_GET['equipo'])) {
     }
     echo $response;
 } elseif (isset($_GET['marcador'])) {
-    $sql = "SELECT marcador_casa, marcador_visita, equipo_casa.logo AS logo_casa, equipo_visita.logo AS logo_visita FROM TOPOS_Partido
-            INNER JOIN TOPOS_Equipo AS equipo_casa ON TOPOS_Partido.equipo_casa = equipo_casa.idEquipo
-            INNER JOIN TOPOS_Equipo AS equipo_visita ON TOPOS_Partido.equipo_visita = equipo_visita.idEquipo
-            WHERE TOPOS_Partido.idLiga = $idLiga ORDER BY fecha DESC LIMIT 1";
+    $sql = "SELECT marcador_casa, marcador_visita, equipo_casa.logo AS logo_casa, equipo_visita.logo AS logo_visita FROM topos_partido
+            INNER JOIN topos_equipo AS equipo_casa ON topos_partido.equipo_casa = equipo_casa.idEquipo
+            INNER JOIN topos_equipo AS equipo_visita ON topos_partido.equipo_visita = equipo_visita.idEquipo
+            WHERE topos_partido.idLiga = $idLiga ORDER BY fecha DESC LIMIT 1";
     $result = $conn->query($sql);
     $marcador = [];
 
@@ -52,7 +52,7 @@ if (isset($_GET['equipo'])) {
     }
     echo json_encode($estadisticas);
 } elseif (isset($_GET['ganador_ultimo_partido'])) {
-    $sql = "SELECT equipo_casa, equipo_visita, marcador_casa, marcador_visita, fecha FROM TOPOS_Partido
+    $sql = "SELECT equipo_casa, equipo_visita, marcador_casa, marcador_visita, fecha FROM topos_partido
             WHERE idLiga = $idLiga ORDER BY fecha DESC LIMIT 1";
     $result = $conn->query($sql);
 
@@ -67,7 +67,7 @@ if (isset($_GET['equipo'])) {
         }
 
         if ($equipo_ganador) {
-            $sql_logo = "SELECT logo FROM TOPOS_Equipo WHERE idEquipo = $equipo_ganador";
+            $sql_logo = "SELECT logo FROM topos_equipo WHERE idEquipo = $equipo_ganador";
             $result_logo = $conn->query($sql_logo);
             if ($result_logo && $result_logo->rowCount() > 0) {
                 $logo = $result_logo->fetch(PDO::FETCH_ASSOC)['logo'];
@@ -86,7 +86,7 @@ if (isset($_GET['equipo'])) {
         echo json_encode(['error' => 'No hay partidos']);
     }
 } else {
-    $sql = "SELECT nombre, logo FROM TOPOS_Equipo WHERE idLiga = $idLiga";
+    $sql = "SELECT nombre, logo FROM topos_equipo WHERE idLiga = $idLiga";
     $result = $conn->query($sql);
     $equipos = [];
     if ($result && $result->rowCount() > 0) {

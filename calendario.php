@@ -82,7 +82,6 @@
         <br>
         <h1>Información requerida para apartar la cancha</h1>
     </div>
-    <br>
     <!--Calendar-->
     <br>
     <div id="wrapper-container">
