@@ -90,15 +90,12 @@ function mostrarMarcadores() {
         .catch(error => console.error('Error en mostrarMarcadores:', error));
 }
 
-
-
-
 function cargarEquipos() {
     const nombreHtml = document.body.getAttribute('data-page-name');
     fetch(`prueba.php?nombre_html=${nombreHtml}`)
         .then(response => response.json())
         .then(data => {
-            console.log('Datos recibidos (equipos):', data);  // Verifica los datos recibidos
+            console.log('Datos recibidos (equipos):', data);
             const dropdownContent = document.getElementById('dropdown-content');
             dropdownContent.innerHTML = '';
             data.forEach(equipo => {
@@ -118,46 +115,55 @@ function cargarEquipos() {
 }
 
 function handleTeamButtonClick(equipo) {
-    fetch(`prueba.php?equipo=${equipo}`)
-        .then(response => response.json())
-        .then(data => {
-            console.log('Datos recibidos (equipo):', data);  // Verifica los datos recibidos
-            const teamDetails = document.getElementById('team-details');
-            if (data && Object.keys(data).length > 0) {
-                teamDetails.innerHTML = `
-                    <h2 style="margin-top:5vh;">${data.nombre}</h2>
-                    <table style="border-collapse: collapse; border: 5px solid #000; width: 100%; margin-top: 5vh;">
-                        <tr>
-                            <th style="border: 3px solid #000; padding: 15px;">Creación</th>
-                            <td style="border: 3px solid #000; padding: 15px;">${data.creacion}</td>
-                        </tr>
-                        <tr>
-                            <th style="border: 3px solid #000; padding: 15px;">Goles Totales</th>
-                            <td style="border: 3px solid #000; padding: 15px;">${data.goles_totales}</td>
-                        </tr>
-                        <tr>
-                            <th style="border: 3px solid #000; padding: 15px;">Partidos Totales</th>
-                            <td style="border: 3px solid #000; padding: 15px;">${data.partidos_totales}</td>
-                        </tr>
-                        <tr>
-                            <th style="border: 3px solid #000; padding: 15px;">Partidos Ganados</th>
-                            <td style="border: 3px solid #000; padding: 15px;">${data.partidos_ganados}</td>
-                        </tr>
-                        <tr>
-                            <th style="border: 3px solid #000; padding: 15px;">Partidos Empatados</th>
-                            <td style="border: 3px solid #000; padding: 15px;">${data.partidos_empatados}</td>
-                        </tr>
-                        <tr>
-                            <th style="border: 3px solid #000; padding: 15px;">Puntos Extras</th>
-                            <td style="border: 3px solid #000; padding: 15px;">${data.puntos_extras}</td>
-                        </tr>
-                    </table>
-                    <br>
-                    <img src="${data.logo}" alt="Logo del equipo" width="100" height="100" style="margin-top: 2vh;">
-                `;
-            } else {
-                teamDetails.innerHTML = '<p>No se encontraron detalles del equipo.</p>';
-            }
-        })
-        .catch(error => console.error('Error en handleTeamButtonClick:', error));
+    const teamDetails = document.getElementById('team-details');
+    // Verificar si el equipo actualmente mostrado es el mismo que se ha clicado
+    const currentTeamName = teamDetails.querySelector('h2') ? teamDetails.querySelector('h2').textContent : null;
+
+    // Si el equipo clicado es diferente al actualmente mostrado, obtener y mostrar detalles
+    if (currentTeamName !== equipo) {
+        fetch(`prueba.php?equipo=${equipo}`)
+            .then(response => response.json())
+            .then(data => {
+                console.log('Datos recibidos (equipo):', data);
+                if (data && Object.keys(data).length > 0) {
+                    teamDetails.innerHTML = `
+                        <h2 style="margin-top:5vh;">${data.nombre}</h2>
+                        <table style="border-collapse: collapse; border: 5px solid #000; width: 100%; margin-top: 5vh;">
+                            <tr>
+                                <th style="border: 3px solid #000; padding: 15px;">Creación</th>
+                                <td style="border: 3px solid #000; padding: 15px;">${data.creacion}</td>
+                            </tr>
+                            <tr>
+                                <th style="border: 3px solid #000; padding: 15px;">Goles Totales</th>
+                                <td style="border: 3px solid #000; padding: 15px;">${data.goles_totales}</td>
+                            </tr>
+                            <tr>
+                                <th style="border: 3px solid #000; padding: 15px;">Partidos Totales</th>
+                                <td style="border: 3px solid #000; padding: 15px;">${data.partidos_totales}</td>
+                            </tr>
+                            <tr>
+                                <th style="border: 3px solid #000; padding: 15px;">Partidos Ganados</th>
+                                <td style="border: 3px solid #000; padding: 15px;">${data.partidos_ganados}</td>
+                            </tr>
+                            <tr>
+                                <th style="border: 3px solid #000; padding: 15px;">Partidos Empatados</th>
+                                <td style="border: 3px solid #000; padding: 15px;">${data.partidos_empatados}</td>
+                            </tr>
+                            <tr>
+                                <th style="border: 3px solid #000; padding: 15px;">Puntos Extras</th>
+                                <td style="border: 3px solid #000; padding: 15px;">${data.puntos_extras}</td>
+                            </tr>
+                        </table>
+                        <br>
+                        <img src="${data.logo}" alt="Logo del equipo" width="100" height="100" style="margin-top: 2vh;">
+                    `;
+                } else {
+                    teamDetails.innerHTML = '<p>No se encontraron detalles del equipo.</p>';
+                }
+            })
+            .catch(error => console.error('Error en handleTeamButtonClick:', error));
+    } else {
+        // Si el mismo equipo ha sido clicado nuevamente, ocultar todos los detalles
+        teamDetails.innerHTML = '';
+    }
 }

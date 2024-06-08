@@ -1,8 +1,5 @@
 <?php
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "topos";
+require_once 'database.php';
 
 $nombre_html = isset($_GET['nombre_html']) ? $_GET['nombre_html'] : '';
 
@@ -20,18 +17,14 @@ switch ($nombre_html) {
         $idLiga = 1;
 }
 
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-if ($conn->connect_error) {
-    die("Conexión fallida: " . $conn->connect_error);
-}
+$conn = Database::connect();
 
 if (isset($_GET['equipo'])) {
-    $equipo = $conn->real_escape_string($_GET['equipo']);
-    $sql = "SELECT * FROM TOPOS_Equipo WHERE nombre='$equipo'";
+    $equipo = $conn->quote($_GET['equipo']);
+    $sql = "SELECT * FROM TOPOS_Equipo WHERE nombre=$equipo";
     $result = $conn->query($sql);
-    if ($result->num_rows > 0) {
-        $row = $result->fetch_assoc();
+    if ($result && $result->rowCount() > 0) {
+        $row = $result->fetch(PDO::FETCH_ASSOC);
         $response = json_encode($row);
     } else {
         $response = json_encode([]);
@@ -45,8 +38,8 @@ if (isset($_GET['equipo'])) {
     $result = $conn->query($sql);
     $marcador = [];
 
-    if ($result->num_rows > 0) {
-        $marcador = $result->fetch_assoc();
+    if ($result && $result->rowCount() > 0) {
+        $marcador = $result->fetch(PDO::FETCH_ASSOC);
     }
     echo json_encode($marcador);
 } elseif (isset($_GET['estadisticas_liga'])) {
@@ -54,8 +47,8 @@ if (isset($_GET['equipo'])) {
     $result = $conn->query($sql);
     $estadisticas = [];
 
-    if ($result->num_rows > 0) {
-        $estadisticas = $result->fetch_assoc();
+    if ($result && $result->rowCount() > 0) {
+        $estadisticas = $result->fetch(PDO::FETCH_ASSOC);
     }
     echo json_encode($estadisticas);
 } elseif (isset($_GET['ganador_ultimo_partido'])) {
@@ -63,8 +56,8 @@ if (isset($_GET['equipo'])) {
             WHERE idLiga = $idLiga ORDER BY fecha DESC LIMIT 1";
     $result = $conn->query($sql);
 
-    if ($result->num_rows > 0) {
-        $partido = $result->fetch_assoc();
+    if ($result && $result->rowCount() > 0) {
+        $partido = $result->fetch(PDO::FETCH_ASSOC);
 
         $equipo_ganador = null;
         if ($partido['marcador_casa'] > $partido['marcador_visita']) {
@@ -76,8 +69,8 @@ if (isset($_GET['equipo'])) {
         if ($equipo_ganador) {
             $sql_logo = "SELECT logo FROM TOPOS_Equipo WHERE idEquipo = $equipo_ganador";
             $result_logo = $conn->query($sql_logo);
-            if ($result_logo->num_rows > 0) {
-                $logo = $result_logo->fetch_assoc()['logo'];
+            if ($result_logo && $result_logo->rowCount() > 0) {
+                $logo = $result_logo->fetch(PDO::FETCH_ASSOC)['logo'];
                 $response = [
                     'logo_ganador' => $logo,
                     'fecha' => $partido['fecha']
@@ -96,13 +89,13 @@ if (isset($_GET['equipo'])) {
     $sql = "SELECT nombre, logo FROM TOPOS_Equipo WHERE idLiga = $idLiga";
     $result = $conn->query($sql);
     $equipos = [];
-    if ($result->num_rows > 0) {
-        while ($row = $result->fetch_assoc()) {
+    if ($result && $result->rowCount() > 0) {
+        while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
             $equipos[] = $row;
         }
     }
     echo json_encode($equipos);
 }
 
-$conn->close();
+Database::disconnect();
 ?>
