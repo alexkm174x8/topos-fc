@@ -233,8 +233,16 @@ nav ul li.flecha a {
 
 /* estadisticas */
 
+.estadisticas-principal{
+  width: 100%;
+}
+
+.estadisticas-principal td {
+  justify-content: center;
+}
+
 .logos-principal {
-  width: 15vw;
+  width: 20vw;
   height: auto;
 }
 
@@ -274,6 +282,10 @@ nav ul li.flecha a {
   font-size: 5em;
 }
 
+.estadisticas-titles{
+  text-align: center;
+}
+
 .marcadores {
   width: 25%;
   text-align: center;
@@ -286,10 +298,12 @@ nav ul li.flecha a {
 
 .marcadores h3{
   font-size: 2em;
+  text-align: center
 }
 
 .marcadores h4{
   font-size: 1.25em;
+  text-align: center
 }
 
 .highlighter-row{
@@ -311,6 +325,7 @@ nav ul li.flecha a {
 #topos_varonil h1 {
   margin-top: 10vh;
   margin-bottom: 0;
+  text-align: center;
 }
 
 #escudo_izquierda{
@@ -322,17 +337,27 @@ nav ul li.flecha a {
 }
 
 #marcador_top h3{
-  font-size: 1.5em;
+  font-size: 2em;
   margin-top: 10vh;
   margin-bottom: 0;
+  text-align: center;
 }
 
 #estadisticas h3{
-  font-size: 1.5em;
+  font-size: 2em;
+  text-align: center;
 }
 
-#equipo_img{
-  width: 80vw
+.centro-imagen {
+  text-align: center;
+}
+
+#equipo_img {
+  display: block;
+  margin: 0 auto;
+  max-width: 100%;
+  height: auto;
+  width: 50vw
 }
 
 /* administracion */
