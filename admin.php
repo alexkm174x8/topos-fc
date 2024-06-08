@@ -213,7 +213,6 @@
                     </thead>
                     <tbody>
                     <?php
-                    include 'database.php';
                     $pdo = Database::connect();
                     $sql = "SELECT 
                       p.idPartido AS 'Número de partido', 
