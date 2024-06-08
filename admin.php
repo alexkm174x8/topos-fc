@@ -1,125 +1,199 @@
 <!DOCTYPE html>
 <html>
-
   <head>
     <title>Topos: Administrador</title>
     <meta charset ="UTF-8">
-    <link rel="stylesheet" href="css/style.css">
-    <link   href="css/bootstrap.min.css" rel="stylesheet" id="bootstrap-styles">
+    <link href="css/bootstrap.min.css" rel="stylesheet" id="bootstrap-styles">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="scripts/admin.js"></script>
+
+    <style>
+      #divInicial {
+        padding-left: 20px;
+      }
+      ul, ol {
+        list-style-type: none;
+      }
+      .scroll-container {
+        width: 100vw;
+        white-space: nowrap;
+        overflow-x: auto;
+      }
+      .scroll-item {
+        perspective: 1000px;
+        position: relative;
+        display: inline-block;
+        width: 210px;
+        height: 300px;
+        margin-right: 10px;
+        margin-bottom: 10px;
+        background-color: #f0f0f0;
+        text-align: center;
+        padding: 5px;
+        background: #f9ba0c;
+        border-radius: 15px;
+        cursor: pointer;
+        transition: transform 0.6s;
+      }
+      .scroll-item .contenido {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        backface-visibility: hidden;
+        transition: opacity 0.6s;
+      }
+      .scroll-item img {
+        width: 105px;
+        height: auto;
+        max-height: 100px;
+      }
+      .pinfo {
+        padding: 5px;
+        margin: 10px;
+        border-radius: 12px;
+        background: wheat;
+      }
+      .girando {
+        transform: rotateY(180deg);
+      }
+      .girando .contenido {
+        opacity: 0;
+      }
+      .back-content {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: none;
+        background-color: #f9ba0c;
+        border-radius: 15px;
+        padding: 5px;
+        box-sizing: border-box;
+        transform: rotateY(180deg);
+      }
+      .girando .back-content {
+        display: block;
+      }
+      button {
+        border-radius: 10px;
+      }
+    </style>
+
+    <script>
+      function toggleGirar(elemento) {
+        elemento.classList.toggle('girando');
+      }
+
+      function actualizarEstadoReservacion(horaRsv, estado, buttonElement) {
+  console.log('Valor de horaRsv antes de enviar la solicitud:', horaRsv); // Registro de depuración
+  var xhr = new XMLHttpRequest();
+  xhr.open("POST", "actualizarRsv.php", true);
+  xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  xhr.onreadystatechange = function() {
+    if (xhr.readyState == 4 && xhr.status == 200) {
+      console.log(xhr.responseText);
+      if (xhr.responseText === 'Estado actualizado correctamente.') {
+        var scrollItem = buttonElement.closest('.scroll-item');
+        if (scrollItem) {
+          scrollItem.remove();
+        }
+      } else {
+        alert('Error al actualizar el estado: ' + xhr.responseText);
+      }
+    }
+  };
+  xhr.send("horaRsv=" + encodeURIComponent(horaRsv) + "&estado=" + encodeURIComponent(estado));
+}
+
+      document.addEventListener('DOMContentLoaded', function() {
+        document.querySelectorAll('.accept').forEach(button => {
+          button.addEventListener('click', function(event) {
+            event.stopPropagation();
+            var horaRsv = this.getAttribute('data-hora-rsv');
+            actualizarEstadoReservacion(horaRsv, 'Aceptada', this);
+          });
+        });
+
+        document.querySelectorAll('.delete-btn').forEach(button => {
+          button.addEventListener('click', function(event) {
+            event.stopPropagation();
+            var horaRsv = this.getAttribute('data-hora-rsv');
+            eliminarReservacion(horaRsv, this);
+          });
+        });
+      });
+
+      function eliminarReservacion(horaRsv, buttonElement) {
+        if (confirm('¿Estás seguro de que deseas eliminar esta reservación?')) {
+          var xhr = new XMLHttpRequest();
+          xhr.open("POST", "eliminar_reservacion.php", true);
+          xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+          xhr.onreadystatechange = function() {
+            if (xhr.readyState == 4 && xhr.status == 200) {
+              console.log(xhr.responseText);
+              if (xhr.responseText === 'Reservación eliminada correctamente.') {
+                var scrollItem = buttonElement.closest('.scroll-item');
+                if (scrollItem) {
+                  scrollItem.remove();
+                }
+              } else {
+                alert('Error al eliminar la reservación: ' + xhr.responseText);
+              }
+            }
+          };
+          xhr.send("horaRsv=" + encodeURIComponent(horaRsv));
+        }
+      }
+    </script>
   </head>
-
   <body>
-    <nav class="navbar_container">
-      <div class="iniciar_sesion">
-        Iniciar sesión
-      </div>
-      <div class="imagen_navbar">
-        <img src="images/topos_logo.png" alt="Logo de topos FC">
-      </div>
-      <div class="lista">
-        <ul>
-          <li><a href="#inicio">Inicio</a></li>
-          <li><a href="#quienesSomos">Quiénes somos</a></li>
-          <li><a href="#ligaNacionalDeFuchoParaCiegos">Liga Nacional de Fucho para Ciegos</a></li>
-          <li><a href="#equipos">Equipos</a></li>
-          <li><a href="#laMadrigruera">La Madriguera</a></li>
-          <li><a href="#noticias">Noticias</a></li>
-          <li><a href="#donativos">Donativos</a></li>
-          <li><a href="#contacto">Contacto</a></li>
-          <li><a href="#rentarCancha">Rentar Cancha</a></li>
-          <li><a href="#calendario">Calendario</a></li>
-          <li><a href="#registro">Registro</a></li>
-          <li><a href="#section_administracion">Administracion</a></li>
-          <li><a href="#section_estadisticas">Estadisticas</a></li>
-        </ul>
-      </div>
-    </nav>
-
-    <table>
-      <tr>
-        <td>
-          <h1>Herramientas de Administración</h1>
-          <h2>Apartaciones Pendientes</h2>
-          <table class="fill_up">
-            <tr>
-              <td>
-                <table class="info_cont">
-                  <tr>
-                    <td>
-                      <img src="images/usuario.png" alt="Imagen usuario" class="ima_usuario"></img>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <button class="fill">Rogelio Fernández</button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <button class="fill">+52 123 456 7890</button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <button class="fill">13 de Abril, 13:00:00</button>
-                    </td>
-                  </tr>
-                </table>
-                <td>
-                  <table>
-                    <tr>
-                      <td>
-                        <form><button type="button" class="accept" onclick="reservationDone()"> Pagado</button></form>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
+    <div id='divInicial'>
+      <h1>Herramientas de Administrador</h1>
+      <ul>
+        <li>
+        <h2>Reservaciones Pendientes</h2>
+        <div class="scroll-container">
+        <?php
+          require 'database.php';
+          $pdo = Database::connect();
+          $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+          $sql = "SELECT nombre, apellido, email, motivo, horaRsv FROM reservacion WHERE estado = 'Pendiente'";
+          $stmt = $pdo->prepare($sql);
+          $stmt->execute();
+          $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+          foreach ($result as $row) {
+            $horaRsv = $row['horaRsv'];
+            echo '<div class="scroll-item" onclick="toggleGirar(this)">
+                    <div class="contenido">
+                      <img src="images/usuario.png" alt="Imagen usuario" class="ima_usuario"><br><br>
+                      <div>
+                        <div class="pinfo">' . $row['nombre'] . ' ' . $row['apellido'] . '</div>
+                        <div class="pinfo">' . $row['email'] . '</div>
+                        <div class="pinfo">' . $row['horaRsv'] . '</div>
                         <br>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <form><button type="button" class="denied" onclick="reservationDenied()"> Denegado</button></form>
-                      </td>
-                    </tr>
-                  </table>
-                </td>
-              </tr>
-          </table>
-      <tr>
-        <td>
-          <h2>Añadir Datos Estadísticos</h2>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <br>
-        </td>
-      </tr>
-      <tr>
-        <td>
+                        <button type="button" class="accept" data-hora-rsv="' . $horaRsv . '">Aceptar</button>
+                        <button type="button" class="delete-btn" data-hora-rsv="' . $horaRsv . '">Eliminar</button>
+                      </div>
+                    </div>
+                    <div class="back-content">
+                      El motivo de la reservacion es:
+                      <br>' . $row['motivo'] . '
+                    </div>
+                  </div>';
+          }
+          Database::disconnect();
+        ?>
+        </div>
+        </li>
+      </ul>
+    </div>
+    <h2>Añadir Datos Estadísticos</h2>
           <select class="button-colors" name="leagueChosen" id="fname" onchange="changeLeague(this.value)">
             <option value="admin">Seleccionar liga.</option>
             <option value="adminLVDorada">Liga Varonil Dorada.</option>
             <option value="adminLVEstrella">Liga Varonil Estrella.</option>
             <option value="adminLFTalpa">Liga Femenil Talpa.</option>
           </select>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <br>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <br>
-        </td>
-      </tr>
-      <tr>
-        <td>
           <div class="bootstrap-section">
             <div class="container">
             <div class="row">
@@ -184,7 +258,5 @@
         <img src="images/IG-white-instagram-logo-transparent-background-7740.png" alt="instagram">
       </div>
     </footer>
-
   </body>
-
 </html>

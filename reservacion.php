@@ -9,7 +9,7 @@ $dia = isset($_POST['dia']) ? $_POST['dia'] : null;
 $mes = isset($_POST['mes']) ? $_POST['mes'] : null;
 $ano = isset($_POST['ano']) ? $_POST['ano'] : null;
 $hora = isset($_POST['hora']) ? $_POST['hora'] : null;
-$estado;
+$estado = 'Pendiente';
 $time = "$ano-$mes-$dia $hora:00";
 
 
@@ -18,7 +18,7 @@ $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 
 // Consulta para verificar si el timestamp ya existe
-$sql_check = "SELECT COUNT(*) as count FROM reservacion 
+$sql_check = "SELECT COUNT(*) as count FROM reservacion
             WHERE DAY(horaRsv) = ?
             AND MONTH(horaRsv) = ?
             AND YEAR(horaRsv) = ?
@@ -39,9 +39,9 @@ if ($count == 0) {
     $lastId = $row['last_id'];
     $idReserva = $lastId + 1;
 
-    $sql = "INSERT INTO reservacion (idReserva, nombre, apellido, email, motivo, horaRsv, estado) VALUES (?, ?, ?, ?, ?)";
+    $sql = "INSERT INTO reservacion (idReserva, nombre, apellido, email, motivo, horaRsv, estado) VALUES (?, ?, ?, ?, ?, ?, ?)";
     $q = $pdo->prepare($sql);
-    $q->execute(array($idReserva, $nombre, $apellido ,$email, $motivo, $time));
+    $q->execute(array($idReserva, $nombre, $apellido ,$email, $motivo, $time, $estado));
     echo "Reserva realizada <br>";
 }
 
