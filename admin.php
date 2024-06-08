@@ -8,8 +8,9 @@
     <script src="scripts/menu-toggle.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="scripts/admin.js"></script>
+
   </head>
-  <body>
+  <body class="adminPage">
   <!--Nav Bar-->
   <div class="container clearfix et_menu_container">
       <nav class="navbar_container">
@@ -55,7 +56,7 @@
           require 'database.php';
           $pdo = Database::connect();
           $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-          $sql = "SELECT nombre, apellido, email, motivo, horaRsv FROM reservacion WHERE estado = 'Pendiente'";
+          $sql = "SELECT nombre, apellido, correo, motivo, horaRsv FROM reservacion WHERE estado = 'Pendiente'";
           $stmt = $pdo->prepare($sql);
           $stmt->execute();
           $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -66,7 +67,7 @@
                       <img src="images/usuario.png" alt="Imagen usuario" class="ima_usuario"><br><br>
                       <div>
                         <div class="pinfo">' . $row['nombre'] . ' ' . $row['apellido'] . '</div>
-                        <div class="pinfo">' . $row['email'] . '</div>
+                        <div class="pinfo">' . $row['correo'] . '</div>
                         <div class="pinfo">' . $row['horaRsv'] . '</div>
                         <br>
                         <button type="button" class="accept" data-hora-rsv="' . $horaRsv . '">Aceptar</button>
