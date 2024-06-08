@@ -4,80 +4,9 @@
     <title>Topos: Administrador</title>
     <meta charset ="UTF-8">
     <link href="css/bootstrap.min.css" rel="stylesheet" id="bootstrap-styles">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="scripts/menu-toggle.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-    <style>
-      #divInicial {
-        padding-left: 20px;
-      }
-      ul, ol {
-        list-style-type: none;
-      }
-      .scroll-container {
-        width: 100vw;
-        white-space: nowrap;
-        overflow-x: auto;
-      }
-      .scroll-item {
-        perspective: 1000px;
-        position: relative;
-        display: inline-block;
-        width: 210px;
-        height: 300px;
-        margin-right: 10px;
-        margin-bottom: 10px;
-        background-color: #f0f0f0;
-        text-align: center;
-        padding: 5px;
-        background: #f9ba0c;
-        border-radius: 15px;
-        cursor: pointer;
-        transition: transform 0.6s;
-      }
-      .scroll-item .contenido {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        backface-visibility: hidden;
-        transition: opacity 0.6s;
-      }
-      .scroll-item img {
-        width: 105px;
-        height: auto;
-        max-height: 100px;
-      }
-      .pinfo {
-        padding: 5px;
-        margin: 10px;
-        border-radius: 12px;
-        background: wheat;
-      }
-      .girando {
-        transform: rotateY(180deg);
-      }
-      .girando .contenido {
-        opacity: 0;
-      }
-      .back-content {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        display: none;
-        background-color: #f9ba0c;
-        border-radius: 15px;
-        padding: 5px;
-        box-sizing: border-box;
-        transform: rotateY(180deg);
-      }
-      .girando .back-content {
-        display: block;
-      }
-      button {
-        border-radius: 10px;
-      }
-    </style>
 
     <script>
       function toggleGirar(elemento) {
@@ -147,6 +76,41 @@
     </script>
   </head>
   <body>
+  <!--Nav Bar-->
+  <div class="container clearfix et_menu_container">
+      <nav class="navbar_container">
+          <div class="header_top">
+              <div class="imagen_navbar">
+                  <img src="images/topos_logo.png" alt="Logo de topos FC">
+              </div>
+              <div class="iniciar_sesion">
+                  <a href="adminAccess.php">Iniciar sesión</a>
+              </div>
+          </div>
+          <div class="lista seccion1">
+              <ul>
+                  <li><a href="https://toposfc.org/">Inicio</a></li>
+                  <li><a href="https://toposfc.org/quienes-somos/">Quiénes somos</a></li>
+                  <li><a href="https://toposfc.org/liga-nacional-de-futbol-para-ciegos/">Liga Nacional de Fucho para Ciegos</a></li>
+                  <li><a href="https://toposfc.org/equipos/">Equipos</a></li>
+                  <li><a href="https://toposfc.org/cdc_la_madriguera/">La Madriguera</a></li>
+                  <li><a href="https://toposfc.org/noticias/">Noticias</a></li>
+                  <li class="flecha"><a href="#seccion2"><img src="images/flecha_abajo.png" alt="Cambio de menú"></a></li>
+              </ul>
+          </div>
+          <div class="lista seccion2">
+              <ul>
+                  <li class="flecha"><a href="#seccion1"><img src="images/flecha_arriba.png" alt="Cambio de menú"></a></li>
+                  <li><a href="https://toposfc.org/donativos/">Donativos</a></li>
+                  <li><a href="https://toposfc.org/contacto/">Contacto</a></li>
+                  <li><a href="calendario.php">Rentar Cancha</a></li>
+                  <li><a href="calendario.php">Calendario</a></li>
+                  <li><a href="equipo.html">Registro</a></li>
+                  <li><a href="estadisticas.html">Estadísticas</a></li>
+              </ul>
+          </div>
+      </nav>
+  </div>
     <div id='divInicial'>
       <h1>Herramientas de Administrador</h1>
       <ul>
