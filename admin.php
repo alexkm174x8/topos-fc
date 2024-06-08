@@ -51,6 +51,8 @@
       <ul>
         <li>
         <h2>Reservaciones Pendientes</h2>
+        <br>
+        <br>
         <div class="scroll-container">
         <?php
           require 'database.php';
@@ -86,7 +88,7 @@
         </li>
       </ul>
     </div>
-    <h2>Añadir Datos Estadísticos</h2>
+    <h1>Añadir Datos Estadísticos</h1>
           <select class="button-colors" name="leagueChosen" id="fname" onchange="changeLeague(this.value)">
             <option value="admin">Seleccionar liga.</option>
             <option value="adminLVDorada">Liga Varonil Dorada.</option>
@@ -96,7 +98,7 @@
           <div class="bootstrap-section">
             <div class="container">
             <div class="row">
-                <h3>Registro de partidos</h3>
+                <h2>Registro de partidos</h2>
             </div>
             <div class="row">
                 <table class="table table-striped table-bordered">
