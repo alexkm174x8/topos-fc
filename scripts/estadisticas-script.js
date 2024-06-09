@@ -14,7 +14,7 @@ function toggleDropdown() {
 
 function mostrarGanadorUltimoPartido() {
     const nombreHtml = document.body.getAttribute('data-page-name');
-    fetch(`prueba.php?nombre_html=${nombreHtml}&ganador_ultimo_partido=true`)
+    fetch(`estadistica.php?nombre_html=${nombreHtml}&ganador_ultimo_partido=true`)
         .then(response => response.json())
         .then(data => {
             console.log('Datos recibidos (ganador último partido):', data);
@@ -36,7 +36,7 @@ function mostrarGanadorUltimoPartido() {
 
 function mostrarEstadisticasLiga() {
     const nombreHtml = document.body.getAttribute('data-page-name');
-    fetch(`prueba.php?nombre_html=${nombreHtml}&estadisticas_liga=true`)
+    fetch(`estadistica.php?nombre_html=${nombreHtml}&estadisticas_liga=true`)
         .then(response => response.json())
         .then(data => {
             console.log('Datos recibidos (estadísticas de liga):', data);
@@ -75,7 +75,7 @@ function cargarEscudos(escudoIzquierda, escudoDerecha) {
 
 function mostrarMarcadores() {
     const nombreHtml = document.body.getAttribute('data-page-name');
-    fetch(`prueba.php?nombre_html=${nombreHtml}&marcador=true`)
+    fetch(`estadistica.php?nombre_html=${nombreHtml}&marcador=true`)
         .then(response => response.json())
         .then(data => {
             console.log('Datos recibidos (marcadores):', data);
@@ -92,7 +92,7 @@ function mostrarMarcadores() {
 
 function cargarEquipos() {
     const nombreHtml = document.body.getAttribute('data-page-name');
-    fetch(`prueba.php?nombre_html=${nombreHtml}`)
+    fetch(`estadistica.php?nombre_html=${nombreHtml}`)
         .then(response => response.json())
         .then(data => {
             console.log('Datos recibidos (equipos):', data);
@@ -121,7 +121,7 @@ function handleTeamButtonClick(equipo) {
 
     // Si el equipo clicado es diferente al actualmente mostrado, obtener y mostrar detalles
     if (currentTeamName !== equipo) {
-        fetch(`prueba.php?equipo=${equipo}`)
+        fetch(`estadistica.php?equipo=${equipo}`)
             .then(response => response.json())
             .then(data => {
                 console.log('Datos recibidos (equipo):', data);

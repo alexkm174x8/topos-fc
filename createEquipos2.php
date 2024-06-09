@@ -4,6 +4,7 @@ include 'database.php';
     if (!empty($_POST['nombre']) && !empty($_POST['año']) && !empty($_POST['gol']) && !empty($_POST['playedMatches']) && !empty($_POST['wonMatches']) && !empty($_POST['tiedMatches']) && !empty($_POST['lostMatches']) && !empty($_POST['extraPoints'] && !empty($_POST['idLiga']))) {
         $nombreEquipo = $_POST['nombre'];
         $añoCreacion = $_POST['año'];
+        $logo = $_POST['logo'];
         $gol = $_POST['gol'];
         $partidosTotales = $_POST['playedMatches'];
         $partidosGanados = $_POST['wonMatches'];
@@ -20,15 +21,15 @@ include 'database.php';
         $lastId = $row['last_id'];
         $nuevoIdEquipo = $lastId + 1;
 
-        $sql_insert = "INSERT INTO topos_equipo (idequipo, nombre, creacion, goles_totales, partidos_totales, partidos_ganados, partidos_empatados, partidos_perdidos, puntos_extras, idLiga) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $sql_insert = "INSERT INTO topos_equipo (idequipo, nombre, creacion, logo, goles_totales, partidos_totales, partidos_ganados, partidos_empatados, partidos_perdidos, puntos_extras, idLiga) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $q = $pdo->prepare($sql_insert);
-        $q->execute(array($nuevoIdEquipo, $nombreEquipo, $añoCreacion, $gol, $partidosTotales,$partidosGanados,$partidosEmpatados,$partidosPerdidos,$puntosExtra, $idLiga));
+        $q->execute(array($nuevoIdEquipo, $nombreEquipo, $añoCreacion, $logo, $gol, $partidosTotales,$partidosGanados,$partidosEmpatados,$partidosPerdidos,$puntosExtra, $idLiga));
         
         Database::disconnect();
         header("Location: admin.php");
 	}
     else{
-        echo "<script>alert('Por favor, complete todos los campos.'); window.location.href = 'createEquipos.php';</script>";
+        echo "<script>alert('Por favor, complete todos los campos.'); window.location.href = 'admin.php';</script>";
 
     }
 ?>

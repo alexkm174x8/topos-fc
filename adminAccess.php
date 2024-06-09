@@ -8,7 +8,7 @@
     <div class="imagen_navbar">
         <img src="images/topos_logo.png" alt="Logo de topos FC">
     </div>
-    <form action="login.php"method="post">
+    <form action="login.php" method="post">
         <h2>Acceso de Administradores</h2>
         <?php if(isset($_GET["error"])){?>
             <p class="error"><?php echo $_GET["error"];?></p>

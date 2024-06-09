@@ -12,83 +12,97 @@ if (isset($_GET['id'])) {
     Database::disconnect();
 
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-        $nombre = $_POST['nombre'];
-        $creacion = $_POST['creacion'];
-        $goles_totales = $_POST['goles_totales'];
-        $partidos_totales = $_POST['partidos_totales'];
-        $partidos_ganados = $_POST['partidos_ganados'];
-        $partidos_empatados = $_POST['partidos_empatados'];
-        $partidos_perdidos = $_POST['partidos_perdidos'];
-        $puntos_extras = $_POST['puntos_extras'];
-        $logo = $_POST['logo'];
+        $nombre = !empty($_POST['nombre']) ? $_POST['nombre'] : $team['nombre'];
+        $creacion = !empty($_POST['creacion']) ? $_POST['creacion'] : $team['creacion'];
+        $goles_totales = !empty($_POST['goles_totales']) ? $_POST['goles_totales'] : $team['goles_totales'];
+        $partidos_totales = !empty($_POST['partidos_totales']) ? $_POST['partidos_totales'] : $team['partidos_totales'];
+        $partidos_ganados = !empty($_POST['partidos_ganados']) ? $_POST['partidos_ganados'] : $team['partidos_ganados'];
+        $partidos_empatados = !empty($_POST['partidos_empatados']) ? $_POST['partidos_empatados'] : $team['partidos_empatados'];
+        $partidos_perdidos = !empty($_POST['partidos_perdidos']) ? $_POST['partidos_perdidos'] : $team['partidos_perdidos'];
+        $puntos_extras = !empty($_POST['puntos_extras']) ? $_POST['puntos_extras'] : $team['puntos_extras'];
+        $logo = !empty($_POST['logo']) ? $_POST['logo'] : $team['logo'];
 
         $pdo = Database::connect();
         $sql = "UPDATE topos_equipo SET nombre = ?, creacion = ?, goles_totales = ?, partidos_totales = ?, partidos_ganados = ?, partidos_empatados = ?, partidos_perdidos = ?, puntos_extras = ?, logo = ? WHERE idEquipo = ?";
         $stmt = $pdo->prepare($sql);
-        $stmt->execute([$nombre, $creacion, $goles_totales, $partidos_totales, $partidos_ganados, $partidos_empatados, $partidos_perdidos, $puntos_extras, $idEquipo, $logo]);
+        $stmt->execute([$nombre, $creacion, $goles_totales, $partidos_totales, $partidos_ganados, $partidos_empatados, $partidos_perdidos, $puntos_extras, $logo, $idEquipo]);
         Database::disconnect();
 
-        header("Location: admin.php");
+        echo "<script>window.location.href='admin.php';</script>";
         exit;
     }
 } else {
-    header("Location: admin.php");
+    echo "<script>window.location.href = 'admin.php';</script>";
     exit;
 }
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <script src="js/bootstrap.min.js"></script>
-</head>
-<body>
-<div class="container">
-    <div class="row">
-        <h3>Actualizar Equipo</h3>
+<form class="form-horizontal" action="updateEquipo.php?id=<?php echo htmlspecialchars($idEquipo); ?>" method="post">
+    <div class="control-group">
+        <label class="control-label">Nombre de equipo</label>
+        <div class="controls">
+            <input name="nombre" type="text" placeholder="Nombre de Equipo" value="<?php echo htmlspecialchars($team['nombre']); ?>">
+            <span class="help-inline"></span>
+        </div>
     </div>
-    <form action="updateEquipo.php?id=<?php echo htmlspecialchars($idEquipo); ?>" method="post">
-        <div class="form-group">
-            <label for="nombre">Nombre de Equipo</label>
-            <input type="text" class="form-control" id="nombre" name="nombre" value="<?php echo htmlspecialchars($team['nombre']); ?>" required>
+    <div class="control-group">
+        <label class="control-label">Año de creación del equipo</label>
+        <div class="controls">
+            <input name="creacion" type="date" value="<?php echo htmlspecialchars($team['creacion']); ?>">
+            <span class="help-inline"></span>
         </div>
-        <div class="form-group">
-            <label for="creacion">Creación</label>
-            <input type="date" class="form-control" id="creacion" name="creacion" value="<?php echo htmlspecialchars($team['creacion']); ?>" required>
+    </div>
+    <div class="control-group">
+        <label class="control-label">Número de goles anotados en total</label>
+        <div class="controls">
+            <input name="goles_totales" type="number" value="<?php echo htmlspecialchars($team['goles_totales']); ?>">
+            <span class="help-inline"></span>
         </div>
-        <div class="form-group">
-            <label for="goles_totales">Goles Totales</label>
-            <input type="number" class="form-control" id="goles_totales" name="goles_totales" value="<?php echo htmlspecialchars($team['goles_totales']); ?>" required>
+    </div>
+    <div class="control-group">
+        <label class="control-label">Partidos jugados</label>
+        <div class="controls">
+            <input name="partidos_totales" type="number" value="<?php echo htmlspecialchars($team['partidos_totales']); ?>">
+            <span class="help-inline"></span>
         </div>
-        <div class="form-group">
-            <label for="partidos_totales">Partidos Jugados</label>
-            <input type="number" class="form-control" id="partidos_totales" name="partidos_totales" value="<?php echo htmlspecialchars($team['partidos_totales']); ?>" required>
+    </div>
+    <div class="control-group">
+        <label class="control-label">Partidos ganados</label>
+        <div class="controls">
+            <input name="partidos_ganados" type="number" value="<?php echo htmlspecialchars($team['partidos_ganados']); ?>">
+            <span class="help-inline"></span>
         </div>
-        <div class="form-group">
-            <label for="partidos_ganados">Partidos Ganados</label>
-            <input type="number" class="form-control" id="partidos_ganados" name="partidos_ganados" value="<?php echo htmlspecialchars($team['partidos_ganados']); ?>" required>
+    </div>
+    <div class="control-group">
+        <label class="control-label">Partidos empatados</label>
+        <div class="controls">
+            <input name="partidos_empatados" type="number" value="<?php echo htmlspecialchars($team['partidos_empatados']); ?>">
+            <span class="help-inline"></span>
         </div>
-        <div class="form-group">
-            <label for="partidos_empatados">Partidos Empatados</label>
-            <input type="number" class="form-control" id="partidos_empatados" name="partidos_empatados" value="<?php echo htmlspecialchars($team['partidos_empatados']); ?>" required>
+    </div>
+    <div class="control-group">
+        <label class="control-label">Partidos perdidos</label>
+        <div class="controls">
+            <input name="partidos_perdidos" type="number" value="<?php echo htmlspecialchars($team['partidos_perdidos']); ?>">
+            <span class="help-inline"></span>
         </div>
-        <div class="form-group">
-            <label for="partidos_perdidos">Partidos Perdidos</label>
-            <input type="number" class="form-control" id="partidos_perdidos" name="partidos_perdidos" value="<?php echo htmlspecialchars($team['partidos_perdidos']); ?>" required>
+    </div>
+    <div class="control-group">
+        <label class="control-label">Puntos extra</label>
+        <div class="controls">
+            <input name="puntos_extras" type="number" value="<?php echo htmlspecialchars($team['puntos_extras']); ?>">
+            <span class="help-inline"></span>
         </div>
-        <div class="form-group">
-            <label for="puntos_extras">Puntos Extras</label>
-            <input type="number" class="form-control" id="puntos_extras" name="puntos_extras" value="<?php echo htmlspecialchars($team['puntos_extras']); ?>" required>
+    </div>
+    <div class="control-group">
+        <label class="control-label">Logo</label>
+        <div class="controls">
+            <input name="logo" type="text" value="<?php echo htmlspecialchars($team['logo']); ?>">
+            <span class="help-inline"></span>
         </div>
-        <div class="form-group">
-            <label for="logo">Logo</label>
-            <input type="text" class="form-control" id="logo" name="logo" value="<?php echo htmlspecialchars($team['logo']); ?>" required>
-        </div>
+    </div>
+    <div class="form-actions">
         <button type="submit" class="btn btn-primary">Actualizar</button>
-        <a class="btn btn-secondary" href="equipo_list.php">Cancelar</a>
-    </form>
-</div>
-</body>
-</html>
+        <button type="button" class="btn" onclick="document.getElementById('updateTeamModal').style.display='none'">Cerrar</button>
+    </div>
+</form>

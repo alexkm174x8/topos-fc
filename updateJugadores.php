@@ -40,7 +40,7 @@ if (isset($_GET['id'])) {
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
     <script src="js/bootstrap.min.js"></script>
 </head>
 <body>
@@ -79,7 +79,7 @@ if (isset($_GET['id'])) {
             <input type="number" class="form-control" id="goles" name="goles" value="<?php echo htmlspecialchars($player['goles']); ?>" required>
         </div>
         <button type="submit" class="btn btn-primary">Actualizar</button>
-        <a class="btn btn-secondary" href="admin.php">Cancelar</a>
+        <a class="btn btn-secondary" href="../admin.php">Cancelar</a>
     </form>
 </div>
 </body>

@@ -25,6 +25,6 @@ if (!empty($_POST['equipoCasa']) && !empty($_POST['localScore']) && !empty($_POS
     header("Location: admin.php");
     exit();
 } else {
-    echo "<script>alert('Por favor, complete todos los campos.'); window.location.href = 'createPartido.php';</script>";
+    echo "<script>alert('Por favor, complete todos los campos.'); window.location.href = 'admin.php';</script>";
 }
 ?>

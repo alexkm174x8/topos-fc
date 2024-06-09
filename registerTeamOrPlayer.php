@@ -16,7 +16,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $medio = $_POST['medio'];
     $mayorEdad = $_POST['ageReq'];
     $teamLogo = $_POST['teamLogo'];
-    
 
     try {
         // Connect to the database using the Database class
@@ -34,15 +33,22 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             exit;
         }
 
+        // Get the max idEquipo from topos_equipo table
+        $stmt = $db->query("SELECT MAX(idEquipo) AS maxId FROM topos_equipo");
+        $maxIdResult = $stmt->fetch(PDO::FETCH_ASSOC);
+        $maxIdEquipo = $maxIdResult['maxId'] + 1;
+
         // Proceed with inserting the new team into topos_equipo table
-        $stmt = $db->prepare("INSERT INTO topos_equipo (nombre, idLiga, logo) VALUES (:teamName, :idLiga, :teamLogo)");
+        $stmt = $db->prepare("INSERT INTO topos_equipo (idEquipo, nombre, idLiga, logo) VALUES (:idEquipo, :teamName, :idLiga, :teamLogo)");
         $stmt->execute([
+            'idEquipo' => $maxIdEquipo,
             'teamName' => $teamName,
-            'idLiga' => $idLiga
+            'idLiga' => $idLiga,
+            'teamLogo' => $teamLogo
         ]);
-        
+
         // Get the last inserted team id
-        $teamId = $db->lastInsertId();
+        $teamId = $maxIdEquipo;
 
         // Get the max idJugador from topos_jugador table
         $stmt = $db->query("SELECT MAX(idJugador) AS maxId FROM topos_jugador");

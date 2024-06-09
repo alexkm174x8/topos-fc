@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
     <meta 	charset="utf-8">
-    <link   href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
     <script src="js/bootstrap.min.js"></script>
 </head>
 
@@ -22,7 +22,7 @@
             $stmt_team->execute([$team_id]);
             $team_name = $stmt_team->fetchColumn();
         }
-        
+
         echo '<h3>Jugadores de ' . $team_name . '</h3>';
         ?>
     </div>
@@ -66,13 +66,13 @@
                 echo '<td>'. $row['apellidos'] . '</td>';
                 echo '<td>'. $row['nombre_equipo'] . '</td>';
                 echo '<td>'. $row['numero'] . '</td>';
-                echo '<td>'. $row['estado'] . '</td>'; 
+                echo '<td>'. $row['estado'] . '</td>';
                 echo '<td>'. $row['posicion'] . '</td>';
                 echo '<td>'. $row['goles'] . '</td>';
                 echo '<td width=250>';
                 echo '&nbsp;';
                 echo '<a class="btn button-colors" href="informacion.php?id='.$row['idjugador'].'">Información del jugador</a>';
-                echo '<a class="btn btn-danger" href="deleteJugadores.php?id='.$row['idjugador'].'">Eliminar</a>';
+                echo '<a class="btn btn-danger" href="delete?id='.$row['idjugador'].'">Eliminar</a>';
                 echo '<a class="btn btn-primary" href="updateJugadores.php?id='.$row['idjugador'].'">Actualizar datos.</a>';
                 echo '</tr>';
             }
@@ -80,8 +80,8 @@
             ?>
             </tbody>
         </table>
-        <a class="btn" href="admin.php">Regresar</a>
+        <a class="btn" href="../admin.php">Regresar</a>
     </div>
-</div> 
+</div>
 </body>
 </html>
