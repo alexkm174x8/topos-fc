@@ -1,9 +1,9 @@
 <?php
 class Database {
-    private static $dbName = 'topos';
-    private static $dbHost = 'localhost' ;
-    private static $dbUsername = 'root';
-    private static $dbUserPassword = '';
+    private static $dbName = 'topos'; //CAMBIAR EL DATO AL SERVIDOR DESEADO
+    private static $dbHost = 'localhost' ; //CAMBIAR EL DATO AL SERVIDOR DESEADO
+    private static $dbUsername = 'root'; //CAMBIAR EL DATO AL SERVIDOR DESEADO
+    private static $dbUserPassword = ''; //CAMBIAR EL DATO AL SERVIDOR DESEADO
 
     private static $cont  = null;
 

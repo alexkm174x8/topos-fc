@@ -12,63 +12,62 @@ if (isset($_GET['idLiga'])) {
     <div class="control-group">
         <label class="control-label">Nombre de equipo</label>
         <div class="controls">
-            <input name="nombre" type="text" placeholder="Nombre de Equipo" value="">
-            <span class="help-inline"></span>
+            <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre de Equipo" required>
         </div>
     </div>
     <div class="control-group">
         <label class="control-label">Año de creación del equipo</label>
         <div class="controls">
-            <input name="año" type="text" placeholder="Año de creación" value="">
+            <input type="text" class="form-control" id="año" name="año" placeholder="Año de creación" required>
             <span class="help-inline"></span>
         </div>
     </div>
     <div class="control-group">
         <label class="control-label">Logo</label>
         <div class="controls">
-            <input name="logo" type="text" placeholder="Logo" value="">
+            <input type="text" class="form-control" id="logo" name="logo" placeholder="Logo" required>
             <span class="help-inline"></span>
         </div>
     </div>
     <div class="control-group">
         <label class="control-label">Número de goles anotados en total</label>
         <div class="controls">
-            <input name="gol" type="text" placeholder="Goles totales" value="">
+            <input type="text" class="form-control" id="gol" name="gol" placeholder="Goles Totales" required>
             <span class="help-inline"></span>
         </div>
     </div>
     <div class="control-group">
         <label class="control-label">Partidos jugados</label>
         <div class="controls">
-            <input name="playedMatches" type="text" placeholder="Partidos jugados" value="">
+            <input type="text" class="form-control" id="playedMatches" name="playedMatches" placeholder="Partidos Jugados" required>
             <span class="help-inline"></span>
         </div>
     </div>
     <div class="control-group">
         <label class="control-label">Partidos ganados</label>
         <div class="controls">
-            <input name="wonMatches" type="text" placeholder="Victorias" value="">
+            <input type="text" class="form-control" id="wonMatches" name="wonMatches" placeholder="Victorias" required>
             <span class="help-inline"></span>
         </div>
     </div>
     <div class="control-group">
         <label class="control-label">Partidos empatados</label>
         <div class="controls">
-            <input name="tiedMatches" type="text" placeholder="Empates" value="">
+            <input type="text" class="form-control" id="tiedMatches" name="tiedMatches" placeholder="Empates" required>
             <span class="help-inline"></span>
         </div>
     </div>
     <div class="control-group">
         <label class="control-label">Partidos perdidos</label>
         <div class="controls">
-            <input name="lostMatches" type="text" placeholder="Derrotas" value="">
+            <input type="text" class="form-control" id="lostMatches" name="lostMatches" placeholder="Derrotas" required>
             <span class="help-inline"></span>
         </div>
     </div>
     <div class="control-group">
         <label class="control-label">Puntos extra</label>
         <div class="controls">
-            <input name="extraPoints" type="text" placeholder="Puntos adicionales" value="">
+            <input type="text" class="form-control" id="extraPoints" name="extraPoints" placeholder="Puntos Extra" required>
             <span class="help-inline"></span>
         </div>
     </div>

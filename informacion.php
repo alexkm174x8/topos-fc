@@ -1,17 +1,9 @@
 <?php
 include 'database.php';
 ?>
-
-<!DOCTYPE html>
-<html lang="en">
 <head>
-    <meta charset="utf-8">
-    <link href="../css/bootstrap.min.css" rel="stylesheet">
-    <script src="js/bootstrap.min.js"></script>
+    <script src="scripts/jugador.js"></script>
 </head>
-<body>
-    <div class="container">
-        <div class="row">
             <table class="table table-striped table-bordered">
                 <thead>
                     <tr>
@@ -74,7 +66,4 @@ include 'database.php';
                     ?>
                 </tbody>
             </table>
-        </div>
-    </div> 
-</body>
-</html>
+        <button type="button" class="btn" onclick="document.getElementById('showPlayerModal').style.display='none'">Cerrar</button>

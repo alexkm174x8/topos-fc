@@ -17,9 +17,6 @@
             <div class="imagen_navbar">
                 <img src="images/topos_logo.png" alt="Logo de topos FC">
             </div>
-            <div class="iniciar_sesion">
-                <a href="adminAccess.php">Iniciar sesión</a>
-            </div>
         </div>
         <div class="lista seccion1">
             <ul>
@@ -46,6 +43,7 @@
     </nav>
 </div>
 <div id='divInicial'>
+    <br>
     <h1>Herramientas de Administrador</h1>
     <h2>Reservaciones Pendientes</h2>
     <br><br>
@@ -100,7 +98,7 @@
     <option value="adminLVEstrella">Liga Varonil Estrella.</option>
     <option value="adminLFTalpa">Liga Femenil Talpa.</option>
 </select>
-<div id="crudContainer">
+<div class="crudContainer">
     <!-- Sección para Liga Varonil Dorada -->
     <div id="adminLVDorada" class="leagueSection" style="display:none;">
         <div class="bootstrap-section">
@@ -145,7 +143,7 @@
                             echo '<td width=250>';
                             echo '<a class="btn" href="jugadores.php?id='.$row['Número de equipo'].'">Detalles</a>';
                             echo '&nbsp;';
-                            echo '<a class="btn btn-danger" href="delete.php?id='.$row['Número de equipo'].'">Eliminar</a>';
+                            echo '<a class="btn btn-danger" href="deleteEquipo.php?id='.$row['Número de equipo'].'">Eliminar</a>';
                             echo '&nbsp;';
                             echo '<a class="btn btn-primary" onclick="openUpdateTeamModal('.$row['Número de equipo'].')">Actualizar datos</a>';
                             echo '</td>';
@@ -258,7 +256,7 @@
                             echo '<td width=250>';
                             echo '<a class="btn" href="jugadores.php?id='.$row['Número de equipo'].'">Detalles</a>';
                             echo '&nbsp;';
-                            echo '<a class="btn btn-danger" href="delete.php?id='.$row['Número de equipo'].'">Eliminar</a>';
+                            echo '<a class="btn btn-danger" href="deleteEquipo.php?id='.$row['Número de equipo'].'">Eliminar</a>';
                             echo '&nbsp;';
                             echo '<a class="btn btn-primary" onclick="openUpdateTeamModal('.$row['Número de equipo'].')">Actualizar datos</a>';
                             echo '</td>';
@@ -371,7 +369,7 @@
                             echo '<td width=250>';
                             echo '<a class="btn" href="jugadores.php?id='.$row['Número de equipo'].'">Detalles</a>';
                             echo '&nbsp;';
-                            echo '<a class="btn btn-danger" href="delete.php?id='.$row['Número de equipo'].'">Eliminar</a>';
+                            echo '<a class="btn btn-danger" href="deleteEquipo.php?id='.$row['Número de equipo'].'">Eliminar</a>';
                             echo '&nbsp;';
                             echo '<a class="btn btn-primary" onclick="openUpdateTeamModal('.$row['Número de equipo'].')">Actualizar datos</a>';
                             echo '</td>';

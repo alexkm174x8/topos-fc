@@ -4,83 +4,87 @@ include 'database.php';
 if (isset($_GET['id'])) {
     $idJugador = $_GET['id'];
 
-    // Fetch existing player data
     $pdo = Database::connect();
-    $sql = "SELECT nombres, apellidos, numero, estado, posicion, goles, idEquipo FROM topos_jugador WHERE idjugador = ?";
+    $sql = "SELECT nombres, apellidos, estado, numero, posicion, goles, idEquipo FROM topos_jugador WHERE idJugador = ?";
     $stmt = $pdo->prepare($sql);
     $stmt->execute([$idJugador]);
     $player = $stmt->fetch(PDO::FETCH_ASSOC);
+    $team_id = $player['idEquipo']; // Obtener el ID del equipo
     Database::disconnect();
 
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-        $nombres = $_POST['nombres'];
-        $apellidos = $_POST['apellidos'];
-        $numero = $_POST['numero'];
-        $estado = $_POST['estado'];
-        $posicion = $_POST['posicion'];
-        $goles = $_POST['goles'];
-        $idEquipo = $player['idEquipo']; // Preserve the idEquipo
+        // Obtener los datos del formulario
+        $nombres = !empty($_POST['nombres']) ? $_POST['nombres'] : $player['nombres'];
+        $apellidos = !empty($_POST['apellidos']) ? $_POST['apellidos'] : $player['apellidos'];
+        $estado = !empty($_POST['estado']) ? $_POST['estado'] : $player['estado'];
+        $numero = !empty($_POST['numero']) ? $_POST['numero'] : $player['numero'];
+        $posicion = !empty($_POST['posicion']) ? $_POST['posicion'] : $player['posicion'];
+        $goles = !empty($_POST['goles']) ? $_POST['goles'] : $player['goles'];
 
+        // Actualizar los datos del jugador en la base de datos
         $pdo = Database::connect();
-        $sql = "UPDATE topos_jugador SET nombres = ?, apellidos = ?, numero = ?, estado = ?, posicion = ?, goles = ? WHERE idjugador = ?";
+        $sql = "UPDATE topos_jugador SET nombres = ?, apellidos = ?, estado = ?, numero = ?, posicion = ?, goles = ? WHERE idJugador = ?";
         $stmt = $pdo->prepare($sql);
-        $stmt->execute([$nombres, $apellidos, $numero, $estado, $posicion, $goles, $idJugador]);
+        $stmt->execute([$nombres, $apellidos, $estado, $numero, $posicion, $goles, $idJugador]);
         Database::disconnect();
 
-        header("Location: jugadores.php?id=" . htmlspecialchars($idEquipo));
+        // Redirigir a la página de jugadores con el ID del equipo
+        echo "<script>window.location.href='jugadores.php?id=".$team_id."';</script>";
         exit;
     }
 } else {
-    header("Location: admin.php");
+    // Si no se proporciona un ID de jugador válido, redirigir a la página de jugadores sin ningún ID de equipo específico
+    echo "<script>window.location.href = 'jugadores.php';</script>";
     exit;
 }
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <link href="../css/bootstrap.min.css" rel="stylesheet">
-    <script src="js/bootstrap.min.js"></script>
-</head>
-<body>
-<div class="container">
-    <div class="row">
-        <h3>Actualizar Jugador</h3>
+<form class="form-horizontal" action="updateJugadores.php?id=<?php echo htmlspecialchars($idJugador); ?>" method="post">
+    <div class="control-group">
+        <label class="control-label">Nombre/s</label>
+        <div class="controls">
+            <input name="nombres" type="text" value="<?php echo htmlspecialchars($player['nombres']); ?>">
+            <span class="help-inline"></span>
+        </div>
     </div>
-    <form action="updateJugadores.php?id=<?php echo htmlspecialchars($idJugador); ?>" method="post">
-        <div class="form-group">
-            <label for="nombres">Nombres</label>
-            <input type="text" class="form-control" id="nombres" name="nombres" value="<?php echo htmlspecialchars($player['nombres']); ?>" required>
+    <div class="control-group">
+        <label class="control-label">Apellidos</label>
+        <div class="controls">
+            <input name="apellidos" type="text" value="<?php echo htmlspecialchars($player['apellidos']); ?>">
+            <span class="help-inline"></span>
         </div>
-        <div class="form-group">
-            <label for="apellidos">Apellidos</label>
-            <input type="text" class="form-control" id="apellidos" name="apellidos" value="<?php echo htmlspecialchars($player['apellidos']); ?>" required>
+    </div>
+    <div class="control-group">
+        <label class="control-label">Estado</label>
+        <div class="controls">
+            <input name="estado" type="radio" value="Activo" <?php echo ($player['estado'] == 'Activo') ? 'checked' : ''; ?>> Activo</input> &nbsp;&nbsp;
+            <input name="estado" type="radio" value="Inactivo" <?php echo ($player['estado'] == 'Inactivo') ? 'checked' : ''; ?>> Inactivo</input>
+            <span class="help-inline"></span>
         </div>
-        <div class="form-group">
-            <label for="numero">Numero</label>
-            <input type="number" class="form-control" id="numero" name="numero" value="<?php echo htmlspecialchars($player['numero']); ?>" required>
+    </div>
+    <div class="control-group">
+        <label class="control-label">Número de Jugador</label>
+        <div class="controls">
+            <input name="numero" type="text" value="<?php echo htmlspecialchars($player['numero']); ?>">
+            <span class="help-inline"></span>
         </div>
-        <div class="form-group">
-            <label for="estado">Estado</label>
-            <div class="controls">
-                <input name="estado" type="radio" value="active" <?php echo ($player['estado'] == 'active') ? 'checked' : ''; ?>> Activo</input> &nbsp;&nbsp;
-                <input name="estado" type="radio" value="inactive" <?php echo ($player['estado'] == 'inactive') ? 'checked' : ''; ?>> Inactivo</input>
-                <span class="help-inline"></span>
-                <br>
-            </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label">Posición</label>
+        <div class="controls">
+            <input name="posicion" type="text" value="<?php echo htmlspecialchars($player['posicion']); ?>">
+            <span class="help-inline"></span>
         </div>
-        <div class="form-group">
-            <label for="posicion">Posición</label>
-            <input type="text" class="form-control" id="posicion" name="posicion" value="<?php echo htmlspecialchars($player['posicion']); ?>" required>
+    </div>
+    <div class="control-group">
+        <label class="control-label">Goles</label>
+        <div class="controls">
+            <input name="goles" type="text" value="<?php echo htmlspecialchars($player['goles']); ?>">
+            <span class="help-inline"></span>
         </div>
-        <div class="form-group">
-            <label for="goles">Goles</label>
-            <input type="number" class="form-control" id="goles" name="goles" value="<?php echo htmlspecialchars($player['goles']); ?>" required>
-        </div>
+    </div>
+    <div class="form-actions">
         <button type="submit" class="btn btn-primary">Actualizar</button>
-        <a class="btn btn-secondary" href="../admin.php">Cancelar</a>
-    </form>
-</div>
-</body>
-</html>
+        <button type="button" class="btn" onclick="document.getElementById('updatePlayerModal').style.display='none'">Cerrar</button>
+    </div>
+</form>

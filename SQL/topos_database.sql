@@ -33,8 +33,8 @@ CREATE TABLE `reservacion` (
   `apellido` varchar(40) NOT NULL,
   `correo` varchar(255) NOT NULL,
   `motivo` varchar(100) NOT NULL,
-  `horaRsv` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `estado` varchar(100) DEFAULT 'Pendiente'
+  `horaRsv` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `estado` varchar(100) DEFAULT 'Pendiente' NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --

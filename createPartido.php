@@ -1,33 +1,48 @@
 <?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
 if (isset($_GET['idLiga'])) {
     $idLiga = intval($_GET['idLiga']);
 
-    $servername = "localhost";
-    $username = "root";
-    $password = "";
-    $dbname = "topos";
+    // Incluir el archivo de conexión a la base de datos
+    include 'database.php';
 
-    $conn = new mysqli($servername, $username, $password, $dbname);
+    // Crear conexión utilizando la clase Database
+    $pdo = Database::connect();
 
-    if ($conn->connect_error) {
-        die("Conexión fallida: " . $conn->connect_error);
+    // Preparar la consulta
+    $sql = "SELECT idEquipo, nombre FROM topos_equipo WHERE idLiga = ?";
+    $stmt = $pdo->prepare($sql);
+
+    if ($stmt === false) {
+        die("Error en la preparación de la consulta: " . $pdo->errorInfo()[2]);
     }
 
-    $sql = "SELECT idEquipo, nombre FROM topos_equipo WHERE idLiga = ?";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("i", $idLiga);
-    $stmt->execute();
-    $result = $stmt->get_result();
+    // Ejecutar la consulta con el parámetro
+    $stmt->execute([$idLiga]);
 
+    // Obtener resultado
+    $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    if ($result === false) {
+        die("Error al ejecutar la consulta: " . $stmt->errorInfo()[2]);
+    }
+
+    // Obtener equipos
     $equipos = [];
-    if ($result->num_rows > 0) {
-        while ($row = $result->fetch_assoc()) {
+    if (count($result) > 0) {
+        foreach ($result as $row) {
             $equipos[] = $row;
         }
+    } else {
+        echo "No se encontraron equipos para la liga especificada.";
     }
 
-    $stmt->close();
-    $conn->close();
+    // Cerrar la conexión
+    $stmt->closeCursor();
+    $pdo = null;
 } else {
     echo "idLiga no está establecido en la URL.";
     exit;
@@ -35,13 +50,13 @@ if (isset($_GET['idLiga'])) {
 ?>
 
 <form class="form-horizontal" action="createPartido2.php" method="post">
-    <input type="hidden" name="idLiga" value="<?php echo $idLiga; ?>">
+    <input type="hidden" name="idLiga" value="<?php echo htmlspecialchars($idLiga); ?>">
     <div class="control-group">
         <label class="control-label">Nombre de equipo local</label>
         <select class="controls" name="equipoCasa" id="equipoCasa">
             <?php
             foreach ($equipos as $equipo) {
-                echo "<option value=\"" . $equipo["idEquipo"] . "\">" . $equipo["nombre"] . "</option>";
+                echo "<option value=\"" . htmlspecialchars($equipo["idEquipo"]) . "\">" . htmlspecialchars($equipo["nombre"]) . "</option>";
             }
             ?>
         </select>
@@ -50,7 +65,7 @@ if (isset($_GET['idLiga'])) {
     <div class="control-group">
         <label class="control-label" for="localScore">Puntuación de equipo local</label>
         <div class="controls">
-            <input name="localScore" type="text" id="localScore" placeholder="Cantidad de goles" value="">
+            <input type="text" class="form-control" id="localScore" name="localScore" placeholder="Cantidad de goles" required>
             <span class="help-inline"></span>
         </div>
     </div>
@@ -60,7 +75,7 @@ if (isset($_GET['idLiga'])) {
         <select class="controls" name="equipoVisita" id="equipoVisita">
             <?php
             foreach ($equipos as $equipo) {
-                echo "<option value=\"" . $equipo["idEquipo"] . "\">" . $equipo["nombre"] . "</option>";
+                echo "<option value=\"" . htmlspecialchars($equipo["idEquipo"]) . "\">" . htmlspecialchars($equipo["nombre"]) . "</option>";
             }
             ?>
         </select>
@@ -69,7 +84,7 @@ if (isset($_GET['idLiga'])) {
     <div class="control-group">
         <label class="control-label" for="visitScore">Puntuación de equipo visitante</label>
         <div class="controls">
-            <input name="visitScore" type="text" id="visitScore" placeholder="Cantidad de goles" value="">
+            <input type="text" class="form-control" id="visitScore" name="visitScore" placeholder="Cantidad de goles" required>
             <span class="help-inline"></span>
         </div>
     </div>
