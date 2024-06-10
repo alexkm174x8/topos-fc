@@ -37,7 +37,7 @@ if (isset($_POST['uname']) && isset($_POST['password'])) {
                     header("Location: admin.php");
                     exit();
                 } else {
-                    header("Location: adminAccess.php?error=Datos de accesso incorrectos.");
+                    header("Location: adminAccess.php?error=Datos de acceso incorrectos.");
                     exit();
                 }
             } else {

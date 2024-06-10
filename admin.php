@@ -1,3 +1,11 @@
+<?php
+session_start();
+if (!isset($_SESSION['user_name'])) {
+    header("Location: adminAccess.php");
+    exit();
+}
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,6 +24,9 @@
         <div class="header_top">
             <div class="imagen_navbar">
                 <img src="images/topos_logo.png" alt="Logo de topos FC">
+            </div>
+            <div class="iniciar_sesion">
+                <a href="logout.php">Cerrar Sesión</a>
             </div>
         </div>
         <div class="lista seccion1">
