@@ -1,3 +1,10 @@
+<?php
+session_start();
+if (!isset($_SESSION['user_name'])) {
+    header("Location: adminAccess.php");
+    exit();
+} ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -40,7 +47,7 @@
                 ?>
             </div>
             <div class="iniciar_sesion">
-                <a href="admin.php">Menú de Administrador</a>
+                <a href="logout.php">Cerrar Sesión</a>
             </div>
         </div>
         <br>
