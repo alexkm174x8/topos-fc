@@ -622,6 +622,16 @@ button:hover{
   margin-right: 10px;
 }
 
+.access .regresar {
+  /* Aquí puedes añadir estilos específicos para asegurarte de que los botones con clase 'regresar' no hereden estilos no deseados */
+  background: none;
+  color: initial;
+  padding: initial;
+  border: none;
+  font: inherit;
+  text-decoration: none; /* Quita la subrayado si es necesario */
+}
+
 body.access {
   display:flex;
   justify-content:center;
@@ -1221,3 +1231,4 @@ body.calendario {
   max-height: calc(100% - 40px); /* Asegura que el modal no exceda la altura de la ventana */
   overflow: hidden; /* Permite el desplazamiento dentro del modal si es necesario */
 }
+

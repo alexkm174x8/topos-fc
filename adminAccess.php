@@ -12,6 +12,9 @@ if (isset($_SESSION['user_name'])) {
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body class="access">
+<div class="iniciar_sesion">
+    <a class="regresar" href="estadisticas.html">Regresar a la Página</a>
+</div>
 <div class="imagen_navbar">
     <img src="images/topos_logo.png" alt="Logo de topos FC">
 </div>
