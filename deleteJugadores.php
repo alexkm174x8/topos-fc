@@ -3,25 +3,30 @@ require 'database.php';
 
 try {
     // Obtener el ID del jugador de la URL
+    if (!isset($_GET['id']) || empty($_GET['id'])) {
+        throw new Exception("El ID del jugador no está presente en la URL.");
+    }
     $id = $_GET['id'];
 
     // Establecer la conexión a la base de datos
     $pdo = Database::connect();
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-    // Obtener el ID del equipo al que pertenece el jugador para la redirección
-    $sql_get_team_id = "SELECT idEquipo FROM TOPOS_Jugador WHERE idJugador = ?";
+    // Obtener el ID del equipo del jugador antes de eliminarlo
+    $sql_get_team_id = "SELECT idEquipo FROM topos_jugador WHERE idJugador = ?";
     $q_get_team_id = $pdo->prepare($sql_get_team_id);
     $q_get_team_id->execute(array($id));
-    $team_id = $q_get_team_id->fetch(PDO::FETCH_ASSOC)['idEquipo'];
+    $team_result = $q_get_team_id->fetch(PDO::FETCH_ASSOC);
 
-    // Preparar la consulta de eliminación de información relacionada con el jugador
-    $sql_delete_info = "DELETE FROM topos_informacion WHERE idJugador = ?";
-    $q_delete_info = $pdo->prepare($sql_delete_info);
-    $q_delete_info->execute(array($id));
+    // Verificar si se encontró un resultado
+    if (!$team_result) {
+        throw new Exception("No se encontró un jugador con el ID especificado.");
+    }
+
+    $team_id = $team_result['idEquipo'];
 
     // Preparar la consulta de eliminación del jugador
-    $sql_delete_player = "DELETE FROM TOPOS_Jugador WHERE idJugador = ?";
+    $sql_delete_player = "DELETE FROM topos_jugador WHERE idJugador = ?";
     $q_delete_player = $pdo->prepare($sql_delete_player);
     $q_delete_player->execute(array($id));
 
@@ -33,5 +38,8 @@ try {
 } catch (PDOException $e) {
     // Capturar y mostrar cualquier excepción que ocurra durante la ejecución de la consulta
     echo "Error al eliminar al jugador: " . $e->getMessage();
+} catch (Exception $e) {
+    // Capturar y mostrar excepciones generales
+    echo "Error: " . $e->getMessage();
 }
 ?>

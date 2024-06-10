@@ -104,13 +104,22 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   // Función para copiar el correo al portapapeles
+// Función para copiar el correo al portapapeles
   function copiarAlPortapapeles(correo) {
-    navigator.clipboard.writeText(correo).then(function () {
+    var tempInput = document.createElement('input');
+    tempInput.value = correo;
+    document.body.appendChild(tempInput);
+    tempInput.select();
+    try {
+      var successful = document.execCommand('copy');
+      var msg = successful ? 'successful' : 'unsuccessful';
       alert('Correo copiado al portapapeles: ' + correo);
-    }, function (err) {
+    } catch (err) {
       console.error('Error al copiar al portapapeles: ', err);
-    });
+    }
+    document.body.removeChild(tempInput);
   }
+
 
   // Función para verificar si no hay más reservaciones y mostrar un mensaje si es necesario
   function checkNoReservations() {
